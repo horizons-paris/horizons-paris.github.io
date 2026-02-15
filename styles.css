@@ -1168,6 +1168,24 @@ a {
 }
 }
 
+/* Styles pour tablettes et écrans moyens (769px à 1200px) */
+@media (min-width: 769px) and (max-width: 1200px) {
+    /* Image bandeau pour tailles intermédiaires */
+    .intro .full-screen {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 50vh !important;
+        object-fit: cover !important;
+        object-position: center 35% !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .intro {
+        margin-top: 60px !important;
+    }
+}
+
 /* Styles pour grands écrans (769px et plus) */
 @media (min-width: 769px) {
     /* Menu en ligne pour grands écrans, dans un conteneur spécifique */
