@@ -31,7 +31,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Feuille de styles -->
-    <link rel="stylesheet" href="styles.css?v=130">
+    <link rel="stylesheet" href="styles.css?v=131">
 </head>
 <body>
     <header>
@@ -250,75 +250,6 @@
                 }
             });
         });
-    </script>
-    
-    <!-- Script pour forcer l'image full width dans la zone 563-769px -->
-    <script>
-        function fixImageWidth() {
-            const img = document.querySelector('.intro .full-screen');
-            const intro = document.querySelector('.intro');
-            
-            if (!img) {
-                console.log('Image non trouvée');
-                return;
-            }
-            
-            const width = window.innerWidth;
-            console.log('Largeur détectée:', width + 'px');
-            
-            if (width >= 563 && width <= 769) {
-                console.log('Zone 563-769 détectée, application des styles...');
-                
-                // Forcer le parent .intro aussi
-                intro.style.width = '100vw';
-                intro.style.maxWidth = '100vw';
-                intro.style.margin = '0';
-                intro.style.marginTop = '60px';
-                intro.style.padding = '0';
-                intro.style.position = 'relative';
-                intro.style.left = '50%';
-                intro.style.transform = 'translateX(-50%)';
-                
-                // Zone problématique : forcer l'image
-                img.style.width = '100%';
-                img.style.maxWidth = '100%';
-                img.style.position = 'relative';
-                img.style.left = '0';
-                img.style.transform = 'none';
-                img.style.marginLeft = '0';
-                img.style.marginRight = '0';
-                img.style.marginTop = '-60px';
-                img.style.marginBottom = '-30px';
-                console.log('✅ Styles appliqués sur .intro ET .full-screen !');
-            } else if (width > 769) {
-                console.log('Largeur > 769, réinitialisation');
-                // Réinitialiser
-                intro.style.width = '';
-                intro.style.maxWidth = '';
-                intro.style.margin = '';
-                intro.style.padding = '';
-                intro.style.position = '';
-                intro.style.left = '';
-                intro.style.transform = '';
-                
-                img.style.width = '';
-                img.style.maxWidth = '';
-                img.style.position = '';
-                img.style.left = '';
-                img.style.transform = '';
-                img.style.marginLeft = '';
-                img.style.marginRight = '';
-            }
-        }
-        
-        // Appliquer au chargement
-        window.addEventListener('load', function() {
-            console.log('Page chargée, exécution du script...');
-            fixImageWidth();
-        });
-        
-        // Appliquer au redimensionnement
-        window.addEventListener('resize', fixImageWidth);
     </script>
 </body>
 </html>
