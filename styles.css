@@ -1100,7 +1100,8 @@ a {
     }
     
     /* Image bandeau - simple et directe */
-    .intro .full-screen {
+    .intro .full-screen,
+    section.intro .full-screen {
         width: 100% !important;
         max-width: 100% !important;
         height: 35vh !important;
@@ -1110,9 +1111,16 @@ a {
         display: block !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
-        margin-top: -100px !important;
-        margin-bottom: -50px !important;
+        margin-top: -50px !important; /* Réduit de -100px à -50px */
+        margin-bottom: -20px !important; /* Réduit de -50px à -20px */
         padding: 0 !important;
+    }
+    
+    /* S'assurer que le h1 a de l'espace */
+    .intro h1 {
+        margin-top: 15px !important;
+        position: relative !important;
+        z-index: 10 !important;
     }
 	
     /* Styles Swiper responsive pour mobile */
