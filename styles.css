@@ -142,6 +142,7 @@ ul.submenu li a:hover {
 /* Container principal contenant .intro */
 .content {
     margin: 0 auto; /* Centrage horizontal automatique */
+    margin-top: 60px; /* Compensation pour le header fixe */
     flex: 1; /* Prend tout l'espace disponible dans la colonne */
     display: flex; /* Utilise Flexbox pour organiser ses enfants */
     flex-direction: column; /* Organise verticalement */
@@ -1150,17 +1151,20 @@ a {
         margin-right: 10px;
     }
     
-    /* Ajuster le margin-top de intro pour desktop en fonction de la hauteur réelle du header */
+    /* Ajuster le margin-top de intro pour desktop */
     .intro {
-        margin-top: 0 !important; /* Pas de marge - colle au header */
-        padding-top: 70px !important; /* Padding égal à la hauteur du header */
+        margin-top: 0 !important;
+        padding-top: 0 !important; /* Pas de padding - directement sous le header */
     }
     
-    /* Image bandeau pleine largeur sur desktop */
+    /* Image bandeau sans débordement sur desktop */
     .full-screen {
-        max-height: 80vh; /* Plus haute pour voir le haut de la Tour Eiffel */
-        object-fit: cover; /* Étire l'image pour remplir */
-        object-position: center 20%; /* Décale légèrement vers le bas pour voir le haut */
+        max-height: 80vh;
+        object-fit: cover;
+        object-position: center 30%;
+        width: 100%; /* 100% au lieu de 100vw pour éviter le scroll */
+        margin-left: 0; /* Pas de marge négative sur desktop */
+        margin-right: 0;
     }
 
     /* Ajout de transitions pour le header */
