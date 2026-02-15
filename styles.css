@@ -1184,6 +1184,11 @@ a {
     .intro {
         margin-top: 60px !important;
     }
+    
+    /* Espacement pour le titre sur écrans moyens */
+    .intro h1 {
+        margin-top: 20px !important;
+    }
 }
 
 /* Styles pour grands écrans (769px et plus) */

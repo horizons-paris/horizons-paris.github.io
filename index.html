@@ -31,7 +31,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Feuille de styles -->
-    <link rel="stylesheet" href="styles.css?v=116">
+    <link rel="stylesheet" href="styles.css?v=117">
 </head>
 <body>
     <header>
@@ -285,11 +285,29 @@
         // Refaire au redimensionnement
         window.addEventListener('resize', function() {
             const img = document.querySelector('.full-screen');
-            if (img && window.innerWidth <= 768) {
+            if (!img) return;
+            
+            if (window.innerWidth <= 768) {
+                // Mobile : appliquer tous les styles
                 const viewportWidth = window.innerWidth;
                 img.style.width = viewportWidth + 'px';
                 img.style.maxWidth = viewportWidth + 'px';
                 img.style.minWidth = viewportWidth + 'px';
+                img.style.height = '35vh';
+                img.style.objectFit = 'contain';
+                img.style.objectPosition = 'center center';
+                img.style.marginTop = '-100px';
+                img.style.marginBottom = '-50px';
+            } else {
+                // Tablette/Desktop : réinitialiser les styles inline
+                img.style.width = '';
+                img.style.maxWidth = '';
+                img.style.minWidth = '';
+                img.style.height = '';
+                img.style.objectFit = '';
+                img.style.objectPosition = '';
+                img.style.marginTop = '';
+                img.style.marginBottom = '';
             }
         });
     </script>
