@@ -983,6 +983,13 @@ a {
         grid-template-columns: 1fr;
     }
 
+    /* Supprimer les marges horizontales des cards sur mobile */
+    .card {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 10px;
+    }
+
     /* Ajustements intro mobile */
     .intro {
         margin: 0 !important;
