@@ -1110,7 +1110,7 @@ a {
         object-position: center center !important; /* Centré */
         display: block !important;
         margin: 0 !important;
-        margin-top: -80px !important; /* Remonter encore plus l'image */
+        margin-top: -100px !important; /* Remonter au maximum */
         padding: 0 !important;
     }
 	
