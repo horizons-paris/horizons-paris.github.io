@@ -1110,7 +1110,7 @@ a {
         object-position: center center !important; /* Centré */
         display: block !important;
         margin: 0 !important;
-        margin-top: -40px !important; /* Remonter l'image davantage pour supprimer la bande blanche */
+        margin-top: -60px !important; /* Remonter encore plus l'image */
         padding: 0 !important;
     }
 	
