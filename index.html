@@ -31,7 +31,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Feuille de styles -->
-    <link rel="stylesheet" href="styles.css?v=105">
+    <link rel="stylesheet" href="styles.css?v=106">
 </head>
 <body>
     <header>
@@ -266,7 +266,7 @@
                 img.style.maxWidth = viewportWidth + 'px';
                 img.style.minWidth = viewportWidth + 'px';
                 img.style.height = '35vh';
-                img.style.objectFit = 'cover';
+                img.style.objectFit = 'contain'; // Contain pour voir toute l'image
                 img.style.display = 'block';
                 img.style.margin = '0';
                 img.style.padding = '0';
@@ -274,7 +274,7 @@
                 img.style.left = '0';
                 img.style.right = '0';
                 
-                console.log('Image forcée à ' + viewportWidth + 'px');
+                console.log('Image forcée à ' + viewportWidth + 'px avec contain');
             }
         });
         

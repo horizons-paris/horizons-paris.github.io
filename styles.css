@@ -1106,7 +1106,7 @@ a {
         max-width: 100% !important;
         height: 35vh !important;
         max-height: 35vh !important;
-        object-fit: cover !important;
+        object-fit: contain !important; /* Contain pour voir toute l'image */
         object-position: center !important;
         display: block !important;
         margin: 0 !important;
