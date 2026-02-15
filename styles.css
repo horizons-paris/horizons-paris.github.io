@@ -1055,14 +1055,16 @@ a {
     
     /* Image full-screen responsive sur mobile */
     .full-screen {
-        width: 100%;
-        max-width: 100%;
+        width: calc(100% + 30px); /* Compenser les paddings éventuels */
+        max-width: none;
         height: auto;
         max-height: 50vh;
         object-fit: cover;
         object-position: center center;
         display: block;
         margin: 0;
+        margin-left: -15px; /* Déborder à gauche */
+        margin-right: -15px; /* Déborder à droite */
     }
 	
     /* Styles Swiper responsive pour mobile */
@@ -1163,10 +1165,10 @@ a {
     
     /* Image bandeau sans débordement sur desktop */
     .full-screen {
-        max-height: 80vh; /* Augmenter à 80% pour voir plus */
+        max-height: 80vh; /* 80% de la hauteur de l'écran */
         min-height: 500px; /* Hauteur minimale plus grande */
-        object-fit: cover;
-        object-position: center 60%; /* Décaler beaucoup vers le bas */
+        object-fit: contain; /* Contain pour voir toute l'image sans couper */
+        object-position: center top; /* Aligner en haut pour voir le sommet */
         width: 100%;
         margin-left: 0;
         margin-right: 0;
