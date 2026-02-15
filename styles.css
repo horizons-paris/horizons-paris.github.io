@@ -5,6 +5,12 @@
     font-weight: 300;  /* Light */
     font-style: italic;
 }
+
+html {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 body {
     position: relative; /* Positionne le corps relativement à son flux normal, permettant de positionner des éléments en fonction de lui si besoin */
     z-index: auto; /* Z-index automatique, n'influence pas ici car position est relative */
@@ -15,11 +21,18 @@ body {
     color: #5A3E2B; /* Couleur du texte par défaut (brun) */
     line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
     margin: 0; /* Aucune marge extérieure par défaut */
+    padding: 0;
     display: flex; /* Utilise Flexbox pour organiser le contenu */
     flex-direction: column; /* Organise les éléments en colonne (verticalement) */
     min-height: 100vh; /* Hauteur minimale pour couvrir toute la hauteur de la fenêtre */
     overflow-x: hidden; /* Empêche le débordement horizontal */
     max-width: 100%; /* Limite la largeur maximale */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 /* Bandeau fixe en haut de la page */
@@ -322,8 +335,9 @@ h4 {
 /* Image argentée spécifique */
 .image-argentee {
     border: 4px solid silver; /* Bordure argentée */
-    width: 340px; /* Largeur fixe */
-    height: 260px; /* Hauteur automatique */
+    width: 100%; /* Largeur responsive au lieu de fixe */
+    max-width: 340px; /* Largeur maximale de 340px */
+    height: auto; /* Hauteur automatique pour garder les proportions */
 }
 
 /* Mise en page centrée pour le formulaire de contact avec flexbox */
