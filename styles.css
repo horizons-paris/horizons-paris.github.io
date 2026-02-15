@@ -1106,8 +1106,8 @@ a {
         max-width: 100% !important;
         height: 35vh !important;
         max-height: 35vh !important;
-        object-fit: contain !important; /* Contain pour voir toute l'image */
-        object-position: center !important;
+        object-fit: cover !important; /* Cover pour remplir */
+        object-position: 55% center !important; /* Décaler légèrement à droite pour voir la route */
         display: block !important;
         margin: 0 !important;
         padding: 0 !important;
