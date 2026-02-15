@@ -31,7 +31,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Feuille de styles -->
-    <link rel="stylesheet" href="styles.css?v=104">
+    <link rel="stylesheet" href="styles.css?v=105">
 </head>
 <body>
     <header>
@@ -258,14 +258,34 @@
         window.addEventListener('load', function() {
             const img = document.querySelector('.full-screen');
             if (img && window.innerWidth <= 768) {
-                // Forcer la largeur à 100% du viewport
-                img.style.width = '100%';
-                img.style.maxWidth = '100%';
+                // Calculer la largeur exacte de la fenêtre
+                const viewportWidth = window.innerWidth;
+                
+                // Forcer la largeur exacte
+                img.style.width = viewportWidth + 'px';
+                img.style.maxWidth = viewportWidth + 'px';
+                img.style.minWidth = viewportWidth + 'px';
                 img.style.height = '35vh';
                 img.style.objectFit = 'cover';
                 img.style.display = 'block';
                 img.style.margin = '0';
                 img.style.padding = '0';
+                img.style.position = 'relative';
+                img.style.left = '0';
+                img.style.right = '0';
+                
+                console.log('Image forcée à ' + viewportWidth + 'px');
+            }
+        });
+        
+        // Refaire au redimensionnement
+        window.addEventListener('resize', function() {
+            const img = document.querySelector('.full-screen');
+            if (img && window.innerWidth <= 768) {
+                const viewportWidth = window.innerWidth;
+                img.style.width = viewportWidth + 'px';
+                img.style.maxWidth = viewportWidth + 'px';
+                img.style.minWidth = viewportWidth + 'px';
             }
         });
     </script>
