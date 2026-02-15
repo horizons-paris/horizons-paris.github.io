@@ -721,7 +721,7 @@ a {
   font-size: 0.75em;
   color: #999;
   margin-top: 10px;
-  margin-bottom: 20px;  /* ← Crée l'espace en bas */
+  margin-bottom: 30px !important;  /* ← Crée l'espace en bas */
   font-style: italic;
 }
 
