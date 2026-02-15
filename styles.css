@@ -1048,23 +1048,17 @@ a {
     html,
     body {
         overflow-x: hidden !important;
-        max-width: 100% !important;
-        width: 100% !important;
     }
     
     .content {
-        overflow-x: hidden;
-        max-width: 100%;
-        width: 100%;
-        padding: 0;
-        margin: 0;
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
     
-    /* Forcer TOUT à ne pas déborder sur mobile */
-    * {
-        max-width: 100vw !important;
-    }
-    
+    /* Forcer TOUT à ne pas déborder sur mobile - SAUF les éléments qui en ont besoin */
     html {
         overflow-x: hidden !important;
         width: 100vw !important;
@@ -1079,6 +1073,12 @@ a {
         padding: 0 !important;
     }
     
+    /* Boutons scroll plus petits sur mobile */
+    .scroll-btn img {
+        max-width: 40px !important;
+        max-height: 40px !important;
+    }
+    
     /* Intro sans padding/margin */
     .intro {
         margin: 0 !important;
@@ -1086,6 +1086,7 @@ a {
         padding: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
+        overflow-x: hidden !important;
     }
     
     /* Image bandeau - simple et directe */
