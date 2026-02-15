@@ -1040,6 +1040,12 @@ a {
         padding-right: 15px;
     }
     
+    /* Réduire l'espace entre l'image et le titre sur mobile */
+    .intro h1 {
+        margin-top: 10px; /* Petite marge en haut du titre */
+        margin-bottom: 10px; /* Réduire l'espace en dessous */
+    }
+    
     /* Empêcher le débordement horizontal sur tout le contenu mobile */
     .content {
         overflow-x: hidden;
@@ -1159,8 +1165,8 @@ a {
     
     /* Image bandeau sans débordement sur desktop */
     .full-screen {
-        max-height: 100vh; /* Augmenter la hauteur pour voir plus */
-        min-height: 500px; /* Hauteur minimale généreuse */
+        max-height: 75vh; /* 75% de la hauteur de l'écran */
+        min-height: 400px; /* Hauteur minimale */
         object-fit: cover;
         object-position: center 40%; /* Décaler vers le bas pour voir le ciel en haut */
         width: 100%; /* 100% au lieu de 100vw pour éviter le scroll */
