@@ -187,8 +187,8 @@ ul.submenu li a:hover {
     width: 100%; /* Prend toute la largeur disponible */
     box-sizing: border-box; /* Inclut padding et border dans la largeur */
     margin-bottom: 20px; /* Espacement en bas */
-    margin-left: 10px; /* Marges horizontales pour espacer les cartes */
-    margin-right: 10px;
+    margin-left: 0; /* Pas de marge horizontale par défaut */
+    margin-right: 0;
 }
 
 /* Effet au survol d'une carte */
@@ -1110,6 +1110,12 @@ a {
     /* Masque le bouton closeCross en desktop */
     #closeCross {
         display: none;
+    }
+    
+    /* Marges des cards pour desktop */
+    .card {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     /* Ajout de transitions pour le header */
