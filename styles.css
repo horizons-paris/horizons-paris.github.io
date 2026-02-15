@@ -1168,6 +1168,31 @@ a {
 }
 }
 
+/* Styles pour grands mobiles / petites tablettes (481px à 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Image bandeau pour grands mobiles */
+    .intro .full-screen {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 40vh !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        margin: 0 !important;
+        margin-top: -80px !important;
+        margin-bottom: -40px !important;
+    }
+    
+    /* Ajuster intro pour cette zone */
+    .intro {
+        margin-top: 60px !important;
+        padding: 0 !important;
+    }
+    
+    .intro h1 {
+        margin-top: 0 !important;
+    }
+}
+
 /* Styles pour tablettes (769px à 900px) */
 @media (min-width: 769px) and (max-width: 900px) {
     /* Image bandeau pour tablettes */
