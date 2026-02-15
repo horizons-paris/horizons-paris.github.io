@@ -31,7 +31,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Feuille de styles -->
-    <link rel="stylesheet" href="styles.css?v=103">
+    <link rel="stylesheet" href="styles.css?v=104">
 </head>
 <body>
     <header>
@@ -249,6 +249,24 @@
                     menuDrawer.setAttribute('aria-hidden', 'true');
                 }
             });
+        });
+    </script>
+    
+    <!-- Script pour forcer l'image bandeau à la bonne taille sur mobile -->
+    <script>
+        // Attendre que l'image soit chargée
+        window.addEventListener('load', function() {
+            const img = document.querySelector('.full-screen');
+            if (img && window.innerWidth <= 768) {
+                // Forcer la largeur à 100% du viewport
+                img.style.width = '100%';
+                img.style.maxWidth = '100%';
+                img.style.height = '35vh';
+                img.style.objectFit = 'cover';
+                img.style.display = 'block';
+                img.style.margin = '0';
+                img.style.padding = '0';
+            }
         });
     </script>
 </body>

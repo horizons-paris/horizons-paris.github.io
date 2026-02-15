@@ -1073,10 +1073,14 @@ a {
         padding: 0 !important;
     }
     
-    /* Boutons scroll plus petits sur mobile */
+    /* Boutons scroll sur mobile - plus gros et collés au bord */
+    #scrollButtons {
+        right: 0 !important;
+    }
+    
     .scroll-btn img {
-        max-width: 40px !important;
-        max-height: 40px !important;
+        max-width: 60px !important;
+        max-height: 60px !important;
     }
     
     /* Intro sans padding/margin */
