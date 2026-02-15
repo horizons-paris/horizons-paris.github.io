@@ -535,10 +535,11 @@ a {
 .full-screen {
   width: 100vw; /* Prend toute la largeur de la fenêtre */
   max-width: 100vw;
+  min-height: 400px; /* Hauteur minimale */
   height: auto;
-  max-height: none; /* Pas de limitation de hauteur */
-  object-fit: contain; /* Affiche l'image complète sans la couper */
-  object-position: center top; /* Aligne l'image en haut */
+  max-height: none; /* Pas de limitation par défaut */
+  object-fit: cover; /* Couvre tout l'espace en s'étirant */
+  object-position: center 30%; /* Positionne pour voir le haut */
   display: block;
   margin: 0;
   margin-left: calc(-50vw + 50%); /* Centre l'image qui dépasse */
@@ -1151,12 +1152,15 @@ a {
     
     /* Ajuster le margin-top de intro pour desktop en fonction de la hauteur réelle du header */
     .intro {
-        margin-top: 70px !important; /* Hauteur du header + padding (0.5rem haut + 0.5rem bas + hauteur menu) */
+        margin-top: 0 !important; /* Pas de marge - colle au header */
+        padding-top: 70px !important; /* Padding égal à la hauteur du header */
     }
     
-    /* Image bandeau pleine taille sur desktop */
+    /* Image bandeau pleine largeur sur desktop */
     .full-screen {
-        max-height: 70vh; /* Limiter quand même un peu sur grands écrans */
+        max-height: 80vh; /* Plus haute pour voir le haut de la Tour Eiffel */
+        object-fit: cover; /* Étire l'image pour remplir */
+        object-position: center 20%; /* Décale légèrement vers le bas pour voir le haut */
     }
 
     /* Ajout de transitions pour le header */
