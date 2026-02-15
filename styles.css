@@ -1,0 +1,1090 @@
+/* Style général du corps */
+@font-face {
+    font-family: 'Merriweather';
+    src: url('fonts/Merriweather-LightItalic.ttf') format('truetype');
+    font-weight: 300;  /* Light */
+    font-style: italic;
+}
+body {
+    position: relative; /* Positionne le corps relativement à son flux normal, permettant de positionner des éléments en fonction de lui si besoin */
+    z-index: auto; /* Z-index automatique, n'influence pas ici car position est relative */
+    font-family: 'Merriweather', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-weight: 300 !important; /* Force le poids light */
+    font-style: italic !important; /* Force l'italique */
+    background-color: #F5F1E8; /* Couleur de fond beige très clair */
+    color: #5A3E2B; /* Couleur du texte par défaut (brun) */
+    line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
+    margin: 0; /* Aucune marge extérieure par défaut */
+    display: flex; /* Utilise Flexbox pour organiser le contenu */
+    flex-direction: column; /* Organise les éléments en colonne (verticalement) */
+    min-height: 100vh; /* Hauteur minimale pour couvrir toute la hauteur de la fenêtre */
+    overflow-x: hidden; /* Empêche le débordement horizontal */
+    max-width: 100%; /* Limite la largeur maximale */
+}
+
+/* Bandeau fixe en haut de la page */
+header {
+    position: fixed; /* Fixe le header en haut de la fenêtre même lors du défilement */
+    top: 0; /* Positionné tout en haut */
+    width: 100%; /* Occupe toute la largeur de la fenêtre */
+    background-color: #4A3428; /* Chocolat foncé */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Ombre portée pour donner du relief */
+    z-index: 1000; /* Z-index élevé pour rester au-dessus des autres éléments */
+    padding: 0.5rem 1rem; /* Espacement intérieur : haut/bas 0.5rem, gauche/droite 1rem */
+    display: flex; /* Flex pour aligner le contenu du header */
+    align-items: center; /* Centrage vertical */
+    transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Transition douce pour background et ombre */
+}
+
+/* Menu de navigation */
+nav {
+    display: flex; /* Utilise Flexbox pour disposer les éléments horizontalement */
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Aligne verticalement au centre */
+}
+
+/* Liste du menu principal */
+ul.menu {
+    list-style: none; /* Supprime les puces de la liste */
+    display: flex; /* Disposition horizontale des éléments de la liste */
+    margin: 0; /* Aucune marge externe */
+    padding: 0; /* Aucune marge intérieure */
+    transition: all 0.3s ease; /* Transition douce pour tous les changements */
+}
+
+/* Éléments du menu (li) */
+ul.menu li {
+    position: relative; /* Position relative pour permettre le positionnement absolu de sous-menus */
+    margin: 0 15px; /* Marge horizontale entre les éléments : 15px de chaque côté */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transitions pour hover */
+}
+
+/* Liens du menu */
+ul.menu li a {
+    text-decoration: none; /* Supprime le soulignement des liens */
+    color: #F5F1E8; /* Beige clair */
+    font-weight: bold; /* Texte en gras */
+    padding: 8px 12px; /* Padding intérieur : 8px haut/bas, 12px gauche/droite */
+    transition: background 0.3s, color 0.3s, transform 0.3s; /* Transition douce pour hover */
+}
+
+/* Survol des liens du menu */
+ul.menu li a:hover {
+    background-color: rgba(142, 168, 137, 0.5); /* Vert Sauge Clair */
+    border-radius: 4px; /* Coins arrondis de 4px pour le fond */
+    color: #fff; /* Changement de couleur du texte en blanc */
+    transform: scale(1.05); /* Légère mise à l'échelle pour effet dynamique */
+}
+
+/* Sous-menu déroulant (méga menu) */
+ul.menu li ul.submenu {
+    display: none; /* Cacher par défaut */
+    position: absolute; /* Positionnement absolu par rapport au parent li */
+    top: 30px; /* Position verticale à 30px en dessous du parent */
+    left: 0; /* Aligné à gauche du parent */
+    background-color: #4A3428; /* Chocolat foncé pour le sous menu*/
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5); /* Ombre pour donner du relief */
+    list-style: none; /* Pas de puces */
+    padding: 0; /* Pas de padding interne */
+    margin: 0; /* Pas de marge */
+    width: 140px; /* Largeur initiale de 140px */
+    border-radius: 4px; /* Coins arrondis */
+    z-index: 1001; /* Z-index supérieur pour apparaître au-dessus du menu principal */
+    transition: width 0.3s ease, opacity 0.3s ease; /* Transition pour largeur et opacité */
+    opacity: 0; /* Transparence initiale */
+    transform: translateY(-10px); /* Départ légèrement en haut */
+}
+
+/* Affichage du sous-menu au survol du parent li avec transition douce */
+ul.menu li:hover ul.submenu {
+    display: block; /* Affiche le sous-menu */
+    width: 200px; /* Agrandissement de la largeur lors du survol */
+    opacity: 1; /* Rendre visible */
+    transform: translateY(0); /* Rétablir la position */
+    transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Transition douce */
+}
+
+/* Items du sous-menu (li) */
+ul.submenu li {
+    width: 100%; /* Prend toute la largeur du sous-menu */
+    transition: background-color 0.3s ease; /* Transition pour hover */
+}
+
+/* Liens dans le sous-menu */
+ul.submenu li a {
+    padding: 4px 8px; /* Padding intérieur réduit */
+    max-width: 180px; /* Largeur maximum pour éviter débordement */
+    display: inline-block; /* Permet de définir une largeur et hauteur */
+    color: #fff; /* Couleur du texte blanc */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition douce */
+}
+
+/* Survol des liens du sous-menu */
+ul.submenu li a:hover {
+    background-color: rgba(142, 168, 137, 0.5); /* Vert Sauge Clair */
+    color: #fff; /* Texte blanc en hover */
+    transform: translateX(5px); /* Légère translation pour donner un effet dynamique */
+}
+
+/* Container principal contenant .intro */
+.content {
+    margin: 0 auto; /* Centrage horizontal automatique */
+    flex: 1; /* Prend tout l'espace disponible dans la colonne */
+    display: flex; /* Utilise Flexbox pour organiser ses enfants */
+    flex-direction: column; /* Organise verticalement */
+    overflow-x: hidden; /* Empêche le débordement horizontal */
+    max-width: 100%; /* Limite la largeur maximale */
+    width: 100%; /* Prend toute la largeur disponible */
+    box-sizing: border-box; /* Inclut padding et border dans la largeur */
+}
+
+/* Section de présentation contenue dans .content */
+.intro {
+    width: 100%; /* Prend toute la largeur du parent */
+    box-sizing: border-box; /* Inclut padding et border dans la largeur */
+    margin-bottom: 3rem; /* Espace en dessous de 3 rem */
+    padding-top: 30px; /* Padding en haut */
+}
+
+/* Titre principal dans la section intro */
+.intro h1 {
+    font-size: 2.5rem; /* Taille de police importante */
+    margin-bottom: 1rem; /* Marge en dessous */
+    color: black; /* Couleur du texte noir */
+    text-align: center; /* Centrage du texte */
+}
+
+/* Sous-titres h3 dans intro */
+.intro h3 {
+    text-align: center; /* Centrage */
+}
+
+/* Sous-titres h4 dans intro */
+.intro h4 {
+    text-align: center; /* Centrage */
+}
+
+/* Paragraphe dans intro */
+.intro p {
+    font-size: 1.2rem; /* Taille de police confortable */
+    max-width: 800px; /* Largeur maximale pour meilleure lecture */
+    margin: 0 auto 1.5rem; /* Centrage avec marge inférieure de 1.5 rem */
+    color: #5A3E2B /* Couleur du texte brun */
+    text-align: justify; /* Justification du texte pour alignement uniforme */
+}
+
+/* Styles pour les cartes d'éléments (produits, contenus, etc.) */
+.card {
+    background-color: #FDFBF7; /* Fond crème très léger */
+    border-radius: 8px; /* Coins arrondis de 8px */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.7); /* Ombre portée pour effet de profondeur */
+    display: flex; /* Flexbox pour le contenu intérieur */
+    flex-direction: column; /* Organisation verticale */
+    align-items: center; /* Centrage horizontal des éléments internes */
+    padding: 15px; /* Padding intérieur */
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s; /* Transitions pour effets au hover */
+    max-width: 450px; /* Largeur maximale */
+    width: 100%; /* Prend toute la largeur disponible */
+    box-sizing: border-box; /* Inclut padding et border dans la largeur */
+    margin-bottom: 20px; /* Espacement en bas */
+    margin-left: 10px; /* Marges horizontales pour espacer les cartes */
+    margin-right: 10px;
+}
+
+/* Effet au survol d'une carte */
+.card:hover {
+    transform: translateY(-4px); /* Légère remontée */
+    box-shadow: 0 8px 20px rgba(74, 52, 40, 0.15); /* Ombre plus grande pour effet de survol */
+    background-color: #FFFFFF; /* Changement de fond en blanc */
+}
+
+/* Couverture ou image principale de la carte */
+.cover {
+    width: 100%; /* Prend toute la largeur de la carte */
+    height: auto; /* Hauteur automatique pour conserver le ratio */
+    border-radius: 4px; /* Coins légèrement arrondis */
+    margin-bottom: 15px; /* Espace en dessous */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5); /* Ombre légère pour relief */
+}
+
+/* Description ou texte associé à l'élément */
+.description {
+    text-align: justify; /* Justification pour une lecture plus élégante */
+}
+
+
+/* Titre dans la description */
+.description h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #4A3428; /* Chocolat foncé */
+    text-align: center;
+    text-shadow:
+        2px 2px 3px rgba(74, 52, 40, 0.3), /* Ombre douce chocolat */
+        0 0 8px rgba(110, 127, 106, 0.4); /* Halo vert subtil */
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+/* Paragraphe dans la description */
+.description p {
+    font-size: 1.1rem;
+    color: #5A3E2B; /* Votre couleur de texte principale */
+}
+
+/* Pied de page */
+footer {
+    width: 100%; /* Largeur totale */
+    background-color: #4A3428; /* Chocolat foncé */
+    padding: 20px 0; /* Padding vertical */
+    margin-top: 40px; /* Espace au-dessus du footer */
+    text-align: center; /* Centrage du texte */
+    font-size: 0.9rem; /* Taille de police */
+    color: #F5F1E8; /* Texte clair */
+}
+
+/* Définition d'une police personnalisée 'FairWaterScript' */
+@font-face {
+    font-family: 'FairWaterScript'; /* Nom de la police */
+    src: url('fonts/FairWaterScript.woff2') format('woff2'), /* Source en format WOFF2 */
+         url('fonts/FairWaterScript.woff') format('woff'), /* Source en WOFF */
+         url('fonts/FairWaterScript.ttf') format('truetype'); /* Source TTF comme fallback */
+    font-weight: normal; /* Poids normal */
+    font-style: normal; /* Style normal */
+}
+
+/* Titres principaux (h1) - Style Netflix sophistiqué */
+h1 {
+    font-family: 'Merriweather', cursive, Arial, sans-serif; /* Remplace FairWaterScript par Merriweather */
+    font-size: 4em; /* Taille impactante */
+    color: #E50914; /* Rouge Netflix */
+    font-weight: 300; /* Light pour Merriweather */
+    font-style: italic; /* Force l'italique */
+    letter-spacing: 2px;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 10px #E50914;
+    margin-bottom: 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+h1:hover {
+    text-shadow:
+        4px 4px 8px rgba(0, 0, 0, 0.7),
+        0 0 15px #E50914;
+    transform: scale(1.05); /* Légère mise en valeur au hover */
+}
+
+/* Titre du formulaire (h2) - Style épuré et moderne */
+h2 {
+    font-family: 'FairWaterScript', cursive, Arial, sans-serif;
+    font-size: 2.5em;
+    color: #E50914; /* Rouge Netflix */
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+h2:hover {
+    color: #ff1f1f; /* Ton plus clair au hover */
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-family: 'FairWaterScript', cursive, Arial, sans-serif;
+    font-size: 1.8em;
+    color: #222222; /* Gris encore plus foncé */
+    text-shadow:
+        0 0 8px rgba(85, 85, 85, 0.8),
+        0 0 15px rgba(85, 85, 85, 0.6);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+	text-align: center;
+}
+
+/* Petits titres (h4) - Style délicat et subtil */
+h4 {
+    font-family: 'FairWaterScript', cursive, Arial, sans-serif;
+    font-size: 1.4em;
+    color: #222222; /* Gris encore plus foncé */
+    text-shadow:
+        0 0 8px rgba(85, 85, 85, 0.8),
+        0 0 15px rgba(85, 85, 85, 0.6);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Image argentée spécifique */
+.image-argentee {
+    border: 4px solid silver; /* Bordure argentée */
+    width: 340px; /* Largeur fixe */
+    height: 260px; /* Hauteur automatique */
+}
+
+/* Mise en page centrée pour le formulaire de contact avec flexbox */
+body {
+    /* Déjà défini plus haut, répété ici pour clarification si nécessaire */
+    display: flex; /* Flexbox pour aligner verticalement */
+    flex-direction: column; /* Organisation en colonne */
+    min-height: 100vh; /* Hauteur minimum de la vue */
+}
+
+/* Container du formulaire de contact */
+.contact-container {
+    background-color: #f5f5f5; /* Fond gris clair */
+    padding: 40px; /* Padding intérieur */
+    border-radius: 10px; /* Coins arrondis */
+    max-width: 500px; /* Largeur maximale */
+    width: 80%; /* Largeur relative */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Ombre */
+    margin: 80px auto 0 auto; /* Marge en haut, centré horizontalement */
+}
+
+/* Zone de saisie du formulaire */
+form {
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Organisation verticale */
+}
+
+/* Labels */
+label {
+    margin-bottom: 8px; /* Espace en dessous */
+    font-weight: bold; /* Texte en gras */
+    color: #333; /* Couleur sombre */
+}
+
+/* Champs de texte, email, textarea */
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: 12px; /* Padding intérieur */
+    margin-bottom: 20px; /* Marges verticales */
+    border: 1px solid #ccc; /* Bordure gris clair */
+    border-radius: 4px; /* Coins arrondis */
+    font-family: inherit; /* Hérite la police du parent */
+    font-size: 1em; /* Taille standard */
+    transition: border-color 0.3s ease; /* Transition pour focus */
+}
+
+/* Survol et focus */
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #e50914; /* Bordure rouge vif au focus */
+    outline: none; /* Supprime ligne de contour par défaut */
+    box-shadow: 0 0 8px rgba(229, 9, 20, 0.5); /* Effet de glow */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition douce */
+}
+
+/* Bouton */
+button {
+    background-color: #e50914; /* Rouge vif */
+    color: #fff; /* Blanc */
+    padding: 14px; /* Padding intérieur */
+    border: none; /* Pas de bordure */
+    border-radius: 4px; /* Coins arrondis */
+    font-size: 1em; /* Taille de police */
+    cursor: pointer; /* Curseur pointeur */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition */
+}
+button:hover {
+    background-color: #b0060b; /* Rouge foncé au hover */
+    transform: scale(1.05); /* Effet de mise à l'échelle */
+}
+
+/* Message après soumission */
+.message {
+    margin-top: 15px; /* Marge en haut */
+    text-align: center; /* Centrage */
+    font-weight: bold; /* Gras */
+}
+
+/* Liens classiques */
+a {
+    text-decoration: none; /* Sans soulignement */
+    color: #4B3832; /* Couleur marron foncé */
+}
+
+/* Bouton burger (menu mobile) */
+.burger-menu {
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    display: none; /* Caché par défaut */
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1001;
+    transition: all 0.3s ease;
+}
+.burger-menu .bar {
+    height: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Bouton ascenseur */
+#scrollButtons {
+    background-color: transparent !important;
+    position: fixed;
+    right: 0px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* Espacement vertical entre les boutons */
+    z-index: 1000;
+}
+
+/* Chaque bouton d'ascenseur */
+.scroll-btn {
+    background-color: transparent !important;
+    border: none;
+    padding: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.scroll-btn img {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+}
+
+/* Croix de fermeture */
+.close-cross {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1003;
+    transition: transform 0.3s ease;
+}
+/* Rotation rapide */
+.close-cross.rotating {
+    animation: rotateFast 0.5s linear forwards;
+}
+@keyframes rotateFast {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* Image de la croix */
+.croix-image {
+    width: 100%;
+    height: auto;
+    filter: brightness(1.2);
+}
+
+/* Section livres en grille */
+.livres-alignées {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Grille de livres */
+.livres {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+    margin: 0 30px;
+    max-width: calc(100% - 60px);
+}
+
+.social-btn.facebook {
+  position: relative;
+  top:6px;
+}
+
+.full-screen {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 65vh;
+  object-fit: cover; /* évite la déformation */
+  display: block;
+  margin: 0 auto;
+}
+
+.swiper {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centre horizontalement */
+    justify-content: center;
+    text-align: center;    /* centre le texte */
+}
+
+.swiper-slide img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;        /* centre l'image */
+}
+
+.texte-slide {
+    padding: 15px;
+    max-width: 600px;
+    margin: 0 auto;        /* centre le bloc texte */
+    text-align: center;    /* force le centrage */
+}
+
+.texte-slide h3 {
+    margin: 10px 0 5px;
+    font-size: 1.3em;
+}
+
+.texte-slide p {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/* Flèches */
+.swiper-button-next,
+.swiper-button-prev {
+    color: rgba(142, 168, 137, 0.5); /* Vert Sauge Clair */
+}
+
+/* Carte informations studio style bloc-note  */
+.info-card {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 30px 35px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  border-left: 6px solid #ff6347;
+  border: 2px dotted #d3d3d3;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 100% 24px;
+  line-height: 1.6;
+}
+
+.info-card h3 {
+  text-align: center;
+  margin-top: 0;
+  color: #333;
+}
+
+.info-card p, .info-card li {
+  color: #555;
+}
+
+.info-card ul {
+  padding-left: 20px;
+  margin-top: 0;
+}
+
+/* Animaux non admis centré */
+.no-pets {
+  text-align: center;
+  margin-top: 20px;
+  color: #D32F2F; /* rouge pour alerte */
+}
+
+.no-pets img {
+  width: 160px;   
+  height: 120px;
+  display: block;
+  margin: 0 auto 5px auto; /* centrer l'image et espacer du texte */
+}
+
+.no-pets p {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* ------------------------------------------- FIN DES STYLES GLOBAUX ------------------------------------------- */
+
+/* ===========================
+   STYLES SWIPER
+   =========================== */
+.swiper {
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.swiper-wrapper {
+    box-sizing: border-box;
+}
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.swiper-slide img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.texte-slide {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.texte-slide h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #4A3428;
+    word-wrap: break-word;
+}
+
+.texte-slide p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #5A3E2B;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+/* Boutons de navigation Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #4A3428!important; /* Flèches du sliders en chocolat foncé */
+    background-color: rgba(245, 241, 232, 0.9);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 20px;
+}
+
+/* Pagination Swiper */
+.swiper-pagination {
+    bottom: 10px;
+}
+
+.swiper-pagination-bullet {
+    background-color: #4A3428;
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: #8EA889;
+}
+
+/* =========================== STYLES RESPONSIVE (pour mobiles et petits écrans) =========================== */
+@media (max-width: 768px) {
+    /* Empêche le débordement horizontal sur petits écrans */
+    html, body {
+        overflow-x: hidden;
+    }
+
+    /* La section .recette devient une colonne verticale */
+    .recette {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    /* Les cartes des recettes s'adaptent en largeur */
+    .card {
+        max-width: 95%;
+        flex: 1 1 100%;
+        margin: 10px 0;
+    }
+
+    /* Alignement en colonne pour certains éléments */
+    .cartes-alignées {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Titre dans intro réduit pour mobile */
+    .intro h1 {
+        font-size: 2rem;
+    }
+
+    /* Affichage du burger menu en mobile */
+    .burger-menu {
+        display: flex !important;
+        width: 30px;
+        height: 25px;
+        flex-direction: column;
+        justify-content: space-around;
+        cursor: pointer;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        background: transparent;
+        transition: all 0.3s ease;
+    }
+
+    /* Structure des barres du burger */
+    .burger-menu .bar {
+        height: 4px;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+	
+    .menu li {
+        width: 100% !important;
+        padding-left: 20px;
+        text-align: left !important;
+		margin: 20px 0;
+    }
+
+ 
+    ul.submenu {
+        text-align: left !important;
+    }
+    ul.submenu li a {
+        display: block !important;
+        width: 80% !important;
+        padding: 8px 8px !important;
+        text-align: left !important;
+    }
+
+        /* Menu vertical mobile (dans le menu principal) */
+    .menu {
+        flex-direction: column;
+        padding-left: 5px !important;
+        margin: 0;
+        background-color: #4A3428; /* Chocolat foncé pour le sous menu*/
+        width: 100%;
+        transition: all 0.3s ease;   
+        display: none;/* Menu mobile caché par défaut */
+		text-align: left !important;
+    }
+			
+	    /* Sous-menu mobile */
+    ul.submenu {
+    display: none; /* Cacher par défaut */
+    position: absolute; /* Positionnement absolu par rapport au parent */
+    top: 30px; /* Position verticale */
+    left: 0; /* Aligné à gauche du parent */
+    background-color: #4A3428; /* Chocolat foncé pour le sous menu*/
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5); /* Ombre */
+    list-style: none; /* Sans puces */
+    padding: 0; /* Paddings internes */
+    margin: 0; /* Marges */
+    width: 300px; /* Largeur augmentée ici aussi */
+    border-radius: 4px; /* Coins arrondis */
+    z-index: 1001; /* Z-index supérieur */
+    transition: width 0.3s ease, opacity 0.3s ease; /* transitions */
+    opacity: 0; /* Initialement transparent */
+    transform: translateY(-10px); /* Départ en haut */
+} 
+
+    ul.menu li:hover ul.submenu {
+    display: block; /* Affiche le sous-menu */
+    width: 300px; /* Augmentation de la largeur à 300px (ou plus si besoin) */
+    opacity: 1; /* Rendre visible */
+    transform: translateY(0); /* Rétablir la position */
+    transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Transition douce */
+     }
+	 
+    .menu.active {
+        display: flex;
+        position: fixed;
+        top: 60px;
+        right: 0px;
+        background: white;
+        padding: 10px;
+        flex-direction: column;
+        width: 340px;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+        z-index: 9998;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+
+    /* Menu drawer mobile (sous-menu) */
+    .menu-drawer {
+        position: absolute;
+        top: calc(100% + 2px);
+        right: 0px;
+        width: 340px;
+        background-color: #5E3200;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        display: none;
+        border-radius: 4px;
+        z-index: 1002;
+        transition: all 0.3s ease;
+    }
+
+    /* Menu drawer actif */
+    .menu-drawer.active {
+        display: block;
+    }
+
+    /* Position spécifique du burger */
+    #burger {
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        display: flex !important;
+        transition: all 0.3s ease;
+    }
+
+    /* Masquer le menu dans le header pour mobile */
+    .menu-container {
+        display: none;
+    }
+
+    /* Bandeau mobile (si utilisé) */
+    .bandeau {
+        height: 40px;
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Header mobile */
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        padding: 0px;
+        height: 60px;
+    }
+
+    /* Logo ou image dans header mobile */
+    header img {
+        max-width: 400px;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        max-height: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* Container contact mobile */
+    .contact-container {
+        background-color: #f5f5f5;
+        padding: 40px 20px;
+        border-radius: 10px;
+        max-width: 500px;
+        width: 80%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin: 80px auto 40px auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+
+    /* Textarea mobile */
+    textarea {
+        font-size: 1.4em;
+        height: 180px;
+        justify-content: center;
+    }
+
+    /* Recette en colonne mobile */
+    .recette-unique {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+    }
+
+    /* Carte recette mobile */
+    .recette-unique .recette-card {
+        width: 100%;
+        max-width: 600px;
+        margin: 10px auto;
+    }
+
+    /* Bouton fermeture #closeCross en mobile */
+    #closeCross {
+        display: block;
+    }
+
+    /* Livres en colonne mobile */
+    .livres {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        justify-items: center;
+    }
+
+    /* Grille livres mobile (alignée) */
+    .livres-alignées {
+        grid-template-columns: 1fr;
+    }
+
+    /* Ajustements intro mobile */
+    .intro {
+        margin: 0 !important;
+        padding-left: 10px;
+        padding-right: 10px;
+        overflow: hidden;
+    }
+    
+    /* Image full-screen responsive sur mobile */
+    .full-screen {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 50vh;
+        object-fit: cover;
+        margin: 0;
+    }
+	
+    /* Styles Swiper responsive pour mobile */
+    .swiper {
+        padding: 0 5px;
+        margin: 20px 0;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    .swiper-slide {
+        padding: 10px;
+    }
+    
+    .swiper-slide img {
+        max-height: 200px;
+        object-fit: cover;
+    }
+    
+    .texte-slide {
+        padding: 0 5px;
+    }
+    
+    .texte-slide h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    .texte-slide p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 14px;
+    }
+    
+    /* Masquer les boutons de navigation sur très petits écrans */
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none;
+    }
+	
+	nav {
+    justify-content: flex-start;
+}
+}
+
+/* Styles pour grands écrans (769px et plus) */
+@media (min-width: 769px) {
+    /* Menu en ligne pour grands écrans, dans un conteneur spécifique */
+    .netflix-menu .menu {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        transition: all 0.3s ease;
+		justify-content: center;
+         width: 100%;
+    }
+	
+    /* Liens vers recettes en grands écrans */
+    .liens-recettes a {
+        font-size: 1.1em;
+        padding: 12px 16px;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Effet de survol sur liens */
+    .liens-recettes a:hover {
+        background-color: rgba(229, 9, 20, 0.8);
+        border-radius: 4px;
+        transform: scale(1.05);
+    }
+
+    /* Masque le bouton closeCross en desktop */
+    #closeCross {
+        display: none;
+    }
+
+    /* Ajout de transitions pour le header */
+    header {
+        transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    ul.menu {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        width: auto;
+    }
+}
