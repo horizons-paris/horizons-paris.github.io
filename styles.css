@@ -1159,9 +1159,10 @@ a {
     
     /* Image bandeau sans débordement sur desktop */
     .full-screen {
-        max-height: 80vh;
+        max-height: 100vh; /* Augmenter la hauteur pour voir plus */
+        min-height: 500px; /* Hauteur minimale généreuse */
         object-fit: cover;
-        object-position: center 30%;
+        object-position: center 40%; /* Décaler vers le bas pour voir le ciel en haut */
         width: 100%; /* 100% au lieu de 100vw pour éviter le scroll */
         margin-left: 0; /* Pas de marge négative sur desktop */
         margin-right: 0;
