@@ -717,6 +717,23 @@ a {
     background-color: #8EA889;
 }
 
+.photo-credit {
+  font-size: 0.75em;
+  color: #999;
+  margin-top: 10px;
+  margin-bottom: 20px;  /* ← Crée l'espace en bas */
+  font-style: italic;
+}
+
+.photo-credit a {
+  color: #999;
+  text-decoration: none;
+}
+
+.photo-credit a:hover {
+  text-decoration: underline;
+}
+
 /* =========================== STYLES RESPONSIVE (pour mobiles et petits écrans) =========================== */
 @media (max-width: 768px) {
     /* Empêche le débordement horizontal sur petits écrans */
