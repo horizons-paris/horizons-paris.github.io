@@ -534,13 +534,12 @@ a {
 }
 
 .full-screen {
-  width: 100%; /* 100% au lieu de 100vw */
+  width: 100%;
   max-width: 100%;
-  min-height: 400px; /* Hauteur minimale */
   height: auto;
-  max-height: none; /* Pas de limitation par défaut */
-  object-fit: cover; /* Couvre tout l'espace en s'étirant */
-  object-position: center 30%; /* Positionne pour voir le haut */
+  max-height: 70vh; /* Limiter à 70vh par défaut */
+  object-fit: cover;
+  object-position: center 35%;
   display: block;
   margin: 0;
 }
@@ -1168,78 +1167,8 @@ a {
 }
 }
 
-/* Styles pour grands mobiles / petites tablettes (481px à 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-    /* Image bandeau pour grands mobiles */
-    .intro .full-screen {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 40vh !important;
-        object-fit: contain !important;
-        object-position: center center !important;
-        margin: 0 !important;
-        margin-top: -80px !important;
-        margin-bottom: -40px !important;
-    }
-    
-    /* Ajuster intro pour cette zone */
-    .intro {
-        margin-top: 60px !important;
-        padding: 0 !important;
-    }
-    
-    .intro h1 {
-        margin-top: 0 !important;
-    }
-}
-
-/* Styles pour tablettes (769px à 900px) */
-@media (min-width: 769px) and (max-width: 900px) {
-    /* Image bandeau pour tablettes */
-    .intro .full-screen {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 45vh !important;
-        object-fit: cover !important;
-        object-position: center 35% !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-    
-    .intro {
-        margin-top: 60px !important;
-    }
-    
-    /* Espacement pour le titre */
-    .intro h1 {
-        margin-top: 20px !important;
-    }
-}
-
-/* Styles pour petits PC / grands tablets (901px à 1200px) */
-@media (min-width: 901px) and (max-width: 1200px) {
-    /* Image bandeau pour petits laptops */
-    .intro .full-screen {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 60vh !important;
-        object-fit: cover !important;
-        object-position: center 40% !important;
-        margin: 0 !important;
-    }
-    
-    .intro {
-        margin-top: 60px !important;
-    }
-    
-    /* Plus d'espace pour le titre */
-    .intro h1 {
-        margin-top: 30px !important;
-    }
-}
-
-/* Styles pour grands écrans (1201px et plus) */
-@media (min-width: 1201px) {
+/* Styles pour desktop et tablettes (769px et plus) */
+@media (min-width: 769px) {
     /* Menu en ligne pour grands écrans, dans un conteneur spécifique */
     .netflix-menu .menu {
         display: flex !important;
