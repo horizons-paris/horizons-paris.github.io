@@ -31,7 +31,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Feuille de styles -->
-    <link rel="stylesheet" href="styles.css?v=117">
+    <link rel="stylesheet" href="styles.css?v=118">
 </head>
 <body>
     <header>
@@ -249,66 +249,6 @@
                     menuDrawer.setAttribute('aria-hidden', 'true');
                 }
             });
-        });
-    </script>
-    
-    <!-- Script pour forcer l'image bandeau à la bonne taille sur mobile -->
-    <script>
-        // Attendre que l'image soit chargée
-        window.addEventListener('load', function() {
-            const img = document.querySelector('.full-screen');
-            if (img && window.innerWidth <= 768) {
-                // Calculer la largeur exacte de la fenêtre
-                const viewportWidth = window.innerWidth;
-                
-                // Forcer la largeur exacte
-                img.style.width = viewportWidth + 'px';
-                img.style.maxWidth = viewportWidth + 'px';
-                img.style.minWidth = viewportWidth + 'px';
-                img.style.height = '35vh';
-                img.style.objectFit = 'contain';
-                img.style.objectPosition = 'center center';
-                img.style.marginTop = '-100px';
-                img.style.marginBottom = '-50px';
-                img.style.display = 'block';
-                img.style.marginLeft = '0';
-                img.style.marginRight = '0';
-                img.style.padding = '0';
-                img.style.position = 'relative';
-                img.style.left = '0';
-                img.style.right = '0';
-                
-                console.log('Image forcée à ' + viewportWidth + 'px avec contain');
-            }
-        });
-        
-        // Refaire au redimensionnement
-        window.addEventListener('resize', function() {
-            const img = document.querySelector('.full-screen');
-            if (!img) return;
-            
-            if (window.innerWidth <= 768) {
-                // Mobile : appliquer tous les styles
-                const viewportWidth = window.innerWidth;
-                img.style.width = viewportWidth + 'px';
-                img.style.maxWidth = viewportWidth + 'px';
-                img.style.minWidth = viewportWidth + 'px';
-                img.style.height = '35vh';
-                img.style.objectFit = 'contain';
-                img.style.objectPosition = 'center center';
-                img.style.marginTop = '-100px';
-                img.style.marginBottom = '-50px';
-            } else {
-                // Tablette/Desktop : réinitialiser les styles inline
-                img.style.width = '';
-                img.style.maxWidth = '';
-                img.style.minWidth = '';
-                img.style.height = '';
-                img.style.objectFit = '';
-                img.style.objectPosition = '';
-                img.style.marginTop = '';
-                img.style.marginBottom = '';
-            }
         });
     </script>
 </body>

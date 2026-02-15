@@ -1191,8 +1191,8 @@ a {
     }
 }
 
-/* Styles pour grands écrans (769px et plus) */
-@media (min-width: 769px) {
+/* Styles pour grands écrans (1201px et plus) */
+@media (min-width: 1201px) {
     /* Menu en ligne pour grands écrans, dans un conteneur spécifique */
     .netflix-menu .menu {
         display: flex !important;
