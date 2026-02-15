@@ -1176,6 +1176,46 @@ a {
 }
 }
 
+/* Styles spécifiques pour la zone problématique 563-768px */
+@media (min-width: 563px) and (max-width: 768px) {
+    body {
+        overflow-x: hidden !important;
+    }
+    
+    .intro {
+        margin-top: 60px !important;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+    
+    .intro .full-screen {
+        width: 100vw !important;
+        max-width: none !important;
+        height: 40vh !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin-top: -60px !important;
+        margin-bottom: -30px !important;
+    }
+    
+    .intro h1 {
+        margin-top: 15px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    .intro p {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
+
 /* Styles pour tablettes et mini PC (769px à 1200px) */
 @media (min-width: 769px) and (max-width: 1200px) {
     body {

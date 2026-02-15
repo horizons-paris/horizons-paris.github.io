@@ -31,7 +31,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Feuille de styles -->
-    <link rel="stylesheet" href="styles.css?v=126">
+    <link rel="stylesheet" href="styles.css?v=128">
 </head>
 <body>
     <header>
@@ -250,6 +250,39 @@
                 }
             });
         });
+    </script>
+    
+    <!-- Script pour forcer l'image full width dans la zone 563-769px -->
+    <script>
+        function fixImageWidth() {
+            const img = document.querySelector('.intro .full-screen');
+            const width = window.innerWidth;
+            
+            if (width >= 563 && width <= 769) {
+                // Zone problématique : forcer 100vw
+                img.style.width = '100vw';
+                img.style.maxWidth = 'none';
+                img.style.position = 'relative';
+                img.style.left = '50%';
+                img.style.transform = 'translateX(-50%)';
+                img.style.margin = '0';
+                img.style.marginTop = '-60px';
+                img.style.marginBottom = '-30px';
+                console.log('Image forcée à 100vw à ' + width + 'px');
+            } else if (width > 769) {
+                // Réinitialiser pour tablette/desktop
+                img.style.width = '';
+                img.style.maxWidth = '';
+                img.style.position = '';
+                img.style.left = '';
+                img.style.transform = '';
+            }
+        }
+        
+        // Appliquer au chargement
+        window.addEventListener('load', fixImageWidth);
+        // Appliquer au redimensionnement
+        window.addEventListener('resize', fixImageWidth);
     </script>
 </body>
 </html>
