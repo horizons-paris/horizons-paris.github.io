@@ -1060,41 +1060,45 @@ a {
         margin: 0;
     }
     
-    /* Wrapper pour l'image bandeau sur mobile */
-    .bandeau-wrapper {
+    /* Forcer TOUT à ne pas déborder sur mobile */
+    * {
+        max-width: 100vw !important;
+    }
+    
+    html {
+        overflow-x: hidden !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+    }
+    
+    body {
+        overflow-x: hidden !important;
         width: 100vw !important;
         max-width: 100vw !important;
         margin: 0 !important;
         padding: 0 !important;
-        overflow: hidden !important;
-        position: relative !important;
-        left: 50% !important;
-        right: 50% !important;
-        margin-left: -50vw !important;
-        margin-right: -50vw !important;
     }
     
-    /* Image full-screen responsive sur mobile */
-    .full-screen {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
-        max-height: 35vh !important;
-        object-fit: cover !important;
-        object-position: center center !important;
-        display: block !important;
-        margin: 0 auto !important;
-        padding: 0 !important;
-    }
-    
-    /* Forcer intro à permettre le wrapper de déborder */
+    /* Intro sans padding/margin */
     .intro {
         margin: 0 !important;
         margin-top: 60px !important;
         padding: 0 !important;
-        overflow: visible !important;
-        max-width: 100% !important;
         width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Image bandeau - simple et directe */
+    .intro .full-screen {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 35vh !important;
+        max-height: 35vh !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 	
     /* Styles Swiper responsive pour mobile */
