@@ -1111,6 +1111,7 @@ a {
         display: block !important;
         margin: 0 !important;
         margin-top: -100px !important; /* Remonter au maximum */
+        margin-bottom: -30px !important; /* Réduire l'espace en dessous */
         padding: 0 !important;
     }
 	
