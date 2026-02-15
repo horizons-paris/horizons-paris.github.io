@@ -1104,10 +1104,10 @@ a {
     .intro .full-screen {
         width: 100% !important;
         max-width: 100% !important;
-        height: 35vh !important;
-        max-height: 35vh !important;
-        object-fit: cover !important; /* Cover pour remplir */
-        object-position: 55% center !important; /* Décaler légèrement à droite pour voir la route */
+        height: 45vh !important; /* Augmenté pour réduire les bandes blanches */
+        max-height: 45vh !important;
+        object-fit: contain !important; /* Contain pour voir toute l'image */
+        object-position: center center !important; /* Centré */
         display: block !important;
         margin: 0 !important;
         padding: 0 !important;
