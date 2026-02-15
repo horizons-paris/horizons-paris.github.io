@@ -1042,7 +1042,7 @@ a {
     
     /* Réduire l'espace entre l'image et le titre sur mobile */
     .intro h1 {
-        margin-top: 10px; /* Petite marge en haut du titre */
+        margin-top: 0; /* Pas de marge en haut du titre */
         margin-bottom: 10px; /* Réduire l'espace en dessous */
     }
     
@@ -1063,6 +1063,7 @@ a {
         object-position: center top;
         display: block;
         margin: 0;
+        margin-bottom: -10px; /* Réduire l'espace sous l'image */
         margin-left: calc(-50vw + 50%);
         margin-right: calc(-50vw + 50%);
     }
@@ -1168,7 +1169,7 @@ a {
         max-height: 75vh; /* 75% de la hauteur de l'écran */
         min-height: 400px; /* Hauteur minimale */
         object-fit: cover;
-        object-position: center 40%; /* Décaler vers le bas pour voir le ciel en haut */
+        object-position: center 45%; /* Décaler un peu plus vers le bas pour voir plus de ciel en haut */
         width: 100%; /* 100% au lieu de 100vw pour éviter le scroll */
         margin-left: 0; /* Pas de marge négative sur desktop */
         margin-right: 0;
