@@ -1168,13 +1168,13 @@ a {
 }
 }
 
-/* Styles pour tablettes et écrans moyens (769px à 1200px) */
-@media (min-width: 769px) and (max-width: 1200px) {
-    /* Image bandeau pour tailles intermédiaires */
+/* Styles pour tablettes (769px à 900px) */
+@media (min-width: 769px) and (max-width: 900px) {
+    /* Image bandeau pour tablettes */
     .intro .full-screen {
         width: 100% !important;
         max-width: 100% !important;
-        height: 50vh !important;
+        height: 45vh !important;
         object-fit: cover !important;
         object-position: center 35% !important;
         margin-top: 0 !important;
@@ -1185,9 +1185,31 @@ a {
         margin-top: 60px !important;
     }
     
-    /* Espacement pour le titre sur écrans moyens */
+    /* Espacement pour le titre */
     .intro h1 {
         margin-top: 20px !important;
+    }
+}
+
+/* Styles pour petits PC / grands tablets (901px à 1200px) */
+@media (min-width: 901px) and (max-width: 1200px) {
+    /* Image bandeau pour petits laptops */
+    .intro .full-screen {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 60vh !important;
+        object-fit: cover !important;
+        object-position: center 40% !important;
+        margin: 0 !important;
+    }
+    
+    .intro {
+        margin-top: 60px !important;
+    }
+    
+    /* Plus d'espace pour le titre */
+    .intro h1 {
+        margin-top: 30px !important;
     }
 }
 
