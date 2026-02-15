@@ -1105,12 +1105,13 @@ a {
         max-width: 100% !important;
         height: 35vh !important;
         max-height: 35vh !important;
-        object-fit: contain !important; /* Contain pour voir toute l'image */
-        object-position: center center !important; /* Centré */
+        object-fit: contain !important;
+        object-position: center center !important;
         display: block !important;
-        margin: 0 !important;
-        margin-top: -100px !important; /* Remonter au maximum */
-        margin-bottom: -50px !important; /* Réduire encore l'espace en dessous */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: -100px !important;
+        margin-bottom: -50px !important;
         padding: 0 !important;
     }
 	
