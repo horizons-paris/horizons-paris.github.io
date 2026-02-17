@@ -161,6 +161,7 @@ ul.submenu li a:hover {
     margin-top: 60px; /* Marge égale à la hauteur du header fixe */
 }
 
+
 /* Titre principal dans la section intro */
 .intro h1 {
     font-size: 2.5rem; /* Taille de police importante */
@@ -253,7 +254,7 @@ footer {
     width: 100%; /* Largeur totale */
     background-color: #4A3428; /* Chocolat foncé */
     padding: 20px 0; /* Padding vertical */
-    margin-top: 40px; /* Espace au-dessus du footer */
+    margin-top: auto; /* Pousse le footer en bas de la page (sticky footer) */
     text-align: center; /* Centrage du texte */
     font-size: 0.9rem; /* Taille de police */
     color: #F5F1E8; /* Texte clair */
