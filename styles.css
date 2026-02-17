@@ -391,7 +391,7 @@ textarea {
 input[type="text"]:focus,
 input[type="email"]:focus,
 textarea:focus {
-    border-color: #e50914; /* Bordure rouge vif au focus */
+    border-color: #F5F1E8; /* Bordure beige très clair au focus*/ 
     outline: none; /* Supprime ligne de contour par défaut */
     box-shadow: 0 0 8px rgba(229, 9, 20, 0.5); /* Effet de glow */
     transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition douce */
@@ -399,7 +399,7 @@ textarea:focus {
 
 /* Bouton */
 button {
-    background-color: #e50914; /* Rouge vif */
+    background-color: #4A3428; /* Chocolat foncé */
     color: #fff; /* Blanc */
     padding: 14px; /* Padding intérieur */
     border: none; /* Pas de bordure */
@@ -409,7 +409,7 @@ button {
     transition: background-color 0.3s ease, transform 0.3s ease; /* Transition */
 }
 button:hover {
-    background-color: #b0060b; /* Rouge foncé au hover */
+    background-color: rgba(142, 168, 137, 0.5); /* Vert Sauge Clair au hover */ 
     transform: scale(1.05); /* Effet de mise à l'échelle */
 }
 
