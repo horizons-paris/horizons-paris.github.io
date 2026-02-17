@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon appart | Plan du quartier</title>
+
+    <!-- Métadonnées -->
+    <meta name="keywords" content="Horizons Paris, studio Paris, 9ème arrondissement, location Paris, plan du quartier">
+    <meta name="description" content="Horizons Paris - Localisez le studio et découvrez les monuments à proximité dans le 9ème arrondissement de Paris.">
+    <meta name="author" content="Scriptoleon">
+    <meta name="language" content="fr">
+    <meta name="theme-color" content="#4A3428">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Horizons Paris | Plan du quartier">
+    <meta property="og:description" content="Localisez le studio et découvrez les monuments à proximité dans le 9ème arrondissement de Paris.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://horizons-paris.github.io/plan_du_quartier.html">
+    <meta property="og:image" content="images/og-image.jpg">
+    <meta property="og:image:secure_url" content="https://horizons-paris.github.io/images/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Horizons Paris | Plan du quartier">
+    <meta name="twitter:description" content="Localisez le studio et découvrez les monuments à proximité dans le 9ème arrondissement de Paris.">
+    <meta name="twitter:image" content="images/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Feuille de styles -->
+    <link rel="stylesheet" href="styles.css?v=131">
+</head>
+<body>
+    <!-- En-tête fixe -->
+    <header>
+        <div class="bandeau">
+            <div class="burger-menu" id="burger" aria-label="Menu" role="button" tabindex="0">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <nav>
+                <div class="menu-drawer" id="menuDrawer" aria-hidden="true">
+                    <div class="close-cross" id="closeCross" aria-label="Fermer le menu" role="button" tabindex="0">
+                        <img src="images/croix.png" alt="Fermer" class="croix-image">
+                    </div>
+                    <ul class="menu">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li>
+                            <a href="plan_du_quartier.html">À proximité</a>
+                            <ul class="submenu">
+                                <li><a href="proximité.html">Le moulin rouge</a></li>
+                                <li><a href="proximité.html">Le palais garnier</a></li>
+                                <li><a href="proximité.html">Eglise de la Ste Trinité</a></li>
+                                <li><a href="proximité.html">Musée du parfum Fragonard</a></li>
+                                <li><a href="proximité.html">Galerie Lafayette</a></li>
+                                <li><a href="proximité.html">La maison Bélanger</a></li>
+                                <li><a href="proximité.html">L'hotel Drouot</a></li>
+                                <li><a href="proximité.html">Le paradox museum Paris</a></li>
+                                <li><a href="proximité.html">Passage couvert de Paris</a></li>
+                                <li><a href="proximité.html">Place Edouard VII</a></li>
+                                <li><a href="proximité.html">Grand rex</a></li>
+                                <li><a href="proximité.html">Montmartre</a></li>
+                                <li><a href="proximité.html">Musée Grévin</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="tarifs.html">Tarifs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="content">
+
+        <!-- Titre -->
+        <section class="intro pdq-intro">
+            <h1>Plan du quartier</h1>
+            <p>Localisez le studio et découvrez les monuments à visiter à proximité.<br>
+               Cliquez sur un point de la liste pour le retrouver sur la carte.</p>
+        </section>
+
+        <!-- Légende -->
+        <div class="pdq-legende">
+            <div class="pdq-legende-item">
+                <div class="pdq-dot pdq-dot--studio"></div>
+                <span>Le studio</span>
+            </div>
+            <div class="pdq-legende-item">
+                <div class="pdq-dot pdq-dot--monument"></div>
+                <span>Points d'intérêt</span>
+            </div>
+        </div>
+
+        <!-- Carte + liste -->
+        <div class="pdq-wrapper">
+
+            <!-- Carte Google Maps -->
+            <div id="map" class="pdq-map">
+                <!--
+                    ════════════════════════════════════════════════════
+                    POUR ACTIVER LA CARTE GOOGLE MAPS :
+                    1. Obtenez une clé sur https://console.cloud.google.com/
+                       → Activez "Maps JavaScript API"
+                    2. Remplacez YOUR_API_KEY dans le <script> en bas
+                    3. Supprimez le bloc <div class="pdq-placeholder">
+                    4. Décommentez le bloc <script> initMap en bas
+                    ════════════════════════════════════════════════════
+                -->
+                <div class="pdq-placeholder">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#4A3428" stroke-width="1.5">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                        <circle cx="12" cy="9" r="2.5"/>
+                    </svg>
+                    <p>
+                        Ajoutez votre clé <code>Google Maps API</code><br>
+                        dans le script en bas de cette page<br>
+                        pour afficher la carte interactive.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Liste des POI -->
+            <div class="pdq-liste" id="poiListe">
+                <!-- Généré par JavaScript -->
+            </div>
+
+        </div>
+
+        <!-- Boutons défilement -->
+        <div id="scrollButtons">
+            <button id="scrollTop" class="scroll-btn">
+                <img src="images/haut.png" alt="Haut">
+            </button>
+            <button id="scrollBottom" class="scroll-btn">
+                <img src="images/bas.png" alt="Bas">
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Pied de page -->
+    <footer id="footer">
+        <div class="social-buttons">
+            <a class="social-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 48 48" aria-hidden="true">
+                    <linearGradient id="grad" x1="6.228" x2="42.077" y1="4.896" y2="43.432" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#0d61a9"></stop>
+                        <stop offset="1" stop-color="#16528c"></stop>
+                    </linearGradient>
+                    <path fill="url(#grad)" d="M42,40c0,1.105-0.895,2-2,2H8c-1.105,0-2-0.895-2-2V8c0-1.105,0.895-2,2-2h32c1.105,0,2,0.895,2,2V40z"></path>
+                    <path d="M25,38V27h-4v-6h4v-2.138c0-5.042,2.666-7.818,7.505-7.818c1.995,0,3.077,0.14,3.598,0.208l0.858,0.111L37,12.224L37,17h-3.635C32.237,17,32,18.378,32,19.535V21h4.723l-0.928,6H32v11H25z" opacity=".05"></path>
+                    <path d="M25.5,37.5v-11h-4v-5h4v-2.638c0-4.788,2.422-7.318,7.005-7.318c1.971,0,3.03,0.138,3.54,0.204l0.436,0.057l0.02,0.442V16.5h-3.135c-1.623,0-1.865,1.901-1.865,3.035V21.5h4.64l-0.773,5H31.5v11H25.5z" opacity=".07"></path>
+                    <path fill="#fff" d="M33.365,16H36v-3.754c-0.492-0.064-1.531-0.203-3.495-0.203c-4.101,0-6.505,2.08-6.505,6.819V22h-4v4h4v11h5V26h3.938l0.618-4H31v-2.465C31,17.661,31.612,16,33.365,16z"></path>
+                </svg>
+            </a>
+            <a class="social-btn x" href="https://twitter.com/intent/tweet?text=Découvrez%20ce%20studio%20parisien%20https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
+                    <path d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z"/>
+                </svg>
+            </a>
+            <a class="social-btn validation" href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fhorizons-paris.github.io%2Fplan_du_quartier.html" target="_blank" rel="noopener noreferrer" aria-label="Valider le site W3C">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+                    <rect width="64" height="64" fill="#ffffff" rx="8" ry="8" stroke="#000" stroke-width="2"/>
+                    <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="#0066CC" dominant-baseline="middle" text-anchor="middle" font-weight="bold">W3C</text>
+                </svg>
+            </a>
+        </div>
+        <p>
+            &copy; 2026 horizons-paris.github.io<br>
+            Tous droits réservés. Design et contenu créés par<br>
+            <i>Scriptoleon.</i>
+        </p>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════
+         DONNÉES DES POINTS D'INTÉRÊT
+         ══════════════════════════════════════════════ -->
+    <script>
+        const POINTS = [
+            {
+                id: 'studio',
+                nom: 'Le studio — 9 rue Joubert',
+                lat: 48.87534,
+                lng: 2.33145,
+                type: 'studio',
+                info: 'Studio Horizons Paris · 9ᵉ arr. · 3ᵉ étage'
+            },
+            { id:1,  nom: 'Moulin Rouge',                 lat: 48.88412, lng: 2.33220, type:'monument', info:'18ᵉ arr. · ~25 min à pied · 10 min en métro (ligne 2 → Blanche)' },
+            { id:2,  nom: 'Palais Garnier',               lat: 48.87196, lng: 2.33160, type:'monument', info:'9ᵉ arr. · ~5 min à pied · Place de l\'Opéra' },
+            { id:3,  nom: 'Église de la Sainte-Trinité',  lat: 48.87690, lng: 2.33310, type:'monument', info:'9ᵉ arr. · ~5 min à pied · Place d\'Estienne d\'Orves' },
+            { id:4,  nom: 'Musée du Parfum Fragonard',    lat: 48.87230, lng: 2.33520, type:'monument', info:'9ᵉ arr. · ~7 min à pied · Boulevard des Capucines' },
+            { id:5,  nom: 'Galeries Lafayette',           lat: 48.87379, lng: 2.33225, type:'monument', info:'9ᵉ arr. · ~6 min à pied · Boulevard Haussmann' },
+            { id:6,  nom: 'La Maison Bélanger',           lat: 48.87500, lng: 2.33400, type:'monument', info:'9ᵉ arr. · ~5 min à pied · Lieu culturel' },
+            { id:7,  nom: 'L\'Hôtel Drouot',              lat: 48.87620, lng: 2.34580, type:'monument', info:'9ᵉ arr. · ~10 min à pied · Ventes aux enchères' },
+            { id:8,  nom: 'Paradox Museum Paris',         lat: 48.87340, lng: 2.33080, type:'monument', info:'9ᵉ arr. · ~5 min à pied · Musée interactif et illusions' },
+            { id:9,  nom: 'Passages couverts de Paris',   lat: 48.87080, lng: 2.34390, type:'monument', info:'2ᵉ/9ᵉ arr. · ~12 min à pied · Galerie Vivienne & Passage des Panoramas' },
+            { id:10, nom: 'Place Édouard VII',            lat: 48.87260, lng: 2.33060, type:'monument', info:'9ᵉ arr. · ~4 min à pied · Square et théâtre' },
+            { id:11, nom: 'Grand Rex',                    lat: 48.86680, lng: 2.34980, type:'monument', info:'2ᵉ arr. · ~20 min à pied · 8 min en métro (ligne 9)' },
+            { id:12, nom: 'Montmartre',                   lat: 48.88671, lng: 2.34268, type:'monument', info:'18ᵉ arr. · ~30 min à pied · 15 min en métro (ligne 2)' },
+            { id:13, nom: 'Musée Grévin',                 lat: 48.87149, lng: 2.34335, type:'monument', info:'9ᵉ arr. · ~12 min à pied · Musée de cire · Boulevard Montmartre' },
+            { id:14, nom: 'Gare Saint-Lazare',            lat: 48.87569, lng: 2.32490, type:'monument', info:'8ᵉ arr. · ~8 min à pied · RER E, lignes 3, 12, 13, 14' },
+        ];
+
+        /* ── Génère la liste latérale ── */
+        const liste = document.getElementById('poiListe');
+        POINTS.forEach((p, i) => {
+            const div = document.createElement('div');
+            div.className = 'pdq-item' + (p.type === 'studio' ? ' pdq-item--studio' : '');
+            div.dataset.id = p.id;
+            div.innerHTML = `
+                <div class="pdq-num">${p.type === 'studio' ? '★' : i}</div>
+                <div class="pdq-nom">${p.nom}</div>
+            `;
+            div.addEventListener('click', () => {
+                document.querySelectorAll('.pdq-item').forEach(el => el.classList.remove('pdq-item--actif'));
+                div.classList.add('pdq-item--actif');
+                if (window.mapMarkers && window.mapMarkers[p.id]) {
+                    window.map.panTo({ lat: p.lat, lng: p.lng });
+                    window.map.setZoom(16);
+                    window.mapMarkers[p.id].infowindow.open(window.map, window.mapMarkers[p.id].marker);
+                }
+            });
+            liste.appendChild(div);
+        });
+    </script>
+
+    <!-- ══════════════════════════════════════════════
+         GOOGLE MAPS — REMPLACEZ YOUR_API_KEY
+         Décommentez ce bloc une fois la clé obtenue
+         ══════════════════════════════════════════════
+
+    <script>
+    function initMap() {
+        const centre = { lat: 48.8754, lng: 2.3330 };
+        window.map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: centre,
+            mapTypeControl: false,
+            fullscreenControl: true,
+            streetViewControl: false,
+            styles: [
+                { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] }
+            ]
+        });
+        window.mapMarkers = {};
+        POINTS.forEach(p => {
+            const isStudio = p.type === 'studio';
+            const marker = new google.maps.Marker({
+                position: { lat: p.lat, lng: p.lng },
+                map: window.map,
+                title: p.nom,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: isStudio ? 12 : 9,
+                    fillColor: isStudio ? '#E50914' : '#C9A84C',
+                    fillOpacity: 1,
+                    strokeColor: '#fff',
+                    strokeWeight: 2,
+                },
+                zIndex: isStudio ? 999 : 1,
+            });
+            const infowindow = new google.maps.InfoWindow({
+                content: `<div style="font-family:sans-serif;padding:4px 2px;">
+                    <strong style="color:#4A3428">${p.nom}</strong><br>
+                    <small>${p.info}</small>
+                </div>`
+            });
+            marker.addListener('click', () => {
+                infowindow.open(window.map, marker);
+                document.querySelectorAll('.pdq-item').forEach(el => el.classList.remove('pdq-item--actif'));
+                const el = document.querySelector(`.pdq-item[data-id="${p.id}"]`);
+                if (el) { el.classList.add('pdq-item--actif'); el.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+            });
+            window.mapMarkers[p.id] = { marker, infowindow };
+        });
+        const ph = document.querySelector('.pdq-placeholder');
+        if (ph) ph.remove();
+    }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+    -->
+
+    <!-- Scripts défilement -->
+    <script>
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        });
+        document.getElementById('scrollBottom').addEventListener('click', () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'auto' });
+        });
+    </script>
+
+    <!-- Script menu burger -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.getElementById('burger');
+            const menuDrawer = document.getElementById('menuDrawer');
+            const closeCross = document.getElementById('closeCross');
+
+            burger.addEventListener('click', () => {
+                const isActive = menuDrawer.classList.toggle('active');
+                menuDrawer.setAttribute('aria-hidden', String(!isActive));
+            });
+
+            closeCross.addEventListener('click', () => {
+                closeCross.classList.add('rotating');
+                closeCross.addEventListener('animationend', () => {
+                    closeCross.classList.remove('rotating');
+                    menuDrawer.classList.remove('active');
+                    menuDrawer.setAttribute('aria-hidden', 'true');
+                }, { once: true });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!menuDrawer.contains(e.target) && !burger.contains(e.target)) {
+                    menuDrawer.classList.remove('active');
+                    menuDrawer.setAttribute('aria-hidden', 'true');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

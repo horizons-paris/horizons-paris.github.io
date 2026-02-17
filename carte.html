@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte du quartier | Horizons Paris</title>
+    <link rel="stylesheet" href="styles.css?v=131">
+    <style>
+        /* ─── Variables couleurs du site ─── */
+        :root {
+            --chocolat: #4A3428;
+            --beige:    #F5F1E8;
+            --brun:     #5A3E2B;
+            --creme:    #FDFBF7;
+            --or:       #C9A84C;
+        }
+
+        /* ─── Reset & base ─── */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--beige);
+            font-family: 'Merriweather', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-style: italic;
+            color: var(--brun);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ─── Header identique au site ─── */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--chocolat);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            z-index: 1000;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ─── Titre de la page ─── */
+        .page-header {
+            margin-top: 60px;
+            padding: 2.5rem 1rem 1rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(74,52,40,0.06) 0%, transparent 100%);
+        }
+
+        .page-header h1 {
+            font-size: clamp(1.6rem, 4vw, 2.8rem);
+            color: var(--chocolat);
+            margin: 0 0 0.5rem;
+            text-shadow: none;
+            letter-spacing: 2px;
+        }
+
+        .page-header p {
+            font-size: 1rem;
+            color: var(--brun);
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        /* ─── Légende ─── */
+        .legende {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 1rem 1rem 0.5rem;
+        }
+
+        .legende-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .legende-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .legende-dot.studio   { background: #E50914; }
+        .legende-dot.monument { background: var(--or); }
+
+        /* ─── Conteneur carte + liste ─── */
+        .carte-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 1.5rem;
+            padding: 1rem 1.5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* ─── Carte Google Maps ─── */
+        #map {
+            flex: 1;
+            min-height: 520px;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(74,52,40,0.25);
+            border: 3px solid var(--chocolat);
+            overflow: hidden;
+        }
+
+        /* ─── Liste des POI ─── */
+        .poi-liste {
+            width: 280px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 580px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .poi-liste::-webkit-scrollbar { width: 6px; }
+        .poi-liste::-webkit-scrollbar-track { background: transparent; }
+        .poi-liste::-webkit-scrollbar-thumb { background: var(--chocolat); border-radius: 3px; }
+
+        .poi-item {
+            background: var(--creme);
+            border-radius: 8px;
+            padding: 0.65rem 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .poi-item:hover,
+        .poi-item.actif {
+            border-color: var(--chocolat);
+            background: #fff;
+            transform: translateX(3px);
+            box-shadow: 0 4px 12px rgba(74,52,40,0.2);
+        }
+
+        .poi-item.studio {
+            background: var(--chocolat);
+            color: var(--beige);
+            border-color: var(--or);
+        }
+
+        .poi-item.studio:hover,
+        .poi-item.studio.actif {
+            background: #3a2618;
+            color: var(--beige);
+        }
+
+        .poi-num {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            font-style: normal;
+            flex-shrink: 0;
+            background: var(--or);
+            color: #fff;
+        }
+
+        .poi-item.studio .poi-num {
+            background: #E50914;
+        }
+
+        .poi-nom {
+            font-size: 0.82rem;
+            line-height: 1.3;
+        }
+
+        /* ─── Info-bulle custom (optionnelle, Google gère les siennes) ─── */
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            background: #e8e0d5;
+            color: var(--brun);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .map-placeholder svg {
+            opacity: 0.4;
+        }
+
+        .map-placeholder p {
+            font-size: 0.95rem;
+            max-width: 340px;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .map-placeholder code {
+            background: var(--chocolat);
+            color: var(--beige);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-style: normal;
+            font-size: 0.85rem;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .carte-wrapper {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .poi-liste {
+                width: 100%;
+                max-height: 240px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                overflow-y: auto;
+            }
+            .poi-item {
+                flex: 1 1 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .poi-item { flex: 1 1 100%; }
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            width: 100%;
+            background-color: var(--chocolat);
+            padding: 20px 0;
+            margin-top: auto;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--beige);
+        }
+
+        /* ─── Burger menu (repris du site) ─── */
+        .bandeau {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .burger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
+        }
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--beige);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .menu-drawer {
+            display: none;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            background: var(--chocolat);
+            padding: 1rem;
+            z-index: 999;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            border-radius: 0 0 8px 0;
+        }
+        .menu-drawer.active { display: block; }
+        .menu-drawer ul { list-style: none; margin: 0; padding: 0; }
+        .menu-drawer ul li a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--beige);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .menu-drawer ul li a:hover { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .close-cross {
+            cursor: pointer;
+            text-align: right;
+            padding: 0 0 8px;
+            color: var(--beige);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="bandeau">
+        <div class="burger-menu" id="burger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav>
+            <div class="menu-drawer" id="menuDrawer">
+                <div class="close-cross" id="closeCross">✕</div>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="tarifs.html">Tarifs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Titre -->
+<div class="page-header">
+    <h1>À proximité du studio</h1>
+    <p>9 rue Joubert, 9<sup>e</sup> arrondissement &mdash; Paris</p>
+</div>
+
+<!-- Légende -->
+<div class="legende">
+    <div class="legende-item">
+        <div class="legende-dot studio"></div>
+        <span>Le studio</span>
+    </div>
+    <div class="legende-item">
+        <div class="legende-dot monument"></div>
+        <span>Points d'intérêt</span>
+    </div>
+</div>
+
+<!-- Carte + liste -->
+<div class="carte-wrapper">
+
+    <!-- Carte -->
+    <div id="map">
+        <!--
+            ════════════════════════════════════════════════════════
+            INSTRUCTIONS POUR INTÉGRER GOOGLE MAPS
+            ════════════════════════════════════════════════════════
+
+            1. Obtenez une clé API sur :
+               https://console.cloud.google.com/
+               → Activez "Maps JavaScript API"
+
+            2. Remplacez YOUR_API_KEY ci-dessous par votre clé.
+
+            3. Supprimez le bloc <div class="map-placeholder">
+               et décommentez le <script> en bas de page.
+
+            ════════════════════════════════════════════════════════
+        -->
+        <div class="map-placeholder">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4A3428" stroke-width="1.5">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            <p>
+                Pour afficher la carte, ajoutez votre clé<br>
+                <code>Google Maps API</code><br>
+                dans le script en bas de cette page.<br><br>
+                La carte avec les 15 marqueurs est prête,<br>
+                il ne manque que la clé !
+            </p>
+        </div>
+    </div>
+
+    <!-- Liste des POI -->
+    <div class="poi-liste" id="poiListe">
+        <!-- Généré par JS -->
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>
+        &copy; 2026 horizons-paris.github.io<br>
+        Tous droits réservés. Design et contenu créés par<br>
+        <i>Scriptoleon.</i>
+    </p>
+</footer>
+
+<!-- ══════════════════════════════════════════════════
+     DONNÉES DES POINTS D'INTÉRÊT
+     (indépendantes de la clé API — toujours actives)
+     ══════════════════════════════════════════════════ -->
+<script>
+    const POINTS = [
+        // ── Le studio (marqueur rouge spécial) ──
+        {
+            id: 'studio',
+            nom: 'Le studio — 9 rue Joubert',
+            lat: 48.87534,
+            lng: 2.33145,
+            type: 'studio',
+            info: 'Studio Horizons Paris · 9ᵉ arr. · 3ᵉ étage'
+        },
+        // ── Les 14 monuments ──
+        { id:1,  nom: 'Moulin Rouge',                    lat: 48.88412, lng: 2.33220, type:'monument', info:'18ᵉ arr. · ~25 min à pied · 10 min en métro (ligne 2 → Blanche)' },
+        { id:2,  nom: 'Palais Garnier',                  lat: 48.87196, lng: 2.33160, type:'monument', info:'9ᵉ arr. · ~5 min à pied · Place de l\'Opéra' },
+        { id:3,  nom: 'Église de la Sainte-Trinité',     lat: 48.87690, lng: 2.33310, type:'monument', info:'9ᵉ arr. · ~5 min à pied · Place d\'Estienne d\'Orves' },
+        { id:4,  nom: 'Musée du Parfum Fragonard',       lat: 48.87230, lng: 2.33520, type:'monument', info:'9ᵉ arr. · ~7 min à pied · Boulevard des Capucines' },
+        { id:5,  nom: 'Galeries Lafayette',              lat: 48.87379, lng: 2.33225, type:'monument', info:'9ᵉ arr. · ~6 min à pied · Boulevard Haussmann' },
+        { id:6,  nom: 'La Maison Bélanger',              lat: 48.87500, lng: 2.33400, type:'monument', info:'9ᵉ arr. · ~5 min à pied · Lieu culturel' },
+        { id:7,  nom: 'L\'Hôtel Drouot',                 lat: 48.87620, lng: 2.34580, type:'monument', info:'9ᵉ arr. · ~10 min à pied · Ventes aux enchères · Rue Drouot' },
+        { id:8,  nom: 'Paradox Museum Paris',            lat: 48.87340, lng: 2.33080, type:'monument', info:'9ᵉ arr. · ~5 min à pied · Musée interactif et illusions' },
+        { id:9,  nom: 'Passages couverts de Paris',      lat: 48.87080, lng: 2.34390, type:'monument', info:'2ᵉ/9ᵉ arr. · ~12 min à pied · Galerie Vivienne & Passage des Panoramas' },
+        { id:10, nom: 'Place Édouard VII',               lat: 48.87260, lng: 2.33060, type:'monument', info:'9ᵉ arr. · ~4 min à pied · Square et théâtre' },
+        { id:11, nom: 'Grand Rex',                       lat: 48.86680, lng: 2.34980, type:'monument', info:'2ᵉ arr. · ~20 min à pied · 8 min en métro (ligne 9) · Plus grand cinéma d\'Europe' },
+        { id:12, nom: 'Montmartre',                      lat: 48.88671, lng: 2.34268, type:'monument', info:'18ᵉ arr. · ~30 min à pied · 15 min en métro (ligne 2) · Sacré-Cœur & Place du Tertre' },
+        { id:13, nom: 'Musée Grévin',                    lat: 48.87149, lng: 2.34335, type:'monument', info:'9ᵉ arr. · ~12 min à pied · Musée de cire · Boulevard Montmartre' },
+        { id:14, nom: 'Gare Saint-Lazare',               lat: 48.87569, lng: 2.32490, type:'monument', info:'8ᵉ arr. · ~8 min à pied · Grande gare · RER E, lignes 3, 12, 13, 14' },
+    ];
+
+    /* ── Génère la liste latérale ── */
+    const liste = document.getElementById('poiListe');
+    POINTS.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'poi-item' + (p.type === 'studio' ? ' studio' : '');
+        div.dataset.id = p.id;
+        div.innerHTML = `
+            <div class="poi-num">${p.type === 'studio' ? '★' : i}</div>
+            <div class="poi-nom">${p.nom}</div>
+        `;
+        div.addEventListener('click', () => {
+            document.querySelectorAll('.poi-item').forEach(el => el.classList.remove('actif'));
+            div.classList.add('actif');
+            if (window.mapMarkers && window.mapMarkers[p.id]) {
+                window.map.panTo({ lat: p.lat, lng: p.lng });
+                window.map.setZoom(16);
+                window.mapMarkers[p.id].infowindow.open(window.map, window.mapMarkers[p.id].marker);
+            }
+        });
+        liste.appendChild(div);
+    });
+</script>
+
+<!-- ══════════════════════════════════════════════════
+     GOOGLE MAPS — REMPLACEZ YOUR_API_KEY
+     Décommentez ce bloc une fois la clé obtenue
+     ══════════════════════════════════════════════════
+
+<script>
+function initMap() {
+    const centre = { lat: 48.8754, lng: 2.3330 };
+
+    window.map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: centre,
+        mapTypeControl: false,
+        fullscreenControl: true,
+        streetViewControl: false,
+        styles: [
+            { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] }
+        ]
+    });
+
+    window.mapMarkers = {};
+
+    POINTS.forEach(p => {
+        const isStudio = p.type === 'studio';
+        const marker = new google.maps.Marker({
+            position: { lat: p.lat, lng: p.lng },
+            map: window.map,
+            title: p.nom,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: isStudio ? 12 : 9,
+                fillColor: isStudio ? '#E50914' : '#C9A84C',
+                fillOpacity: 1,
+                strokeColor: '#fff',
+                strokeWeight: 2,
+            },
+            zIndex: isStudio ? 999 : 1,
+        });
+
+        const infowindow = new google.maps.InfoWindow({
+            content: `<div style="font-family:sans-serif;padding:4px 2px;">
+                <strong style="color:#4A3428">${p.nom}</strong><br>
+                <small>${p.info}</small>
+            </div>`
+        });
+
+        marker.addListener('click', () => {
+            infowindow.open(window.map, marker);
+            document.querySelectorAll('.poi-item').forEach(el => el.classList.remove('actif'));
+            const el = document.querySelector(`.poi-item[data-id="${p.id}"]`);
+            if (el) { el.classList.add('actif'); el.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+        });
+
+        window.mapMarkers[p.id] = { marker, infowindow };
+
+        // Supprime le placeholder dès que la carte charge
+        const ph = document.querySelector('.map-placeholder');
+        if (ph) ph.remove();
+    });
+}
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
+
+-->
+
+<!-- Burger menu script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const burger = document.getElementById('burger');
+        const menuDrawer = document.getElementById('menuDrawer');
+        const closeCross = document.getElementById('closeCross');
+
+        burger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuDrawer.classList.toggle('active');
+        });
+        closeCross.addEventListener('click', () => {
+            menuDrawer.classList.remove('active');
+        });
+        document.addEventListener('click', (e) => {
+            if (!menuDrawer.contains(e.target) && !burger.contains(e.target)) {
+                menuDrawer.classList.remove('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
