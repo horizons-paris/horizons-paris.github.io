@@ -90,19 +90,62 @@
 
     <!-- Section de contact -->
     <div class="contact-container">
-        <h3>Contactez-nous</h3>
-        <!-- Formulaire de contact, envoi via Formspree -->
-        <form action="https://formspree.io/f/manogojz" method="POST">
-            <label>
-                Email:
-                <input type="email" name="email">
-            </label>
-            <label>
-                Message:
-                <textarea name="message"></textarea>
-            </label>
-            <!-- Bouton d'envoi -->
-            <button type="submit">Envoyer</button>
+        <h1>Contactez-nous</h1>
+        <p class="contact-intro">Une question, une demande de réservation ? Remplissez le formulaire ci-dessous, nous vous répondrons dans les plus brefs délais.</p>
+
+        <!-- Formulaire de contact — Formspree -->
+        <form action="https://formspree.io/f/xeelzrob" method="POST" class="contact-form">
+
+            <!-- Nom -->
+            <div class="form-group">
+                <label for="nom">Nom complet <span class="required">*</span></label>
+                <input type="text" id="nom" name="nom" placeholder="Jean Dupont" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            </div>
+
+            <!-- Téléphone -->
+            <div class="form-group">
+                <label for="telephone">Téléphone</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00">
+            </div>
+
+            <!-- Dates -->
+            <div class="form-group form-group--dates">
+                <div>
+                    <label for="date-arrivee">Date d'arrivée</label>
+                    <input type="date" id="date-arrivee" name="date_arrivee">
+                </div>
+                <div>
+                    <label for="date-depart">Date de départ</label>
+                    <input type="date" id="date-depart" name="date_depart">
+                </div>
+            </div>
+
+            <!-- Nombre de personnes -->
+            <div class="form-group">
+                <label for="personnes">Nombre de personnes</label>
+                <select id="personnes" name="personnes">
+                    <option value="">-- Sélectionner --</option>
+                    <option value="1">1 personne</option>
+                    <option value="2">2 personnes</option>
+                    <option value="3">3 personnes</option>
+                </select>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+                <label for="message">Message <span class="required">*</span></label>
+                <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+            </div>
+
+            <!-- Envoi -->
+            <button type="submit" class="form-btn">Envoyer ma demande</button>
+
         </form>
     </div> <!-- fin de contact-container -->
 
