@@ -946,6 +946,105 @@ a {
     line-height: 1.3;
 }
 
+/* ════════════════════════════════════════════════
+   LIGHTBOX — à coller à la fin de styles.css
+   ════════════════════════════════════════════════ */
+
+/* Curseur zoom sur les photos cliquables */
+.image-argentee { cursor: zoom-in; }
+
+/* Overlay */
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+#lightbox.lb-open { display: flex; }
+
+/* Image agrandie */
+#lightbox img {
+    max-width: min(92vw, 900px);
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    animation: lb-in 0.22s ease;
+    display: block;
+}
+@keyframes lb-in {
+    from { opacity: 0; transform: scale(0.93); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Légende */
+#lb-caption {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f0e6d3;
+    font-family: Georgia, serif;
+    font-size: 0.9rem;
+    background: rgba(74,52,40,0.75);
+    padding: 5px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* Bouton fermer */
+#lb-close {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    background: rgba(74,52,40,0.8);
+    border: none;
+    color: #f0e6d3;
+    font-size: 1.6rem;
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+#lb-close:hover { background: #4A3428; }
+
+/* Flèches prev / next */
+.lb-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(74,52,40,0.7);
+    border: none;
+    color: #f0e6d3;
+    font-size: 1.8rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.lb-nav:hover { background: #4A3428; }
+#lb-prev { left: 12px; }
+#lb-next { right: 12px; }
+
+
 /* =========================== STYLES RESPONSIVE (pour mobiles et petits écrans) =========================== */
 
 @media (max-width: 900px) {
@@ -1779,4 +1878,9 @@ a {
     .pdq-placeholder {
         min-height: 350px;
     }
+	 {
+    #lb-prev { left: 6px; }
+    #lb-next { right: 6px; }
+    .lb-nav  { width: 36px; height: 36px; font-size: 1.4rem; }
+}
 }

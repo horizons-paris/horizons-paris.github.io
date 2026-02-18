@@ -32,6 +32,7 @@
 
     <!-- Feuille de styles -->
     <link rel="stylesheet" href="styles.css?v=131">
+
 </head>
 <body>
     <header>
@@ -95,7 +96,7 @@
         <section class="livres-alignées">
             <!-- Livre 1 -->
             <div class="card" id="livre1">
-                <img src="images/salon.jpg" alt="salon" class="image-argentee">
+                <img src="images/salon.jpg" alt="salon" class="image-argentee lb-trigger" data-src="images/salon.jpg" data-caption="Le salon">
                 <div class="description">
                     <h3>Le salon</h3>
                     <p>Le salon combine confort et style dans un espace optimisé.
@@ -106,7 +107,7 @@
 
             <!-- Livre 2 -->
             <div class="card" id="livre2">
-                <img src="images/coin_cuisine.webp" alt="Le coin cuisine" class="image-argentee">
+                <img src="images/coin_cuisine.webp" alt="Le coin cuisine" class="image-argentee lb-trigger" data-src="images/coin_cuisine.webp" data-caption="Le coin cuisine">
                 <div class="description">
                     <h3>Le coin cuisine</h3>
                     <p>Le coin cuisine a été pensé pour maximiser l’espace sans sacrifier le style.
@@ -118,7 +119,7 @@
 
             <!-- Livre 3 -->
             <div class="card" id="livre3">
-                <img src="images/sdb.webp" alt="Salle de bain" class="image-argentee">
+                <img src="images/sdb.webp" alt="Salle de bain" class="image-argentee lb-trigger" data-src="images/sdb.webp" data-caption="La salle de bain">
                 <div class="description">
                     <h3>La salle de bain</h3>
                     <p>Cette salle de bain allie élégance et fonctionnalité dans un espace optimisé.
@@ -130,7 +131,7 @@
 
             <!-- Livre 4 -->
             <div class="card" id="livre4">
-                <img src="images/entree.jpg" alt="L'entrée" class="image-argentee">
+                <img src="images/entree.jpg" alt="L'entrée" class="image-argentee lb-trigger" data-src="images/entree.jpg" data-caption="L'entrée">
                 <div class="description">
                     <h3>L'entrée</h3>
                     <p>L’entrée de l’immeuble allie élégance et modernité dès le premier pas.
@@ -252,5 +253,89 @@
             });
         });
     </script>
+    <!-- ══════════════════════════════════════════════
+         LIGHTBOX
+         ══════════════════════════════════════════════ -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo agrandie">
+        <button id="lb-close" aria-label="Fermer">&#x2715;</button>
+        <button class="lb-nav" id="lb-prev" aria-label="Photo précédente">&#8249;</button>
+        <img id="lb-img" src="" alt="">
+        <button class="lb-nav" id="lb-next" aria-label="Photo suivante">&#8250;</button>
+        <div id="lb-caption"></div>
+    </div>
+
+    <script>
+    (function () {
+        const lb        = document.getElementById('lightbox');
+        const lbImg     = document.getElementById('lb-img');
+        const lbCaption = document.getElementById('lb-caption');
+        const lbClose   = document.getElementById('lb-close');
+        const lbPrev    = document.getElementById('lb-prev');
+        const lbNext    = document.getElementById('lb-next');
+
+        /* Collecte toutes les images déclencheurs dans l'ordre du DOM */
+        let triggers = [];
+        let current  = 0;
+
+        function buildList() {
+            triggers = Array.from(document.querySelectorAll('.lb-trigger'));
+        }
+
+        function open(index) {
+            current = index;
+            const t = triggers[current];
+            lbImg.src         = t.dataset.src || t.src;
+            lbImg.alt         = t.alt || '';
+            lbCaption.textContent = t.dataset.caption || '';
+            lb.classList.add('lb-open');
+            document.body.style.overflow = 'hidden';
+            lbClose.focus();
+        }
+
+        function close() {
+            lb.classList.remove('lb-open');
+            document.body.style.overflow = '';
+            lbImg.src = '';
+        }
+
+        function prev() { open((current - 1 + triggers.length) % triggers.length); }
+        function next() { open((current + 1) % triggers.length); }
+
+        /* Clic sur une photo */
+        document.addEventListener('click', (e) => {
+            const el = e.target.closest('.lb-trigger');
+            if (!el) return;
+            buildList();
+            open(triggers.indexOf(el));
+        });
+
+        /* Fermer */
+        lbClose.addEventListener('click', close);
+        lb.addEventListener('click', (e) => {
+            if (e.target === lb) close();
+        });
+
+        /* Navigation */
+        lbPrev.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+        lbNext.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+
+        /* Clavier */
+        document.addEventListener('keydown', (e) => {
+            if (!lb.classList.contains('lb-open')) return;
+            if (e.key === 'Escape')      close();
+            if (e.key === 'ArrowLeft')   prev();
+            if (e.key === 'ArrowRight')  next();
+        });
+
+        /* Swipe tactile (mobile) */
+        let touchStartX = 0;
+        lb.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        lb.addEventListener('touchend',   (e) => {
+            const delta = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(delta) > 50) delta < 0 ? next() : prev();
+        });
+    })();
+    </script>
+
 </body>
 </html>
