@@ -1,11 +1,5 @@
 User-agent: *
-Disallow: /qui_suis_je.html
+Allow: /
 Disallow: /contact.html
-Disallow: /styles.css
-Disallow: /images/
-Disallow: /fonts/
-Allow: /index.html
-Allow: /styles.css
-Allow: /images/
-Allow: /fonts/
-Sitemap: https://daniglesias-bloglitteraire.github.io/sitemap.xml
+
+Sitemap: https://horizons-paris.github.io/sitemap.xml
