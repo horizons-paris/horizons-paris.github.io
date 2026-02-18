@@ -31,6 +31,30 @@
 
     <!-- Feuille de styles -->
     <link rel="stylesheet" href="styles.css?v=131">
+
+    <!-- Leaflet CSS (gratuit, open source) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        /* Ajustements spécifiques à Leaflet */
+        #map {
+            /* Écrase le placeholder, Leaflet gère son propre rendu */
+            background: #e8e0d8;
+            padding: 0 !important;
+        }
+        /* Popup Leaflet dans les couleurs du site */
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+            border-left: 4px solid #C9A84C;
+            font-family: 'Georgia', serif;
+        }
+        .leaflet-popup-content strong {
+            color: #4A3428;
+        }
+        .leaflet-popup-content small {
+            color: #6b5040;
+        }
+    </style>
 </head>
 <body>
     <!-- En-tête fixe -->
@@ -99,30 +123,8 @@
         <!-- Carte + liste -->
         <div class="pdq-wrapper">
 
-            <!-- Carte Google Maps -->
-            <div id="map" class="pdq-map">
-                <!--
-                    ════════════════════════════════════════════════════
-                    POUR ACTIVER LA CARTE GOOGLE MAPS :
-                    1. Obtenez une clé sur https://console.cloud.google.com/
-                       → Activez "Maps JavaScript API"
-                    2. Remplacez YOUR_API_KEY dans le <script> en bas
-                    3. Supprimez le bloc <div class="pdq-placeholder">
-                    4. Décommentez le bloc <script> initMap en bas
-                    ════════════════════════════════════════════════════
-                -->
-                <div class="pdq-placeholder">
-                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#4A3428" stroke-width="1.5">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-                        <circle cx="12" cy="9" r="2.5"/>
-                    </svg>
-                    <p>
-                        Ajoutez votre clé <code>Google Maps API</code><br>
-                        dans le script en bas de cette page<br>
-                        pour afficher la carte interactive.
-                    </p>
-                </div>
-            </div>
+            <!-- Carte Leaflet / OpenStreetMap -->
+            <div id="map" class="pdq-map"></div>
 
             <!-- Liste des POI -->
             <div class="pdq-liste" id="poiListe">
@@ -154,25 +156,13 @@
                     </linearGradient>
                     <path fill="url(#grad)" d="M42,40c0,1.105-0.895,2-2,2H8c-1.105,0-2-0.895-2-2V8c0-1.105,0.895-2,2-2h32c1.105,0,2,0.895,2,2V40z"></path>
                     <path d="M25,38V27h-4v-6h4v-2.138c0-5.042,2.666-7.818,7.505-7.818c1.995,0,3.077,0.14,3.598,0.208l0.858,0.111L37,12.224L37,17h-3.635C32.237,17,32,18.378,32,19.535V21h4.723l-0.928,6H32v11H25z" opacity=".05"></path>
-                    <path d="M25.5,37.5v-11h-4v-5h4v-2.638c0-4.788,2.422-7.318,7.005-7.318c1.971,0,3.03,0.138,3.54,0.204l0.436,0.057l0.02,0.442V16.5h-3.135c-1.623,0-1.865,1.901-1.865,3.035V21.5h4.64l-0.773,5H31.5v11H25.5z" opacity=".07"></path>
-                    <path fill="#fff" d="M33.365,16H36v-3.754c-0.492-0.064-1.531-0.203-3.495-0.203c-4.101,0-6.505,2.08-6.505,6.819V22h-4v4h4v11h5V26h3.938l0.618-4H31v-2.465C31,17.661,31.612,16,33.365,16z"></path>
-                </svg>
-            </a>
-            <a class="social-btn x" href="https://twitter.com/intent/tweet?text=Découvrez%20ce%20studio%20parisien%20https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Twitter">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
-                    <path d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z"/>
-                </svg>
-            </a>
-            <a class="social-btn validation" href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fhorizons-paris.github.io%2Fplan_du_quartier.html" target="_blank" rel="noopener noreferrer" aria-label="Valider le site W3C">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
-                    <rect width="64" height="64" fill="#ffffff" rx="8" ry="8" stroke="#000" stroke-width="2"/>
-                    <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="#0066CC" dominant-baseline="middle" text-anchor="middle" font-weight="bold">W3C</text>
+                    <path d="M25,38V27h-4v-6h4v-2.138c0-5.042,2.666-7.818,7.505-7.818c1.995,0,3.077,0.14,3.598,0.208l0.858,0.111L37,12.224L37,17h-3.635C32.237,17,32,18.378,32,19.535V21h4.723l-0.928,6H32v11H25z" opacity=".07"></path>
+                    <path fill="#fff" d="M25,38V27h-4v-6h4v-2.138c0-5.042,2.666-7.817,7.505-7.817c1.995,0,3.077,0.14,3.598,0.208l0.858,0.111L37,12.226V17h-3.635C32.237,17,32,18.378,32,19.535V21h4.723l-0.928,6H32v11H25z"></path>
                 </svg>
             </a>
         </div>
-        <p>
-            &copy; 2026 horizons-paris.github.io<br>
-            Tous droits réservés. Design et contenu créés par<br>
+        <p class="footer-copy">
+            &copy; <span id="year"></span> Horizons Paris ·
             <i>Scriptoleon.</i>
         </p>
     </footer>
@@ -219,73 +209,87 @@
             div.addEventListener('click', () => {
                 document.querySelectorAll('.pdq-item').forEach(el => el.classList.remove('pdq-item--actif'));
                 div.classList.add('pdq-item--actif');
-                if (window.mapMarkers && window.mapMarkers[p.id]) {
-                    window.map.panTo({ lat: p.lat, lng: p.lng });
-                    window.map.setZoom(16);
-                    window.mapMarkers[p.id].infowindow.open(window.map, window.mapMarkers[p.id].marker);
+                if (window.leafletMap && window.leafletMarkers && window.leafletMarkers[p.id]) {
+                    window.leafletMap.setView([p.lat, p.lng], 16);
+                    window.leafletMarkers[p.id].openPopup();
                 }
             });
             liste.appendChild(div);
         });
+
+        /* ── Année footer ── */
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
     </script>
 
     <!-- ══════════════════════════════════════════════
-         GOOGLE MAPS — REMPLACEZ YOUR_API_KEY
-         Décommentez ce bloc une fois la clé obtenue
-         ══════════════════════════════════════════════
-
+         LEAFLET / OPENSTREETMAP — Gratuit, sans clé
+         ══════════════════════════════════════════════ -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-    function initMap() {
-        const centre = { lat: 48.8754, lng: 2.3330 };
-        window.map = new google.maps.Map(document.getElementById('map'), {
+        /* ── Initialisation de la carte Leaflet ── */
+        window.leafletMap = L.map('map', {
+            center: [48.8754, 2.3330],
             zoom: 15,
-            center: centre,
-            mapTypeControl: false,
-            fullscreenControl: true,
-            streetViewControl: false,
-            styles: [
-                { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] }
-            ]
+            zoomControl: true,
+            scrollWheelZoom: true
         });
-        window.mapMarkers = {};
+
+        /* Fond de carte OpenStreetMap (gratuit) */
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }).addTo(window.leafletMap);
+
+        /* ── Création des marqueurs ── */
+        window.leafletMarkers = {};
+
         POINTS.forEach(p => {
             const isStudio = p.type === 'studio';
-            const marker = new google.maps.Marker({
-                position: { lat: p.lat, lng: p.lng },
-                map: window.map,
+
+            /* Marqueur SVG circulaire (rouge pour studio, doré pour monuments) */
+            const markerHtml = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="${isStudio ? 28 : 22}" height="${isStudio ? 28 : 22}" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"
+                        fill="${isStudio ? '#E50914' : '#C9A84C'}"
+                        stroke="#ffffff" stroke-width="2.5"/>
+                    ${isStudio ? '<text x="12" y="17" text-anchor="middle" font-size="11" fill="#fff" font-family="sans-serif">★</text>' : ''}
+                </svg>`;
+
+            const icon = L.divIcon({
+                html: markerHtml,
+                className: '',
+                iconSize: isStudio ? [28, 28] : [22, 22],
+                iconAnchor: isStudio ? [14, 14] : [11, 11],
+                popupAnchor: [0, isStudio ? -16 : -13]
+            });
+
+            const marker = L.marker([p.lat, p.lng], {
+                icon,
                 title: p.nom,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: isStudio ? 12 : 9,
-                    fillColor: isStudio ? '#E50914' : '#C9A84C',
-                    fillOpacity: 1,
-                    strokeColor: '#fff',
-                    strokeWeight: 2,
-                },
-                zIndex: isStudio ? 999 : 1,
-            });
-            const infowindow = new google.maps.InfoWindow({
-                content: `<div style="font-family:sans-serif;padding:4px 2px;">
-                    <strong style="color:#4A3428">${p.nom}</strong><br>
-                    <small>${p.info}</small>
-                </div>`
-            });
-            marker.addListener('click', () => {
-                infowindow.open(window.map, marker);
+                zIndexOffset: isStudio ? 1000 : 0
+            }).addTo(window.leafletMap);
+
+            marker.bindPopup(`
+                <div style="font-family:Georgia,serif;padding:2px 4px;min-width:180px;">
+                    <strong style="color:#4A3428;font-size:0.9rem;">${p.nom}</strong><br>
+                    <small style="color:#6b5040;">${p.info}</small>
+                </div>
+            `);
+
+            /* Synchronise le clic sur le marqueur avec la liste */
+            marker.on('click', () => {
                 document.querySelectorAll('.pdq-item').forEach(el => el.classList.remove('pdq-item--actif'));
                 const el = document.querySelector(`.pdq-item[data-id="${p.id}"]`);
-                if (el) { el.classList.add('pdq-item--actif'); el.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+                if (el) {
+                    el.classList.add('pdq-item--actif');
+                    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
             });
-            window.mapMarkers[p.id] = { marker, infowindow };
+
+            window.leafletMarkers[p.id] = marker;
         });
-        const ph = document.querySelector('.pdq-placeholder');
-        if (ph) ph.remove();
-    }
     </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-    </script>
-    -->
 
     <!-- Scripts défilement -->
     <script>
