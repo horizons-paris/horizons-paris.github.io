@@ -421,6 +421,22 @@ button:hover {
     font-weight: bold; /* Gras */
 }
 
+/* Focus champs formulaire — contour Chocolat foncé */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: #4A3428; /* Chocolat foncé */
+    box-shadow: 0 0 0 3px rgba(74,52,40,0.2);
+    outline: none;
+}
+
+/* Suppression du contour rouge navigateur */
+.contact-form input:invalid,
+.contact-form textarea:invalid {
+    outline: none;
+    box-shadow: none;
+}
+
 /* Liens classiques */
 a {
     text-decoration: none; /* Sans soulignement */
@@ -1870,17 +1886,20 @@ a {
     .pdq-item {
         flex: 1 1 100%;
     }
-
     .pdq-map {
         min-height: 350px;
     }
-
     .pdq-placeholder {
         min-height: 350px;
     }
-	 {
     #lb-prev { left: 6px; }
     #lb-next { right: 6px; }
     .lb-nav  { width: 36px; height: 36px; font-size: 1.4rem; }
-}
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
