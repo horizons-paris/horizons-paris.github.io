@@ -93,8 +93,15 @@
         <h3>Contactez-nous</h3>
         <p class="contact-intro">Une question, une demande de réservation ? Remplissez le formulaire ci-dessous, nous vous répondrons dans les plus brefs délais.</p>
 
-        <!-- Formulaire de contact — Formspree -->
-        <form action="https://formspree.io/f/xeelzrob" method="POST" class="contact-form">
+        <!-- Formulaire de contact — Web3Forms -->
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+
+            <!-- Clé Web3Forms (invisible) -->
+            <input type="hidden" name="access_key" value="ababbe47-f2da-4c3f-918a-3df2279555ff">
+            <input type="hidden" name="subject" value="Nouvelle demande — Horizons Paris">
+            <input type="hidden" name="from_name" value="Horizons Paris">
+            <!-- Anti-spam honeypot -->
+            <input type="checkbox" name="botcheck" style="display:none">
 
             <!-- Nom -->
             <div class="form-group">
