@@ -348,5 +348,37 @@
         });
     </script>
 
+
+    <!-- Script submenu tactile mobile -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const items = document.querySelectorAll("ul.menu > li");
+            items.forEach(li => {
+                const submenu = li.querySelector("ul.submenu");
+                const link = li.querySelector(":scope > a");
+                if (!submenu || !link) return;
+
+                link.addEventListener("click", (e) => {
+                    // Desktop avec hover : comportement normal
+                    if (window.matchMedia("(hover: hover)").matches) return;
+                    // Mobile : 1er tap ouvre, 2ème tap navigue
+                    if (!li.classList.contains("submenu-open")) {
+                        e.preventDefault();
+                        document.querySelectorAll("ul.menu > li.submenu-open").forEach(el => {
+                            if (el !== li) el.classList.remove("submenu-open");
+                        });
+                        li.classList.add("submenu-open");
+                    }
+                });
+
+                document.addEventListener("click", (e) => {
+                    if (!li.contains(e.target)) {
+                        li.classList.remove("submenu-open");
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
