@@ -83,7 +83,7 @@ ul.menu li a {
 
 /* Survol des liens du menu */
 ul.menu li a:hover {
-    background-color: rgba(142, 168, 137, 0.5); /* Vert Sauge Clair */
+    background-color: rgba(90, 120, 85, 0.6); /* Vert Sauge soutenu */
     border-radius: 4px; /* Coins arrondis de 4px pour le fond */
     color: #fff; /* Changement de couleur du texte en blanc */
     transform: scale(1.05); /* Légère mise à l'échelle pour effet dynamique */
@@ -134,7 +134,7 @@ ul.submenu li a {
 
 /* Survol des liens du sous-menu */
 ul.submenu li a:hover {
-    background-color: rgba(142, 168, 137, 0.5); /* Vert Sauge Clair */
+    background-color: rgba(90, 120, 85, 0.6); /* Vert Sauge soutenu */
     color: #fff; /* Texte blanc en hover */
     transform: translateX(5px); /* Légère translation pour donner un effet dynamique */
 }
@@ -1902,4 +1902,125 @@ a {
         width: 100%;
         box-sizing: border-box;
     }
+}
+
+/* ════════════════════════════════════════════════
+   FORMULAIRE DE CONTACT — bouton envoi
+   ════════════════════════════════════════════════ */
+
+.contact-container {
+    max-width: 640px;
+    margin: 100px auto 3rem;
+    padding: 2rem 1.5rem;
+    background: #FDFBF7;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(74,52,40,0.15);
+    border-top: 4px solid #4A3428;
+}
+
+.contact-container h1 {
+    font-size: 1.8rem;
+    color: #4A3428;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.contact-intro {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #5A3E2B;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group--dates {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.form-group--dates > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.contact-form label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #4A3428;
+    font-style: normal;
+}
+
+.required { color: #E50914; }
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid #c9b89a;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #5A3E2B;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    font-style: normal;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: #4A3428; /* Chocolat foncé */
+    box-shadow: 0 0 0 3px rgba(74,52,40,0.1);
+    outline: none;
+}
+
+.contact-form input:invalid,
+.contact-form textarea:invalid {
+    outline: none;
+    box-shadow: none;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-btn {
+    background: rgba(90, 120, 85, 0.6); /* Vert Sauge soutenu — cohérent avec le menu */
+    color: #F5F1E8;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-style: normal;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, color 0.2s;
+    align-self: center;
+    min-width: 220px;
+    letter-spacing: 1px;
+}
+
+.form-btn:hover {
+    background: rgba(60, 90, 55, 0.85); /* Vert plus soutenu au hover */
+    transform: translateY(-2px);
+    color: #000000; /* Texte noir au hover */
 }
