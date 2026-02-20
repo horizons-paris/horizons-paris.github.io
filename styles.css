@@ -413,7 +413,7 @@ button {
     cursor: pointer; /* Curseur pointeur */
     transition: background-color 0.3s ease, transform 0.3s ease; /* Transition */
 }
-button:hover {
+button:hover:not(.scroll-btn):not(.lb-nav):not(#lb-close) {
     background-color: rgba(142, 168, 137, 0.5); /* Vert Sauge Clair au hover */ 
     transform: scale(1.05); /* Effet de mise à l'échelle */
 }
@@ -488,7 +488,13 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    will-change: transform; /* Isole le bouton sur son propre layer GPU */
+}
+.scroll-btn:hover {
+    background-color: transparent !important;
+    transform: translateY(-2px); /* Légère remontée fluide au lieu de scale */
+    opacity: 0.8;
 }
 .scroll-btn img {
     max-width: 100px;
