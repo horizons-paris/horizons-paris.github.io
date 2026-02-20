@@ -500,6 +500,41 @@ footer {
     margin-top: 0;
 }
 
+/* Conteneur du bouton réserver */
+.tarif-reserver {
+    text-align: center;
+    margin: 18px 0 10px;
+}
+
+/* Bouton Réserver */
+.btn-reserver {
+    display: inline-block;
+    padding: 11px 36px;
+    font-family: 'Merriweather', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #F5F1E8;
+    background: linear-gradient(135deg, #4A3428 0%, rgba(90,120,85,0.9) 100%);
+    border-radius: 30px;
+    border: 1.5px solid #C9A84C;
+    box-shadow: 0 3px 12px rgba(74,52,40,0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-reserver:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74,52,40,0.4), 0 0 12px rgba(201,168,76,0.35);
+    color: #fff;
+}
+
+.btn-reserver:active {
+    transform: translateY(0);
+}
+
 /* Picto "animaux non admis" */
 .no-pets {
     text-align: center;
