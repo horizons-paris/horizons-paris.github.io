@@ -11,8 +11,15 @@
 /* Police principale du site (choisie par la cliente) */
 @font-face {
     font-family: 'Merriweather';
-    src: url('fonts/Merriweather.ttf') format('truetype');
-    font-weight: 300;  /* Variante light */
+    src: url('fonts/Merriweather-VariableFont_opsz,wdth,wght.ttf') format('truetype');
+    font-weight: 300 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url('fonts/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf') format('truetype');
+    font-weight: 300 800;
     font-style: italic;
 }
 
@@ -294,8 +301,8 @@ h3 {
 
 /* H4 — Titre tertiaire, même style que h3 mais plus petit */
 h4 {
-    font-family: 'FairWaterScript', cursive, Arial, sans-serif;
-    font-size: 1.4em;
+    font-family: 'Merriweather', cursive, Arial, sans-serif;
+    font-size: 1.2em;
     color: #222222;
     text-shadow:
         0 0 8px rgba(85, 85, 85, 0.8),
@@ -327,7 +334,7 @@ h4 {
 .intro {
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 3rem;
+    margin-bottom: 0rem;
     padding-top: 0;               /* L'image commence directement sous le header */
     margin-top: 60px;             /* Compense la hauteur du header fixe */
 }
@@ -350,7 +357,7 @@ h4 {
 .intro p {
     font-size: 1.2rem;
     max-width: 800px;
-    margin: 0 auto 1.5rem;        /* Centré horizontalement, espace en bas */
+    margin: 0 auto 0.5rem;        /* Centré horizontalement, espace en bas */
     color: #5A3E2B;
     text-align: justify;
 }
