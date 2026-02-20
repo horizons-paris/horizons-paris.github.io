@@ -1,391 +1,202 @@
-/* Style général du corps */
+/* ============================================================
+   HORIZONS PARIS — Feuille de styles principale
+   Auteur : Scriptoleon
+   ============================================================ */
+
+
+/* ============================================================
+   POLICES PERSONNALISÉES
+   ============================================================ */
+
+/* Police principale du site (choisie par la cliente) */
 @font-face {
     font-family: 'Merriweather';
     src: url('fonts/Merriweather-LightItalic.ttf') format('truetype');
-    font-weight: 300;  /* Light */
+    font-weight: 300;  /* Variante light */
     font-style: italic;
 }
 
+/* Police scripte utilisée sur la page Contact */
+@font-face {
+    font-family: 'FairWaterScript';
+    src: url('fonts/FairWaterScript.woff2') format('woff2'), /* Format moderne, prioritaire */
+         url('fonts/FairWaterScript.woff') format('woff'),   /* Fallback pour anciens navigateurs */
+         url('fonts/FairWaterScript.ttf') format('truetype'); /* Dernier recours */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+
+/* Empêche le scroll horizontal sur tout le document */
 html {
     overflow-x: hidden;
     max-width: 100%;
 }
 
-body {
-    position: relative; /* Positionne le corps relativement à son flux normal, permettant de positionner des éléments en fonction de lui si besoin */
-    z-index: auto; /* Z-index automatique, n'influence pas ici car position est relative */
-    font-family: 'Merriweather', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-    font-weight: 300 !important; /* Force le poids light */
-    font-style: italic !important; /* Force l'italique */
-    background-color: #F5F1E8; /* Couleur de fond beige très clair */
-    color: #5A3E2B; /* Couleur du texte par défaut (brun) */
-    line-height: 1.6; /* Hauteur de ligne pour améliorer la lisibilité */
-    margin: 0; /* Aucune marge extérieure par défaut */
-    padding: 0;
-    display: flex; /* Utilise Flexbox pour organiser le contenu */
-    flex-direction: column; /* Organise les éléments en colonne (verticalement) */
-    min-height: 100vh; /* Hauteur minimale pour couvrir toute la hauteur de la fenêtre */
-    overflow-x: hidden; /* Empêche le débordement horizontal */
-    max-width: 100%; /* Limite la largeur maximale */
-    width: 100%;
-    box-sizing: border-box;
-}
-
+/* Applique box-sizing à tous les éléments :
+   padding et border sont inclus dans la largeur déclarée */
 * {
     box-sizing: border-box;
 }
 
-/* Bandeau fixe en haut de la page */
+/* Structure générale de la page */
+body {
+    position: relative;           /* Référence de positionnement pour les enfants absolus */
+    z-index: auto;                /* Z-index géré automatiquement */
+    font-family: 'Merriweather', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-weight: 300 !important;  /* Variante light de Merriweather */
+    font-style: italic !important;
+    background-color: #F5F1E8;    /* Beige très clair */
+    color: #5A3E2B;               /* Brun — couleur de texte par défaut */
+    line-height: 1.6;             /* Hauteur de ligne pour confort de lecture */
+    margin: 0;
+    padding: 0;
+    display: flex;                /* Flexbox colonne pour coller le footer en bas */
+    flex-direction: column;
+    min-height: 100vh;            /* Au moins toute la hauteur de l'écran */
+    overflow-x: hidden;           /* Empêche le débordement horizontal */
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Liens globaux sans soulignement */
+a {
+    text-decoration: none;
+    color: #4B3832; /* Marron foncé */
+}
+
+
+/* ============================================================
+   EN-TÊTE (HEADER) & NAVIGATION
+   ============================================================ */
+
+/* Bandeau fixe en haut — reste visible au scroll */
 header {
-    position: fixed; /* Fixe le header en haut de la fenêtre même lors du défilement */
-    top: 0; /* Positionné tout en haut */
-    width: 100%; /* Occupe toute la largeur de la fenêtre */
-    background-color: #4A3428; /* Chocolat foncé */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Ombre portée pour donner du relief */
-    z-index: 1000; /* Z-index élevé pour rester au-dessus des autres éléments */
-    padding: 0.5rem 1rem; /* Espacement intérieur : haut/bas 0.5rem, gauche/droite 1rem */
-    display: flex; /* Flex pour aligner le contenu du header */
-    align-items: center; /* Centrage vertical */
-    transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Transition douce pour background et ombre */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #4A3428;    /* Chocolat foncé */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Ombre portée pour le relief */
+    z-index: 1000;                /* Au-dessus du contenu principal */
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;          /* Centrage vertical du contenu */
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
-/* Menu de navigation */
+/* Conteneur de navigation */
 nav {
-    display: flex; /* Utilise Flexbox pour disposer les éléments horizontalement */
-    justify-content: center; /* Centre le contenu horizontalement */
-    align-items: center; /* Aligne verticalement au centre */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-/* Liste du menu principal */
+/* Liste du menu principal (ul) */
 ul.menu {
-    list-style: none; /* Supprime les puces de la liste */
-    display: flex; /* Disposition horizontale des éléments de la liste */
-    margin: 0; /* Aucune marge externe */
-    padding: 0; /* Aucune marge intérieure */
-    transition: all 0.3s ease; /* Transition douce pour tous les changements */
+    list-style: none;
+    display: flex;                /* Éléments en ligne */
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
 }
 
-/* Éléments du menu (li) */
+/* Chaque item du menu (li) */
 ul.menu li {
-    position: relative; /* Position relative pour permettre le positionnement absolu de sous-menus */
-    margin: 0 15px; /* Marge horizontale entre les éléments : 15px de chaque côté */
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Transitions pour hover */
+    position: relative;           /* Permet le positionnement absolu du sous-menu enfant */
+    margin: 0 15px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 /* Liens du menu */
 ul.menu li a {
-    text-decoration: none; /* Supprime le soulignement des liens */
-    color: #F5F1E8; /* Beige clair */
-    font-weight: bold; /* Texte en gras */
-    padding: 8px 12px; /* Padding intérieur : 8px haut/bas, 12px gauche/droite */
-    transition: background 0.3s, color 0.3s, transform 0.3s; /* Transition douce pour hover */
+    text-decoration: none;
+    color: #F5F1E8;               /* Beige clair sur fond chocolat */
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
 }
 
 /* Survol des liens du menu */
 ul.menu li a:hover {
-    background-color: rgba(90, 120, 85, 0.6); /* Vert Sauge soutenu */
-    border-radius: 4px; /* Coins arrondis de 4px pour le fond */
-    color: #fff; /* Changement de couleur du texte en blanc */
-    transform: scale(1.05); /* Légère mise à l'échelle pour effet dynamique */
+    background-color: rgba(90, 120, 85, 0.6); /* Vert sauge */
+    border-radius: 4px;
+    color: #fff;
+    transform: scale(1.05);       /* Légère mise à l'échelle */
 }
 
+/* Menu drawer — z-index élevé pour passer au-dessus de tout */
 .menu-drawer {
     z-index: 2000 !important;
 }
 
-/* Sous-menu déroulant (méga menu) */
+/* Sous-menu déroulant — caché par défaut */
 ul.menu li ul.submenu {
-    display: none; /* Cacher par défaut */
-    position: absolute; /* Positionnement absolu par rapport au parent li */
-    top: 30px; /* Position verticale à 30px en dessous du parent */
-    left: 0; /* Aligné à gauche du parent */
-    background-color: #4A3428; /* Chocolat foncé pour le sous menu*/
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5); /* Ombre pour donner du relief */
-    list-style: none; /* Pas de puces */
-    padding: 0; /* Pas de padding interne */
-    margin: 0; /* Pas de marge */
-    width: 140px; /* Largeur initiale de 140px */
-    border-radius: 4px; /* Coins arrondis */
-    z-index: 2001 !important; /* Z-index supérieur pour apparaître au-dessus du menu principal */
-    transition: width 0.3s ease, opacity 0.3s ease; /* Transition pour largeur et opacité */
-    opacity: 0; /* Transparence initiale */
-    transform: translateY(-10px); /* Départ légèrement en haut */
+    display: none;
+    position: absolute;           /* Se positionne par rapport au li parent */
+    top: 30px;                    /* Juste en dessous du lien parent */
+    left: 0;
+    background-color: #4A3428;    /* Même couleur que le header */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 140px;                 /* Largeur initiale avant animation */
+    border-radius: 4px;
+    z-index: 2001 !important;     /* Au-dessus du menu principal */
+    transition: width 0.3s ease, opacity 0.3s ease;
+    opacity: 0;                   /* Invisible au départ */
+    transform: translateY(-10px); /* Légèrement décalé vers le haut au départ */
 }
 
-/* Affichage du sous-menu au survol du parent li avec transition douce */
+/* Affichage animé du sous-menu au survol */
 ul.menu li:hover ul.submenu {
-    display: block; /* Affiche le sous-menu */
-    width: 200px; /* Agrandissement de la largeur lors du survol */
-    opacity: 1; /* Rendre visible */
-    transform: translateY(0); /* Rétablir la position */
-    transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Transition douce */
+    display: block;
+    width: 200px;                 /* S'agrandit à l'ouverture */
+    opacity: 1;
+    transform: translateY(0);     /* Glisse vers sa position finale */
+    transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Items du sous-menu (li) */
+/* Items du sous-menu */
 ul.submenu li {
-    width: 100%; /* Prend toute la largeur du sous-menu */
-    transition: background-color 0.3s ease; /* Transition pour hover */
+    width: 100%;
+    transition: background-color 0.3s ease;
 }
 
 /* Liens dans le sous-menu */
 ul.submenu li a {
-    padding: 4px 8px; /* Padding intérieur réduit */
-    max-width: 180px; /* Largeur maximum pour éviter débordement */
-    display: inline-block; /* Permet de définir une largeur et hauteur */
-    color: #fff; /* Couleur du texte blanc */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition douce */
+    padding: 4px 8px;
+    max-width: 180px;
+    display: inline-block;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 /* Survol des liens du sous-menu */
 ul.submenu li a:hover {
-    background-color: rgba(90, 120, 85, 0.6); /* Vert Sauge soutenu */
-    color: #fff; /* Texte blanc en hover */
-    transform: translateX(5px); /* Légère translation pour donner un effet dynamique */
+    background-color: rgba(90, 120, 85, 0.6); /* Vert sauge */
+    color: #fff;
+    transform: translateX(5px);   /* Glisse légèrement vers la droite */
 }
 
-/* Container principal contenant .intro */
-.content {
-    margin: 0 auto; /* Centrage horizontal automatique */
-    margin-top: 60px; /* Compensation pour le header fixe */
-    flex: 1; /* Prend tout l'espace disponible dans la colonne */
-    display: flex; /* Utilise Flexbox pour organiser ses enfants */
-    flex-direction: column; /* Organise verticalement */
-    overflow-x: hidden; /* Empêche le débordement horizontal */
-    max-width: 100%; /* Limite la largeur maximale */
-    width: 100%; /* Prend toute la largeur disponible */
-    box-sizing: border-box; /* Inclut padding et border dans la largeur */
-}
-
-/* Section de présentation contenue dans .content */
-.intro {
-    width: 100%; /* Prend toute la largeur du parent */
-    box-sizing: border-box; /* Inclut padding et border dans la largeur */
-    margin-bottom: 3rem; /* Espace en dessous de 3 rem */
-    padding-top: 0; /* Pas de padding - l'image commence au bord du content */
-    margin-top: 60px; /* Marge égale à la hauteur du header fixe */
-}
-
-
-/* Titre principal dans la section intro */
-.intro h1 {
-    font-size: 2.5rem; /* Taille de police importante */
-    margin-bottom: 1rem; /* Marge en dessous */
-    color: black; /* Couleur du texte noir */
-    text-align: center; /* Centrage du texte */
-}
-
-/* Sous-titres h3 dans intro */
-.intro h3 {
-    text-align: center; /* Centrage */
-}
-
-/* Sous-titres h4 dans intro */
-.intro h4 {
-    text-align: center; /* Centrage */
-}
-
-/* Paragraphe dans intro */
-.intro p {
-    font-size: 1.2rem; /* Taille de police confortable */
-    max-width: 800px; /* Largeur maximale pour meilleure lecture */
-    margin: 0 auto 1.5rem; /* Centrage avec marge inférieure de 1.5 rem */
-    color: #5A3E2B /* Couleur du texte brun */
-    text-align: justify; /* Justification du texte pour alignement uniforme */
-}
-
-/* Styles pour les cartes d'éléments (produits, contenus, etc.) */
-.card {
-    background-color: #FDFBF7; /* Fond crème très léger */
-    border-radius: 8px; /* Coins arrondis de 8px */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.7); /* Ombre portée pour effet de profondeur */
-    display: flex; /* Flexbox pour le contenu intérieur */
-    flex-direction: column; /* Organisation verticale */
-    align-items: center; /* Centrage horizontal des éléments internes */
-    padding: 15px; /* Padding intérieur */
-    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s; /* Transitions pour effets au hover */
-    max-width: 450px; /* Largeur maximale */
-    width: 100%; /* Prend toute la largeur disponible */
-    box-sizing: border-box; /* Inclut padding et border dans la largeur */
-    margin-bottom: 20px; /* Espacement en bas */
-    margin-left: 0; /* Pas de marge horizontale par défaut */
-    margin-right: 0;
-}
-
-/* Effet au survol d'une carte */
-.card:hover {
-    transform: translateY(-4px); /* Légère remontée */
-    box-shadow: 0 8px 20px rgba(74, 52, 40, 0.15); /* Ombre plus grande pour effet de survol */
-    background-color: #FFFFFF; /* Changement de fond en blanc */
-}
-
-/* Couverture ou image principale de la carte */
-.cover {
-    width: 100%; /* Prend toute la largeur de la carte */
-    height: auto; /* Hauteur automatique pour conserver le ratio */
-    border-radius: 4px; /* Coins légèrement arrondis */
-    margin-bottom: 15px; /* Espace en dessous */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5); /* Ombre légère pour relief */
-}
-
-/* Description ou texte associé à l'élément */
-.description {
-    text-align: justify; /* Justification pour une lecture plus élégante */
-}
-
-
-/* Titre dans la description */
-.description h3 {
-    font-family: 'Anton', sans-serif;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    color: #4A3428; /* Chocolat foncé */
-    text-align: center;
-    text-shadow:
-        2px 2px 3px rgba(74, 52, 40, 0.3), /* Ombre douce chocolat */
-        0 0 8px rgba(110, 127, 106, 0.4); /* Halo vert subtil */
-    letter-spacing: 4px;
-    font-weight: bold;
-}
-
-/* Paragraphe dans la description */
-.description p {
-    font-size: 1.1rem;
-    color: #5A3E2B; /* Votre couleur de texte principale */
-}
-
-/* Pied de page */
-footer {
-    width: 100%; /* Largeur totale */
-    background-color: #4A3428; /* Chocolat foncé */
-    padding: 20px 0; /* Padding vertical */
-    margin-top: auto; /* Pousse le footer en bas de la page (sticky footer) */
-    text-align: center; /* Centrage du texte */
-    font-size: 0.9rem; /* Taille de police */
-    color: #F5F1E8; /* Texte clair */
-}
-
-/* Définition d'une police personnalisée 'FairWaterScript' */
-@font-face {
-    font-family: 'FairWaterScript'; /* Nom de la police */
-    src: url('fonts/FairWaterScript.woff2') format('woff2'), /* Source en format WOFF2 */
-         url('fonts/FairWaterScript.woff') format('woff'), /* Source en WOFF */
-         url('fonts/FairWaterScript.ttf') format('truetype'); /* Source TTF comme fallback */
-    font-weight: normal; /* Poids normal */
-    font-style: normal; /* Style normal */
-}
-
-/* Titres principaux (h1) - Style Netflix sophistiqué */
-h1 {
-    font-family: 'Merriweather', cursive, Arial, sans-serif; 
-    font-size: 4em; /* Taille impactante */
-    color: #E50914; /* Rouge Netflix */
-    font-weight: 300; /* Light pour Merriweather */
-    font-style: italic; /* Force l'italique */
-    letter-spacing: 2px;
-    text-shadow:
-        2px 2px 4px rgba(0, 0, 0, 0.5),
-        0 0 10px #E50914;
-    margin-bottom: 30px;
-    text-align: center;
-    transition: all 0.4s ease;
-}
-
-h1:hover {
-    text-shadow:
-        4px 4px 8px rgba(0, 0, 0, 0.7),
-        0 0 15px #E50914;
-    transform: scale(1.05); /* Légère mise en valeur au hover */
-}
-
-/* Titre du formulaire (h2) - Style épuré et moderne */
-h2 {
-    font-family: 'Merriweather', cursive, Arial, sans-serif; 
-    font-size: 1.8em;
-    color: #222222; /* Gris encore plus foncé */
-    text-shadow:
-        0 0 8px rgba(85, 85, 85, 0.8),
-        0 0 15px rgba(85, 85, 85, 0.6);
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-	text-align: center;
-}
-
-
-h3 {
-    font-family: 'FairWaterScript', cursive, Arial, sans-serif;
-    font-size: 1.8em;
-    color: #222222; /* Gris encore plus foncé */
-    text-shadow:
-        0 0 8px rgba(85, 85, 85, 0.8),
-        0 0 15px rgba(85, 85, 85, 0.6);
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-	text-align: center;
-}
-
-/* Petits titres (h4) - Style délicat et subtil */
-h4 {
-    font-family: 'FairWaterScript', cursive, Arial, sans-serif;
-    font-size: 1.4em;
-    color: #222222; /* Gris encore plus foncé */
-    text-shadow:
-        0 0 8px rgba(85, 85, 85, 0.8),
-        0 0 15px rgba(85, 85, 85, 0.6);
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-/* Image argentée spécifique */
-.image-argentee {
-    border: 4px solid silver; /* Bordure argentée */
-    width: 100%; /* Largeur responsive au lieu de fixe */
-    max-width: 340px; /* Largeur maximale de 340px */
-    height: auto; /* Hauteur automatique pour garder les proportions */
-}
-
-
-
-
-
-
-
-/* Bouton */
-button {
-    background-color: #4A3428; /* Chocolat foncé */
-    color: #fff; /* Blanc */
-    padding: 14px; /* Padding intérieur */
-    border: none; /* Pas de bordure */
-    border-radius: 4px; /* Coins arrondis */
-    font-size: 1em; /* Taille de police */
-    cursor: pointer; /* Curseur pointeur */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition */
-}
-button:hover:not(.scroll-btn):not(.lb-nav):not(#lb-close) {
-    background-color: rgba(142, 168, 137, 0.5); /* Vert Sauge Clair au hover */ 
-    transform: scale(1.05); /* Effet de mise à l'échelle */
-}
-
-
-/* Liens classiques */
-a {
-    text-decoration: none; /* Sans soulignement */
-    color: #4B3832; /* Couleur marron foncé */
-}
-
-/* Bouton burger (menu mobile) */
+/* Bouton burger — masqué sur desktop, affiché sur mobile */
 .burger-menu {
     width: 30px;
     height: 25px;
     cursor: pointer;
-    display: none; /* Caché par défaut */
+    display: none;                /* Caché par défaut sur desktop */
     flex-direction: column;
     justify-content: space-between;
     z-index: 1001;
     transition: all 0.3s ease;
 }
+
+/* Les trois barres du burger */
 .burger-menu .bar {
     height: 3px;
     background-color: #fff;
@@ -394,43 +205,7 @@ a {
     transition: all 0.3s ease;
 }
 
-/* Bouton ascenseur */
-#scrollButtons {
-    background-color: transparent !important;
-    position: fixed;
-    right: 0px;
-    bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 0px; /* Espacement vertical entre les boutons */
-    z-index: 1000;
-}
-
-/* Chaque bouton d'ascenseur */
-.scroll-btn {
-    background-color: transparent !important;
-    border: none;
-    padding: 0;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    will-change: transform; /* Isole le bouton sur son propre layer GPU */
-}
-.scroll-btn:hover {
-    background-color: transparent !important;
-    transform: translateY(-2px); /* Légère remontée fluide au lieu de scale */
-    opacity: 0.8;
-}
-.scroll-btn img {
-    max-width: 100px;
-    max-height: 100px;
-    display: block;
-}
-
-/* Croix de fermeture */
+/* Croix de fermeture du menu mobile */
 .close-cross {
     position: absolute;
     top: 10px;
@@ -444,26 +219,241 @@ a {
     z-index: 1003;
     transition: transform 0.3s ease;
 }
-/* Rotation rapide */
+
+/* Animation de rotation au clic sur la croix */
 .close-cross.rotating {
     animation: rotateFast 0.5s linear forwards;
 }
+
 @keyframes rotateFast {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
+
 /* Image de la croix */
 .croix-image {
     width: 100%;
     height: auto;
-    filter: brightness(1.2);
+    filter: brightness(1.2); /* Légèrement éclaircie pour la lisibilité */
 }
 
-/* Section livres en grille */
+
+/* ============================================================
+   TITRES
+   ============================================================ */
+
+/* H1 — Grand titre de page, style rouge impactant */
+h1 {
+    font-family: 'Merriweather', cursive, Arial, sans-serif;
+    font-size: 4em;
+    color: #E50914;               /* Rouge vif */
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 10px #E50914;         /* Halo rouge */
+    margin-bottom: 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+/* H1 au survol — halo plus prononcé */
+h1:hover {
+    text-shadow:
+        4px 4px 8px rgba(0, 0, 0, 0.7),
+        0 0 15px #E50914;
+    transform: scale(1.05);
+}
+
+/* H2 — Sous-titre de section, style Merriweather */
+h2 {
+    font-family: 'Merriweather', cursive, Arial, sans-serif;
+    font-size: 1.8em;
+    color: #222222;
+    text-shadow:
+        0 0 8px rgba(85, 85, 85, 0.8),
+        0 0 15px rgba(85, 85, 85, 0.6); /* Halo gris doux */
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-align: center;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* H3 — Titre secondaire, police scripte FairWaterScript */
+h3 {
+    font-family: 'FairWaterScript', cursive, Arial, sans-serif;
+    font-size: 1.8em;
+    color: #222222;
+    text-shadow:
+        0 0 8px rgba(85, 85, 85, 0.8),
+        0 0 15px rgba(85, 85, 85, 0.6);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-align: center;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* H4 — Titre tertiaire, même style que h3 mais plus petit */
+h4 {
+    font-family: 'FairWaterScript', cursive, Arial, sans-serif;
+    font-size: 1.4em;
+    color: #222222;
+    text-shadow:
+        0 0 8px rgba(85, 85, 85, 0.8),
+        0 0 15px rgba(85, 85, 85, 0.6);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+
+/* ============================================================
+   MISE EN PAGE PRINCIPALE
+   ============================================================ */
+
+/* Zone de contenu principal sous le header fixe */
+.content {
+    margin: 0 auto;
+    margin-top: 60px;             /* Compense la hauteur du header fixe */
+    flex: 1;                      /* Occupe tout l'espace restant avant le footer */
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Section d'introduction en haut de page */
+.intro {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 3rem;
+    padding-top: 0;               /* L'image commence directement sous le header */
+    margin-top: 60px;             /* Compense la hauteur du header fixe */
+}
+
+/* H1 dans la section intro — taille réduite par rapport au h1 global */
+.intro h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: black;
+    text-align: center;
+}
+
+/* H3 et H4 dans intro — centrés */
+.intro h3,
+.intro h4 {
+    text-align: center;
+}
+
+/* Paragraphe intro — largeur limitée pour confort de lecture */
+.intro p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;        /* Centré horizontalement, espace en bas */
+    color: #5A3E2B;
+    text-align: justify;
+}
+
+/* Image bandeau plein écran */
+.full-screen {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 70vh;             /* Limitée à 70% de la hauteur écran par défaut */
+    object-fit: cover;            /* Recadre l'image sans la déformer */
+    object-position: center 35%; /* Cadrage vertical centré légèrement vers le haut */
+    display: block;
+    margin: 0;
+}
+
+/* Pied de page */
+footer {
+    width: 100%;
+    background-color: #4A3428;    /* Chocolat foncé */
+    padding: 20px 0;
+    margin-top: auto;             /* Colle le footer en bas grâce au flex du body */
+    text-align: center;
+    font-size: 0.9rem;
+    color: #F5F1E8;               /* Texte beige clair */
+}
+
+
+/* ============================================================
+   CARTES (.card)
+   ============================================================ */
+
+/* Carte générique — conteneur d'image + texte */
+.card {
+    background-color: #FDFBF7;    /* Crème très léger */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.7); /* Ombre marquée pour le relief */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    max-width: 450px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Carte au survol — légère remontée */
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(74, 52, 40, 0.15);
+    background-color: #FFFFFF;
+}
+
+/* Image dans la carte (classe .cover) */
+.cover {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* Bloc texte de la carte */
+.description {
+    text-align: justify;
+}
+
+/* Titre h3 dans le bloc description */
+.description h3 {
+    font-family: 'Anton', sans-serif; /* Police différente pour les titres des cartes */
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #4A3428;
+    text-align: center;
+    text-shadow:
+        2px 2px 3px rgba(74, 52, 40, 0.3), /* Ombre douce chocolat */
+        0 0 8px rgba(110, 127, 106, 0.4);   /* Halo vert subtil */
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+/* Paragraphe dans le bloc description */
+.description p {
+    font-size: 1.1rem;
+    color: #5A3E2B;
+}
+
+/* Image avec bordure argentée (photos du studio) */
+.image-argentee {
+    border: 4px solid silver;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    cursor: zoom-in; /* Indique que l'image est cliquable pour la lightbox */
+}
+
+/* Grille de cartes sur 2 colonnes */
 .livres-alignées {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -473,81 +463,159 @@ a {
     max-width: 1200px;
 }
 
-/* Grille de livres alignées */
 
-.social-btn.facebook {
-  position: relative;
-  top:6px;
-}
+/* ============================================================
+   CARTE INFORMATIONS PRATIQUES (.info-card)
+   ============================================================ */
 
-.full-screen {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  max-height: 70vh; /* Limiter à 70vh par défaut */
-  object-fit: cover;
-  object-position: center 35%;
-  display: block;
-  margin: 0;
-}
-
-/* ===========================
-   STYLES SWIPER
-   =========================== */
+/* Bloc style bloc-note avec lignes horizontales en fond */
 .info-card {
-  width: 90%;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 30px 35px;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border-left: 6px solid #ff6347;
-  border: 2px dotted #d3d3d3;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
-  background-size: 100% 24px;
-  line-height: 1.6;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px 35px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border-left: 6px solid #ff6347;   /* Bordure gauche orange */
+    border: 2px dotted #d3d3d3;       /* Contour pointillé */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 100% 24px;       /* Lignes horizontales espacées de 24px */
+    line-height: 1.6;
 }
 
 .info-card h3 {
-  text-align: center;
-  margin-top: 0;
-  color: #333;
+    text-align: center;
+    margin-top: 0;
+    color: #333;
 }
 
-.info-card p, .info-card li {
-  color: #555;
+.info-card p,
+.info-card li {
+    color: #555;
 }
 
 .info-card ul {
-  padding-left: 20px;
-  margin-top: 0;
+    padding-left: 20px;
+    margin-top: 0;
 }
 
-/* Animaux non admis centré */
+/* Picto "animaux non admis" */
 .no-pets {
-  text-align: center;
-  margin-top: 20px;
-  color: #D32F2F; /* rouge pour alerte */
+    text-align: center;
+    margin-top: 20px;
+    color: #D32F2F; /* Rouge alerte */
 }
 
 .no-pets img {
-  width: 160px;   
-  height: 120px;
-  display: block;
-  margin: 0 auto 5px auto; /* centrer l'image et espacer du texte */
+    width: 160px;
+    height: 120px;
+    display: block;
+    margin: 0 auto 5px auto; /* Centré avec espace sous l'image */
 }
 
 .no-pets p {
-  margin: 0;
-  font-weight: bold;
+    margin: 0;
+    font-weight: bold;
 }
 
-/* ------------------------------------------- FIN DES STYLES GLOBAUX ------------------------------------------- */
 
-/* ===========================
-   STYLES SWIPER
-   =========================== */
+/* ============================================================
+   BOUTONS
+   ============================================================ */
+
+/* Style global pour tous les boutons */
+button {
+    background-color: #4A3428;    /* Chocolat foncé */
+    color: #fff;
+    padding: 14px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Survol des boutons génériques
+   Exclut les boutons d'ascenseur et de lightbox qui ont leur propre style */
+button:hover:not(.scroll-btn):not(.lb-nav):not(#lb-close) {
+    background-color: rgba(142, 168, 137, 0.5); /* Vert sauge clair */
+    transform: scale(1.05);
+}
+
+/* Conteneur des boutons d'ascenseur (haut/bas) — fixe en bas à droite */
+#scrollButtons {
+    background-color: transparent !important;
+    position: fixed;
+    right: 0;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    z-index: 1000;
+}
+
+/* Bouton d'ascenseur individuel */
+.scroll-btn {
+    background-color: transparent !important;
+    border: none;
+    padding: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    will-change: transform; /* Isole l'élément sur un layer GPU pour éviter les saccades */
+}
+
+.scroll-btn:hover {
+    background-color: transparent !important;
+    transform: translateY(-2px); /* Légère remontée — plus fluide que scale() */
+    opacity: 0.8;
+}
+
+.scroll-btn img {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+}
+
+/* Bouton du formulaire de contact */
+.form-btn {
+    background: rgba(90, 120, 85, 0.6); /* Vert sauge — cohérent avec le menu */
+    color: #F5F1E8;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-style: normal;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, color 0.2s;
+    align-self: center;
+    min-width: 220px;
+    letter-spacing: 1px;
+}
+
+.form-btn:hover {
+    background: rgba(60, 90, 55, 0.85); /* Vert plus soutenu au hover */
+    transform: translateY(-2px);
+    color: #000000;
+}
+
+/* Lien réseaux sociaux — Facebook légèrement décalé vers le bas */
+.social-btn.facebook {
+    position: relative;
+    top: 6px;
+}
+
+
+/* ============================================================
+   SWIPER (CARROUSEL)
+   ============================================================ */
+
+/* Conteneur principal du swiper */
 .swiper {
     width: 100%;
     max-width: 900px;
@@ -557,10 +625,12 @@ a {
     overflow: hidden;
 }
 
+/* Wrapper interne des slides */
 .swiper-wrapper {
     box-sizing: border-box;
 }
 
+/* Chaque slide individuelle */
 .swiper-slide {
     display: flex;
     flex-direction: column;
@@ -574,17 +644,19 @@ a {
     width: 100%;
 }
 
+/* Image dans la slide */
 .swiper-slide img {
     width: 100%;
     max-width: 100%;
     height: auto;
     max-height: 450px;
-    object-fit: contain;
+    object-fit: contain;          /* Affiche l'image entière sans recadrage */
     border-radius: 4px;
     margin-bottom: 15px;
     display: block;
 }
 
+/* Bloc texte sous l'image de la slide */
 .texte-slide {
     width: 100%;
     padding: 0 10px;
@@ -596,7 +668,7 @@ a {
     font-size: 1.3rem;
     margin-bottom: 10px;
     color: #4A3428;
-    word-wrap: break-word;
+    word-wrap: break-word;        /* Coupe les mots trop longs sur mobile */
 }
 
 .texte-slide p {
@@ -607,23 +679,23 @@ a {
     word-wrap: break-word;
 }
 
-/* Boutons de navigation Swiper */
+/* Flèches de navigation du swiper */
 .swiper-button-next,
 .swiper-button-prev {
-    color: #4A3428!important; /* Flèches du sliders en chocolat foncé */
-    background-color: rgba(245, 241, 232, 0.9);
+    color: #4A3428 !important;    /* Chocolat foncé */
+    background-color: rgba(245, 241, 232, 0.9); /* Fond beige semi-transparent */
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 50%;           /* Forme circulaire */
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-    font-size: 20px;
+    font-size: 20px;              /* Taille de l'icône flèche */
 }
 
-/* Pagination Swiper */
+/* Points de pagination */
 .swiper-pagination {
     bottom: 10px;
 }
@@ -635,88 +707,87 @@ a {
 
 .swiper-pagination-bullet-active {
     opacity: 1;
-    background-color: #8EA889;
+    background-color: #8EA889;    /* Vert sauge pour le point actif */
 }
 
+/* Crédit photo sous le swiper */
 .photo-credit {
-  font-size: 0.75em;
-  color: #999;
-  margin-top: 10px;
-  margin-bottom: 30px !important;  /* ← Crée l'espace en bas */
-  font-style: italic;
+    font-size: 0.75em;
+    color: #999;
+    margin-top: 10px;
+    margin-bottom: 30px !important;
+    font-style: italic;
 }
 
 .photo-credit a {
-  color: #999;
-  text-decoration: none;
+    color: #999;
+    text-decoration: none;
 }
 
 .photo-credit a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
+
 /* ============================================================
-   PLAN DU QUARTIER — CSS à ajouter dans styles.css
-   Toutes les classes sont préfixées "pdq-" pour éviter
-   tout conflit avec le reste du site.
+   LIGHTBOX
    ============================================================ */
 
-/* ════════════════════════════════════════════════
-   LIGHTBOX — à coller à la fin de styles.css
-   ════════════════════════════════════════════════ */
-
-/* Curseur zoom sur les photos cliquables */
-.image-argentee { cursor: zoom-in; }
-
-/* Overlay */
+/* Overlay plein écran — caché par défaut */
 #lightbox {
     display: none;
     position: fixed;
-    inset: 0;
+    inset: 0;                     /* Couvre tout l'écran (top/right/bottom/left: 0) */
     z-index: 9999;
     background: rgba(0, 0, 0, 0.88);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);   /* Flou de l'arrière-plan */
     align-items: center;
     justify-content: center;
     padding: 16px;
     box-sizing: border-box;
 }
-#lightbox.lb-open { display: flex; }
 
-/* Image agrandie */
+/* Classe ajoutée par JS pour afficher la lightbox */
+#lightbox.lb-open {
+    display: flex;
+}
+
+/* Image agrandie dans la lightbox */
 #lightbox img {
-    max-width: min(92vw, 900px);
+    max-width: min(92vw, 900px);  /* Jamais plus large que 900px ou 92% de l'écran */
     max-height: 88vh;
     width: auto;
     height: auto;
     object-fit: contain;
     border-radius: 6px;
     box-shadow: 0 8px 40px rgba(0,0,0,0.6);
-    animation: lb-in 0.22s ease;
+    animation: lb-in 0.22s ease;  /* Animation d'apparition */
     display: block;
 }
+
+/* Animation d'ouverture de la lightbox */
 @keyframes lb-in {
     from { opacity: 0; transform: scale(0.93); }
     to   { opacity: 1; transform: scale(1); }
 }
 
-/* Légende */
+/* Légende affichée en bas de la lightbox */
 #lb-caption {
     position: fixed;
     bottom: 18px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%);  /* Centre horizontalement */
     color: #f0e6d3;
     font-family: Georgia, serif;
     font-size: 0.9rem;
     background: rgba(74,52,40,0.75);
     padding: 5px 16px;
     border-radius: 20px;
-    white-space: nowrap;
-    pointer-events: none;
+    white-space: nowrap;          /* Empêche le retour à la ligne */
+    pointer-events: none;         /* La légende ne bloque pas les clics */
 }
 
-/* Bouton fermer */
+/* Bouton de fermeture (×) */
 #lb-close {
     position: fixed;
     top: 14px;
@@ -735,13 +806,16 @@ a {
     justify-content: center;
     transition: background 0.2s;
 }
-#lb-close:hover { background: #4A3428; }
 
-/* Flèches prev / next */
+#lb-close:hover {
+    background: #4A3428;
+}
+
+/* Boutons de navigation prev/next */
 .lb-nav {
     position: fixed;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%);  /* Centré verticalement */
     background: rgba(74,52,40,0.7);
     border: none;
     color: #f0e6d3;
@@ -755,576 +829,144 @@ a {
     justify-content: center;
     transition: background 0.2s;
 }
-.lb-nav:hover { background: #4A3428; }
+
+.lb-nav:hover {
+    background: #4A3428;
+}
+
 #lb-prev { left: 12px; }
 #lb-next { right: 12px; }
 
 
-/* =========================== STYLES RESPONSIVE (pour mobiles et petits écrans) =========================== */
-
-@media (max-width: 900px) {
-    .pdq-wrapper {
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-    .pdq-liste {
-        width: 100%;
-        max-height: 260px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        overflow-y: auto;
-    }
-
-    .pdq-item {
-        flex: 1 1 200px;
-    }
-}
-
-
-
-@media (max-width: 768px) {
-    /* Empêche le débordement horizontal sur petits écrans */
-    html, body {
-        overflow-x: hidden;
-    }
-
-
-    /* Titre dans intro réduit pour mobile */
-    .intro h1 {
-        font-size: 2rem;
-    }
-
-    /* Affichage du burger menu en mobile */
-    .burger-menu {
-        display: flex !important;
-        width: 30px;
-        height: 25px;
-        flex-direction: column;
-        justify-content: space-around;
-        cursor: pointer;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 9999;
-        background: transparent;
-        transition: all 0.3s ease;
-    }
-
-    /* Structure des barres du burger */
-    .burger-menu .bar {
-        height: 4px;
-        width: 100%;
-        background-color: #fff;
-        border-radius: 2px;
-        transition: all 0.3s ease;
-    }
-	
-    .menu li {
-        width: 100% !important;
-        padding-left: 20px;
-        text-align: left !important;
-		margin: 20px 0;
-    }
-
- 
-    ul.submenu {
-        text-align: left !important;
-    }
-    ul.submenu li a {
-        display: block !important;
-        width: 80% !important;
-        padding: 8px 8px !important;
-        text-align: left !important;
-    }
-
-        /* Menu vertical mobile (dans le menu principal) */
-    .menu {
-        flex-direction: column;
-        padding-left: 5px !important;
-        margin: 0;
-        background-color: #4A3428; /* Chocolat foncé pour le sous menu*/
-        width: 100%;
-        transition: all 0.3s ease;   
-        display: none;/* Menu mobile caché par défaut */
-		text-align: left !important;
-    }
-			
-	    /* Sous-menu mobile */
-    ul.submenu {
-    display: none; /* Cacher par défaut */
-    position: static; /* Flux normal sur mobile */
-    background-color: #4A3428; /* Chocolat foncé pour le sous menu*/
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5); /* Ombre */
-    list-style: none; /* Sans puces */
-    padding: 0; /* Paddings internes */
-    margin: 0; /* Marges */
-    width: 100%; /* Pleine largeur sur mobile */
-    border-radius: 4px; /* Coins arrondis */
-    z-index: 1001; /* Z-index supérieur */
-    opacity: 1;
-    transform: none;
-    max-height: 60vh; /* Hauteur max scrollable */
-    overflow-y: auto; /* Scroll si trop long */
-} 
-
-    ul.menu li:hover ul.submenu {
-    display: block; /* Affiche le sous-menu */
-    width: 300px; /* Augmentation de la largeur à 300px (ou plus si besoin) */
-    opacity: 1; /* Rendre visible */
-    transform: translateY(0); /* Rétablir la position */
-    transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Transition douce */
-     }
-	 
-    .menu.active {
-        display: flex;
-        position: fixed;
-        top: 60px;
-        right: 0px;
-        background: white;
-        padding: 10px;
-        flex-direction: column;
-        width: 340px;
-        max-height: calc(100vh - 60px);
-        overflow-y: auto;
-        z-index: 9998;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-    }
-
-
-    /* Leaflet sous le menu */
-    .leaflet-pane,
-    .leaflet-control,
-    .leaflet-top,
-    .leaflet-bottom {
-        z-index: 1 !important;
-    }
-
-    /* Menu drawer mobile (sous-menu) */
-    .menu-drawer {
-        position: absolute;
-        top: calc(100% + 2px);
-        right: 0px;
-        width: 340px;
-        background-color: #5E3200;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-        display: none;
-        border-radius: 4px;
-        z-index: 1002;
-        transition: all 0.3s ease;
-    }
-
-    /* Menu drawer actif */
-    .menu-drawer.active {
-        display: block;
-        z-index: 9999 !important;
-    }
-
-    /* Position spécifique du burger */
-    #burger {
-        position: fixed;
-        top: 15px;
-        right: 20px;
-        display: flex !important;
-        transition: all 0.3s ease;
-    }
-
-    /* Masquer le menu dans le header pour mobile */
-    .menu-container {
-        display: none;
-    }
-
-    /* Bandeau mobile (si utilisé) */
-    .bandeau {
-        height: 40px;
-        line-height: 40px;
-        display: flex;
-        align-items: center;
-    }
-
-    /* Header mobile */
-    header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: 0;
-        padding: 0px;
-        height: 60px;
-    }
-
-    /* Logo ou image dans header mobile */
-    header img {
-        max-width: 400px;
-        height: auto;
-        display: block;
-        object-fit: contain;
-        max-height: 100%;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-    /* Container contact mobile */
-    .contact-container {
-        background-color: #f5f5f5;
-        padding: 40px 20px;
-        border-radius: 10px;
-        max-width: 500px;
-        width: 80%;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        margin: 80px auto 40px auto;
-        padding-left: 20px;
-        padding-right: 20px;
-        box-sizing: border-box;
-    }
-
-    /* Textarea mobile */
-    textarea {
-        font-size: 1.4em;
-        height: 180px;
-        justify-content: center;
-    }
-
-
-    /* Bouton fermeture #closeCross en mobile */
-    #closeCross {
-        display: block;
-    }
-
-    /* Grille livres mobile (alignée) */
-    .livres-alignées {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 0 15px;
-        margin: 0;
-        max-width: 100%;
-    }
-
-    /* Supprimer les marges horizontales des cards sur mobile */
-    .card {
-        margin-left: 0;
-        margin-right: 0;
-        padding: 10px;
-        max-width: 100%;
-        width: 100%;
-    }
-    
-    /* Ajuster les images dans les cards sur mobile */
-    .image-argentee {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-    }
-
-    /* Ajustements intro mobile */
-    .intro {
-        margin: 0 !important;
-        margin-top: 60px !important; /* Hauteur du header mobile */
-        padding-left: 0; /* Pas de padding pour que l'image prenne toute la largeur */
-        padding-right: 0;
-        padding-top: 0;
-        overflow: hidden;
-    }
-    
-    /* Ajouter du padding au texte dans intro (pas à l'image) */
-    .intro h1,
-    .intro p {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    
-    /* Réduire l'espace entre l'image et le titre sur mobile */
-    .intro h1 {
-        margin-top: 0; /* Pas de marge en haut du titre */
-        margin-bottom: 10px; /* Réduire l'espace en dessous */
-    }
-    
-    /* Empêcher le débordement horizontal sur tout le contenu mobile */
-    html,
-    body {
-        overflow-x: hidden !important;
-    }
-    
-    .content {
-        overflow-x: hidden !important;
-        max-width: 100% !important;
-        width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    /* Forcer TOUT à ne pas déborder sur mobile - SAUF les éléments qui en ont besoin */
-    html {
-        overflow-x: hidden !important;
-        width: 100vw !important;
-        max-width: 100vw !important;
-    }
-    
-    body {
-        overflow-x: hidden !important;
-        width: 100vw !important;
-        max-width: 100vw !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
-    /* Boutons scroll sur mobile - plus gros et collés au bord */
-    #scrollButtons {
-        right: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    .scroll-btn {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    .scroll-btn img {
-        max-width: 70px !important;
-        max-height: 70px !important;
-    }
-    
-    /* Intro sans padding/margin */
-    .intro {
-        margin: 0 !important;
-        margin-top: 60px !important;
-        padding: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow-x: hidden !important;
-    }
-    
-    /* Image bandeau - simple et directe */
-    .intro .full-screen,
-    section.intro .full-screen {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 35vh !important;
-        max-height: 35vh !important;
-        object-fit: contain !important;
-        object-position: center center !important;
-        display: block !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        margin-top: -50px !important; /* Réduit de -100px à -50px */
-        margin-bottom: -20px !important; /* Réduit de -50px à -20px */
-        padding: 0 !important;
-    }
-    
-    /* S'assurer que le h1 a de l'espace */
-    .intro h1 {
-        margin-top: 15px !important;
-        position: relative !important;
-        z-index: 10 !important;
-    }
-	
-    /* Styles Swiper responsive pour mobile */
-    .swiper {
-        padding: 0 5px;
-        margin: 20px 0;
-        max-width: 100%;
-        overflow: hidden;
-    }
-    
-    .swiper-slide {
-        padding: 10px;
-    }
-    
-    .swiper-slide img {
-        max-height: 200px;
-        object-fit: cover;
-    }
-    
-    .texte-slide {
-        padding: 0 5px;
-    }
-    
-    .texte-slide h3 {
-        font-size: 1.1rem;
-        margin-bottom: 8px;
-    }
-    
-    .texte-slide p {
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
-    
-    .swiper-button-next,
-    .swiper-button-prev {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .swiper-button-next:after,
-    .swiper-button-prev:after {
-        font-size: 14px;
-    }
-    
-    /* Masquer les boutons de navigation sur très petits écrans */
-    .swiper-button-next,
-    .swiper-button-prev {
-        display: none;
-    }
-	
-	nav {
-    justify-content: flex-start;
-}
-}
-
-/* Styles spécifiques pour la zone problématique 563-768px */
-@media (min-width: 563px) and (max-width: 768px) {
-    body {
-        overflow-x: hidden !important;
-    }
-    
-    .intro {
-        margin-top: 60px !important;
-        padding: 0 !important;
-        overflow: visible !important;
-    }
-    
-    .intro .full-screen {
-        width: 100vw !important;
-        max-width: none !important;
-        height: 40vh !important;
-        object-fit: contain !important;
-        object-position: center center !important;
-        display: block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        position: relative !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        margin-top: -60px !important;
-        margin-bottom: -30px !important;
-    }
-    
-    .intro h1 {
-        margin-top: 15px !important;
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
-    
-    .intro p {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
-}
-
-/* Styles pour tablettes et mini PC (769px à 1200px) */
-@media (min-width: 769px) and (max-width: 1200px) {
-    body {
-        overflow-x: hidden !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    .intro {
-        margin-top: 60px !important;
-        padding: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow: visible !important; /* Permet à l'image de déborder */
-    }
-    
-    .intro .full-screen {
-        width: 100vw !important;
-        max-width: none !important;
-        height: 55vh !important;
-        object-fit: cover !important;
-        object-position: center 35% !important;
-        margin: 0 !important;
-        display: block !important;
-        padding: 0 !important;
-        position: relative !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-    }
-    
-    .intro h1,
-    .intro p {
-        margin-left: 15px !important;
-        margin-right: 15px !important;
-    }
-    
-    .intro h1 {
-        margin-top: 20px !important;
-    }
-}
-
-
-/* Styles pour desktop et grands écrans (769px et plus) */
-@media (min-width: 769px) {
-
-    /* Masque le bouton closeCross en desktop */
-    #closeCross {
-        display: none;
-    }
-    
-    /* Marges des cards pour desktop */
-    .card {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    
-    /* Ajuster le margin-top de intro pour desktop */
-    .intro {
-        margin-top: 0 !important;
-        padding-top: 0 !important; /* Pas de padding - directement sous le header */
-    }
-    
-    /* Image bandeau sans débordement sur desktop */
-    .full-screen {
-        max-height: 75vh; /* 75% comme vous vouliez au départ */
-        min-height: 500px;
-        object-fit: cover; /* Cover pour étirer sans marges */
-        object-position: center 35%; /* Position moyenne pour voir un maximum */
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    /* Ajout de transitions pour le header */
-    header {
-        transition: background-color 0.5s ease, box-shadow 0.5s ease;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-    nav {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-    ul.menu {
-        display: flex;
-        justify-content: center;
-        margin: 0;
-        padding: 0;
-        width: auto;
-    }
-}
-
 /* ============================================================
-   PLAN DU QUARTIER — styles de la page plan_du_quartier.html
-   Toutes les classes sont préfixées "pdq-" pour éviter
-   tout conflit avec le reste du site.
+   FORMULAIRE DE CONTACT
    ============================================================ */
 
-/* ── Titre de la page ── */
+/* Conteneur principal du formulaire */
+.contact-container {
+    max-width: 640px;
+    margin: 100px auto 3rem;
+    padding: 2rem 1.5rem;
+    background: #FDFBF7;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(74,52,40,0.15);
+    border-top: 4px solid #4A3428; /* Barre décorative en haut */
+}
+
+/* Titre h1 dans le formulaire de contact */
+.contact-container h1 {
+    font-size: 1.8rem;
+    color: #4A3428;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+/* Texte d'introduction du formulaire */
+.contact-intro {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #5A3E2B;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+}
+
+/* Formulaire en colonne */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Groupe label + champ */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* Groupe de dates sur deux colonnes côte à côte */
+.form-group--dates {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.form-group--dates > div {
+    flex: 1;                      /* Chaque colonne prend la même largeur */
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* Labels du formulaire */
+.contact-form label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #4A3428;
+    font-style: normal;
+}
+
+/* Indicateur de champ obligatoire */
+.required {
+    color: #E50914; /* Rouge vif */
+}
+
+/* Champs de saisie */
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid #c9b89a;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #5A3E2B;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    font-style: normal;
+}
+
+/* Focus sur les champs — contour chocolat */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: #4A3428;
+    box-shadow: 0 0 0 3px rgba(74,52,40,0.1); /* Halo discret */
+    outline: none;
+}
+
+/* Supprime le contour rouge natif du navigateur sur champ invalide */
+.contact-form input:invalid,
+.contact-form textarea:invalid {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Textarea — redimensionnable verticalement uniquement */
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* ============================================================
+   PLAN DU QUARTIER (préfixe pdq-)
+   Toutes les classes sont préfixées pour éviter les conflits
+   ============================================================ */
+
+/* Section titre de la page plan */
 .pdq-intro {
     padding: 1.5rem 1rem 0.5rem;
     text-align: center;
 }
 
 .pdq-intro h1 {
-    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-size: clamp(1.6rem, 4vw, 2.8rem); /* Taille fluide selon la largeur d'écran */
     color: #4A3428;
-    text-shadow: none;
+    text-shadow: none;            /* Pas de halo ici — titre sobre */
     margin-bottom: 0.5rem;
 }
 
@@ -1336,7 +978,7 @@ a {
     max-width: 600px;
 }
 
-/* ── Légende ── */
+/* Légende de la carte (studio / monuments) */
 .pdq-legende {
     display: flex;
     justify-content: center;
@@ -1354,6 +996,7 @@ a {
     color: #5A3E2B;
 }
 
+/* Pastille colorée dans la légende */
 .pdq-dot {
     width: 14px;
     height: 14px;
@@ -1362,10 +1005,10 @@ a {
     flex-shrink: 0;
 }
 
-.pdq-dot--studio   { background: #E50914; }
-.pdq-dot--monument { background: #C9A84C; }
+.pdq-dot--studio   { background: #E50914; } /* Rouge pour le studio */
+.pdq-dot--monument { background: #C9A84C; } /* Or pour les monuments */
 
-/* ── Conteneur carte + liste ── */
+/* Conteneur flex carte + liste latérale */
 .pdq-wrapper {
     display: flex;
     flex-direction: row;
@@ -1377,9 +1020,9 @@ a {
     box-sizing: border-box;
 }
 
-/* ── La carte ── */
+/* Carte interactive */
 .pdq-map {
-    flex: 1;
+    flex: 1;                      /* Prend tout l'espace disponible */
     min-height: 520px;
     border-radius: 12px;
     box-shadow: 0 6px 24px rgba(74,52,40,0.25);
@@ -1387,7 +1030,7 @@ a {
     overflow: hidden;
 }
 
-/* ── Placeholder (affiché avant la clé API) ── */
+/* Placeholder affiché si la carte ne charge pas */
 .pdq-placeholder {
     width: 100%;
     height: 100%;
@@ -1425,23 +1068,24 @@ a {
     font-size: 0.85rem;
 }
 
-/* ── Liste latérale des POI ── */
+/* Liste latérale des points d'intérêt */
 .pdq-liste {
     width: 280px;
-    flex-shrink: 0;
+    flex-shrink: 0;               /* Ne se réduit pas quand la carte s'agrandit */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     max-height: 580px;
-    overflow-y: auto;
+    overflow-y: auto;             /* Scroll si la liste dépasse */
     padding-right: 4px;
 }
 
-.pdq-liste::-webkit-scrollbar        { width: 6px; }
-.pdq-liste::-webkit-scrollbar-track  { background: transparent; }
-.pdq-liste::-webkit-scrollbar-thumb  { background: #4A3428; border-radius: 3px; }
+/* Barre de scroll personnalisée */
+.pdq-liste::-webkit-scrollbar       { width: 6px; }
+.pdq-liste::-webkit-scrollbar-track { background: transparent; }
+.pdq-liste::-webkit-scrollbar-thumb { background: #4A3428; border-radius: 3px; }
 
-/* ── Item de la liste ── */
+/* Item de la liste — cliquable */
 .pdq-item {
     background: #FDFBF7;
     border-radius: 8px;
@@ -1455,15 +1099,16 @@ a {
     transition: all 0.2s ease;
 }
 
+/* Item actif ou survolé */
 .pdq-item:hover,
 .pdq-item--actif {
     border-color: #4A3428;
     background: #fff;
-    transform: translateX(3px);
+    transform: translateX(3px);   /* Légère translation vers la droite */
     box-shadow: 0 4px 12px rgba(74,52,40,0.2);
 }
 
-/* ── Item studio (spécial) ── */
+/* Item spécial pour le studio */
 .pdq-item--studio {
     background: #4A3428;
     color: #F5F1E8;
@@ -1477,12 +1122,12 @@ a {
     transform: translateX(3px);
 }
 
-/* ── Pastille numéro / étoile ── */
+/* Pastille numéro à gauche de chaque item */
 .pdq-num {
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background: #C9A84C;
+    background: #C9A84C;          /* Or */
     color: #fff;
     display: flex;
     align-items: center;
@@ -1494,22 +1139,29 @@ a {
 }
 
 .pdq-item--studio .pdq-num {
-    background: #E50914;
+    background: #E50914;          /* Rouge pour le studio */
 }
 
-/* ── Nom du POI ── */
+/* Nom du lieu dans la liste */
 .pdq-nom {
     font-size: 0.82rem;
     line-height: 1.3;
 }
 
-/* ── Responsive tablette ── */
+
+/* ============================================================
+   RESPONSIVE — TABLETTE LARGE (max 900px)
+   ============================================================ */
+
 @media (max-width: 900px) {
+
+    /* Plan du quartier : carte et liste en colonne */
     .pdq-wrapper {
         flex-direction: column;
         padding: 1rem;
     }
 
+    /* Liste des POI en mode horizontal scrollable */
     .pdq-liste {
         width: 100%;
         max-height: 260px;
@@ -1519,25 +1171,379 @@ a {
     }
 
     .pdq-item {
-        flex: 1 1 200px;
+        flex: 1 1 200px;          /* Items sur 2+ colonnes selon la place */
     }
 }
 
-/* ── Responsive mobile ── */
-@media (max-width: 480px) {
+
+/* ============================================================
+   RESPONSIVE — MOBILE (max 768px)
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    /* Bloque le scroll horizontal */
+    html,
+    body {
+        overflow-x: hidden !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Header mobile — hauteur fixe 60px */
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        padding: 0;
+        height: 60px;
+    }
+
+    /* Image dans le header (logo éventuel) */
+    header img {
+        max-width: 400px;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        max-height: 100%;
+        margin: 0;
+    }
+
+    /* Aligne la nav à gauche sur mobile */
+    nav {
+        justify-content: flex-start;
+    }
+
+    /* Bouton burger — visible en mobile */
+    .burger-menu {
+        display: flex !important;
+        width: 30px;
+        height: 25px;
+        flex-direction: column;
+        justify-content: space-around;
+        cursor: pointer;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        background: transparent;
+        transition: all 0.3s ease;
+    }
+
+    /* Barres légèrement plus épaisses sur mobile */
+    .burger-menu .bar {
+        height: 4px;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    /* Bouton burger fixe */
+    #burger {
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        display: flex !important;
+        transition: all 0.3s ease;
+    }
+
+    /* Menu drawer — panneau latéral sur mobile */
+    .menu-drawer {
+        position: absolute;
+        top: calc(100% + 2px);    /* Juste sous le header */
+        right: 0;
+        width: 340px;
+        background-color: #5E3200; /* Chocolat légèrement plus clair */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        display: none;
+        border-radius: 4px;
+        z-index: 1002;
+        transition: all 0.3s ease;
+    }
+
+    /* Menu drawer ouvert (classe ajoutée par JS) */
+    .menu-drawer.active {
+        display: block;
+        z-index: 9999 !important;
+    }
+
+    /* Menu principal en colonne sur mobile */
+    .menu {
+        flex-direction: column;
+        padding-left: 5px !important;
+        margin: 0;
+        background-color: #4A3428;
+        width: 100%;
+        transition: all 0.3s ease;
+        display: none;            /* Caché par défaut, affiché par JS */
+        text-align: left !important;
+    }
+
+    /* Menu actif (classe ajoutée par JS) */
+    .menu.active {
+        display: flex;
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: white;
+        padding: 10px;
+        flex-direction: column;
+        width: 340px;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;         /* Scroll si le menu dépasse l'écran */
+        z-index: 9998;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    /* Items du menu pleine largeur sur mobile */
+    .menu li {
+        width: 100% !important;
+        padding-left: 20px;
+        text-align: left !important;
+        margin: 20px 0;
+    }
+
+    /* Sous-menu mobile — flux normal (pas absolu) */
+    ul.submenu {
+        display: none;
+        position: static;         /* S'intègre dans le flux du menu */
+        background-color: #4A3428;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        border-radius: 4px;
+        z-index: 1001;
+        opacity: 1;
+        transform: none;
+        max-height: 60vh;
+        overflow-y: auto;         /* Scroll si la liste est longue */
+        text-align: left !important;
+    }
+
+    /* Liens du sous-menu pleine largeur */
+    ul.submenu li a {
+        display: block !important;
+        width: 80% !important;
+        padding: 8px !important;
+        text-align: left !important;
+    }
+
+    /* Sous-menu affiché au survol (desktop) ou au tap (mobile via JS) */
+    ul.menu li:hover ul.submenu {
+        display: block;
+        width: 300px;
+        opacity: 1;
+        transform: translateY(0);
+        transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Masque le menu-container (inutilisé sur mobile) */
+    .menu-container {
+        display: none;
+    }
+
+    /* Bandeau header mobile */
+    .bandeau {
+        height: 40px;
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Leaflet (carte) — z-index bas pour passer sous le menu */
+    .leaflet-pane,
+    .leaflet-control,
+    .leaflet-top,
+    .leaflet-bottom {
+        z-index: 1 !important;
+    }
+
+    /* Contenu principal sans marge/padding sur mobile */
+    .content {
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Section intro mobile */
+    .intro {
+        margin: 0 !important;
+        margin-top: 60px !important; /* Compense le header fixe de 60px */
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Titre et paragraphe de l'intro avec padding latéral */
+    .intro h1,
+    .intro p {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Titre intro mobile — réduit */
+    .intro h1 {
+        font-size: 2rem;
+        margin-top: 15px !important;
+        margin-bottom: 10px;
+        position: relative !important;
+        z-index: 10 !important;   /* Au-dessus de l'image si chevauchement */
+    }
+
+    /* Image bandeau mobile — réduite et recentrée */
+    .intro .full-screen,
+    section.intro .full-screen {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 35vh !important;
+        max-height: 35vh !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        display: block !important;
+        margin: 0 !important;
+        margin-top: -50px !important;   /* Remonté pour se rapprocher du header */
+        margin-bottom: -20px !important;
+        padding: 0 !important;
+    }
+
+    /* Boutons d'ascenseur — collés au bord droit */
+    #scrollButtons {
+        right: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .scroll-btn {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Images des boutons d'ascenseur réduites sur mobile */
+    .scroll-btn img {
+        max-width: 70px !important;
+        max-height: 70px !important;
+    }
+
+    /* Cards en pleine largeur sur mobile */
+    .card {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 10px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* Images des cards pleine largeur */
+    .image-argentee {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Grille de cards passe en 1 colonne */
+    .livres-alignées {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 15px;
+        margin: 0;
+        max-width: 100%;
+    }
+
+    /* Textarea mobile — plus haute pour faciliter la saisie */
+    textarea {
+        font-size: 1.4em;
+        height: 180px;
+        justify-content: center;
+    }
+
+    /* Container contact mobile */
+    .contact-container {
+        background-color: #f5f5f5;
+        padding: 40px 20px;
+        border-radius: 10px;
+        max-width: 500px;
+        width: 80%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin: 80px auto 40px auto;
+        box-sizing: border-box;
+    }
+
+    /* Bouton de fermeture affiché sur mobile */
+    #closeCross {
+        display: block;
+    }
+
+    /* Swiper mobile — plus compact */
+    .swiper {
+        padding: 0 5px;
+        margin: 20px 0;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .swiper-slide {
+        padding: 10px;
+    }
+
+    .swiper-slide img {
+        max-height: 200px;
+        object-fit: cover;
+    }
+
+    .texte-slide {
+        padding: 0 5px;
+    }
+
+    .texte-slide h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .texte-slide p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    /* Flèches swiper réduites sur mobile */
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+        display: none; /* Masquées sur mobile — navigation par swipe tactile */
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 14px;
+    }
+
+    /* POI plan du quartier mobile */
     .pdq-item {
         flex: 1 1 100%;
     }
-    .pdq-map {
-        min-height: 350px;
-    }
+
+    .pdq-map,
     .pdq-placeholder {
         min-height: 350px;
     }
+
+    /* Flèches lightbox collées aux bords sur mobile */
     #lb-prev { left: 6px; }
     #lb-next { right: 6px; }
     .lb-nav  { width: 36px; height: 36px; font-size: 1.4rem; }
 
+    /* Champs contact pleine largeur */
     .contact-form input,
     .contact-form select,
     .contact-form textarea {
@@ -1546,123 +1552,158 @@ a {
     }
 }
 
-/* ════════════════════════════════════════════════
-   FORMULAIRE DE CONTACT — bouton envoi
-   ════════════════════════════════════════════════ */
 
-.contact-container {
-    max-width: 640px;
-    margin: 100px auto 3rem;
-    padding: 2rem 1.5rem;
-    background: #FDFBF7;
-    border-radius: 12px;
-    box-shadow: 0 6px 24px rgba(74,52,40,0.15);
-    border-top: 4px solid #4A3428;
+/* ============================================================
+   RESPONSIVE — ZONE INTERMÉDIAIRE 563px–768px
+   Correctifs spécifiques pour cette plage problématique
+   ============================================================ */
+
+@media (min-width: 563px) and (max-width: 768px) {
+
+    body {
+        overflow-x: hidden !important;
+    }
+
+    .intro {
+        margin-top: 60px !important;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+
+    /* Image bandeau centrée et légèrement remontée */
+    .intro .full-screen {
+        width: 100vw !important;
+        max-width: none !important;
+        height: 40vh !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Astuce pour centrer un élément plus large que son parent */
+        margin-top: -60px !important;
+        margin-bottom: -30px !important;
+    }
+
+    .intro h1 {
+        margin-top: 15px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    .intro p {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
 }
 
-.contact-container h1 {
-    font-size: 1.8rem;
-    color: #4A3428;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    letter-spacing: 2px;
+
+/* ============================================================
+   RESPONSIVE — TABLETTE / MINI-PC (769px–1200px)
+   ============================================================ */
+
+@media (min-width: 769px) and (max-width: 1200px) {
+
+    body {
+        overflow-x: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .intro {
+        margin-top: 60px !important;
+        padding: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important; /* Permet à l'image de déborder légèrement */
+    }
+
+    /* Image bandeau pleine largeur écran sur tablette */
+    .intro .full-screen {
+        width: 100vw !important;
+        max-width: none !important;
+        height: 55vh !important;
+        object-fit: cover !important;
+        object-position: center 35% !important;
+        margin: 0 !important;
+        display: block !important;
+        padding: 0 !important;
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+
+    .intro h1,
+    .intro p {
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+    }
+
+    .intro h1 {
+        margin-top: 20px !important;
+    }
 }
 
-.contact-intro {
-    text-align: center;
-    font-size: 0.95rem;
-    color: #5A3E2B;
-    margin-bottom: 2rem;
-    opacity: 0.85;
-}
 
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-}
+/* ============================================================
+   RESPONSIVE — DESKTOP (769px et plus)
+   ============================================================ */
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
+@media (min-width: 769px) {
 
-.form-group--dates {
-    flex-direction: row;
-    gap: 1rem;
-}
+    /* Cache le bouton de fermeture (inutile sur desktop) */
+    #closeCross {
+        display: none;
+    }
 
-.form-group--dates > div {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
+    /* Légère marge latérale sur les cards desktop */
+    .card {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 
-.contact-form label {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #4A3428;
-    font-style: normal;
-}
+    /* Section intro — colle directement sous le header fixe */
+    .intro {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
 
-.required { color: #E50914; }
+    /* Image bandeau desktop — grande hauteur */
+    .full-screen {
+        max-height: 75vh;
+        min-height: 500px;
+        object-fit: cover;
+        object-position: center 35%;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
 
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-    padding: 0.65rem 0.9rem;
-    border: 1.5px solid #c9b89a;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: #5A3E2B;
-    background: #fff;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-    font-style: normal;
-}
+    /* Header desktop — centré */
+    header {
+        transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
 
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-    border-color: #4A3428; /* Chocolat foncé */
-    box-shadow: 0 0 0 3px rgba(74,52,40,0.1);
-    outline: none;
-}
+    /* Nav desktop — centrée */
+    nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
 
-.contact-form input:invalid,
-.contact-form textarea:invalid {
-    outline: none;
-    box-shadow: none;
-}
-
-.contact-form textarea {
-    resize: vertical;
-    min-height: 120px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.form-btn {
-    background: rgba(90, 120, 85, 0.6); /* Vert Sauge soutenu — cohérent avec le menu */
-    color: #F5F1E8;
-    border: none;
-    padding: 0.85rem 2rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-family: inherit;
-    font-style: normal;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s, color 0.2s;
-    align-self: center;
-    min-width: 220px;
-    letter-spacing: 1px;
-}
-
-.form-btn:hover {
-    background: rgba(60, 90, 55, 0.85); /* Vert plus soutenu au hover */
-    transform: translateY(-2px);
-    color: #000000; /* Texte noir au hover */
+    /* Menu desktop — horizontal */
+    ul.menu {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        width: auto;
+    }
 }
