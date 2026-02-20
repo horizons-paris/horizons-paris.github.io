@@ -11,7 +11,7 @@
 /* Police principale du site (choisie par la cliente) */
 @font-face {
     font-family: 'Merriweather';
-    src: url('fonts/Merriweather-LightItalic.ttf') format('truetype');
+    src: url('fonts/Merriweather.ttf') format('truetype');
     font-weight: 300;  /* Variante light */
     font-style: italic;
 }
@@ -19,9 +19,7 @@
 /* Police scripte utilisée sur la page Contact */
 @font-face {
     font-family: 'FairWaterScript';
-    src: url('fonts/FairWaterScript.woff2') format('woff2'), /* Format moderne, prioritaire */
-         url('fonts/FairWaterScript.woff') format('woff'),   /* Fallback pour anciens navigateurs */
-         url('fonts/FairWaterScript.ttf') format('truetype'); /* Dernier recours */
+    src: url('fonts/FairWaterScript.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -454,7 +452,7 @@ footer {
 }
 
 /* Grille de cartes sur 2 colonnes */
-.livres-alignées {
+.livres-alignees {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -1487,7 +1485,7 @@ button:hover:not(.scroll-btn):not(.lb-nav):not(#lb-close) {
     }
 
     /* Grille de cards passe en 1 colonne */
-    .livres-alignées {
+    .livres-alignees {
         grid-template-columns: 1fr;
         gap: 15px;
         padding: 0 15px;
