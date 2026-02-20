@@ -1219,6 +1219,14 @@ a {
     }
 
 
+    /* Leaflet sous le menu */
+    .leaflet-pane,
+    .leaflet-control,
+    .leaflet-top,
+    .leaflet-bottom {
+        z-index: 1 !important;
+    }
+
     /* Menu drawer mobile (sous-menu) */
     .menu-drawer {
         position: absolute;
@@ -1236,6 +1244,7 @@ a {
     /* Menu drawer actif */
     .menu-drawer.active {
         display: block;
+        z-index: 9999 !important;
     }
 
     /* Position spécifique du burger */
