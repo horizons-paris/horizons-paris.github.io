@@ -1175,20 +1175,19 @@ a {
 	    /* Sous-menu mobile */
     ul.submenu {
     display: none; /* Cacher par défaut */
-    position: absolute; /* Positionnement absolu par rapport au parent */
-    top: 30px; /* Position verticale */
-    left: 0; /* Aligné à gauche du parent */
+    position: static; /* Flux normal sur mobile */
     background-color: #4A3428; /* Chocolat foncé pour le sous menu*/
     box-shadow: 0 2px 8px rgba(0,0,0,0.5); /* Ombre */
     list-style: none; /* Sans puces */
     padding: 0; /* Paddings internes */
     margin: 0; /* Marges */
-    width: 300px; /* Largeur augmentée ici aussi */
+    width: 100%; /* Pleine largeur sur mobile */
     border-radius: 4px; /* Coins arrondis */
     z-index: 1001; /* Z-index supérieur */
-    transition: width 0.3s ease, opacity 0.3s ease; /* transitions */
-    opacity: 0; /* Initialement transparent */
-    transform: translateY(-10px); /* Départ en haut */
+    opacity: 1;
+    transform: none;
+    max-height: 60vh; /* Hauteur max scrollable */
+    overflow-y: auto; /* Scroll si trop long */
 } 
 
     ul.menu li:hover ul.submenu {
