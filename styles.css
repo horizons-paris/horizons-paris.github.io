@@ -89,6 +89,10 @@ ul.menu li a:hover {
     transform: scale(1.05); /* Légère mise à l'échelle pour effet dynamique */
 }
 
+.menu-drawer {
+    z-index: 2000 !important;
+}
+
 /* Sous-menu déroulant (méga menu) */
 ul.menu li ul.submenu {
     display: none; /* Cacher par défaut */
@@ -102,7 +106,7 @@ ul.menu li ul.submenu {
     margin: 0; /* Pas de marge */
     width: 140px; /* Largeur initiale de 140px */
     border-radius: 4px; /* Coins arrondis */
-    z-index: 1001; /* Z-index supérieur pour apparaître au-dessus du menu principal */
+    z-index: 2001 !important; /* Z-index supérieur pour apparaître au-dessus du menu principal */
     transition: width 0.3s ease, opacity 0.3s ease; /* Transition pour largeur et opacité */
     opacity: 0; /* Transparence initiale */
     transform: translateY(-10px); /* Départ légèrement en haut */
