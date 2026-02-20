@@ -276,7 +276,7 @@ footer {
 
 /* Titres principaux (h1) - Style Netflix sophistiqué */
 h1 {
-    font-family: 'Merriweather', cursive, Arial, sans-serif; /* Remplace FairWaterScript par Merriweather */
+    font-family: 'Merriweather', cursive, Arial, sans-serif; 
     font-size: 4em; /* Taille impactante */
     color: #E50914; /* Rouge Netflix */
     font-weight: 300; /* Light pour Merriweather */
@@ -299,19 +299,18 @@ h1:hover {
 
 /* Titre du formulaire (h2) - Style épuré et moderne */
 h2 {
-    font-family: 'FairWaterScript', cursive, Arial, sans-serif;
-    font-size: 2.5em;
-    color: #E50914; /* Rouge Netflix */
-    margin-bottom: 20px;
-    text-align: center;
+    font-family: 'Merriweather', cursive, Arial, sans-serif; 
+    font-size: 1.8em;
+    color: #222222; /* Gris encore plus foncé */
+    text-shadow:
+        0 0 8px rgba(85, 85, 85, 0.8),
+        0 0 15px rgba(85, 85, 85, 0.6);
+    margin-bottom: 15px;
     letter-spacing: 1px;
-    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+	text-align: center;
 }
 
-h2:hover {
-    color: #ff1f1f; /* Ton plus clair au hover */
-    letter-spacing: 2px;
-}
 
 h3 {
     font-family: 'FairWaterScript', cursive, Arial, sans-serif;
@@ -347,60 +346,11 @@ h4 {
     height: auto; /* Hauteur automatique pour garder les proportions */
 }
 
-/* Mise en page centrée pour le formulaire de contact avec flexbox */
-body {
-    /* Déjà défini plus haut, répété ici pour clarification si nécessaire */
-    display: flex; /* Flexbox pour aligner verticalement */
-    flex-direction: column; /* Organisation en colonne */
-    min-height: 100vh; /* Hauteur minimum de la vue */
-}
 
-/* Container du formulaire de contact */
-.contact-container {
-    background-color: #f5f5f5; /* Fond gris clair */
-    padding: 40px; /* Padding intérieur */
-    border-radius: 10px; /* Coins arrondis */
-    max-width: 500px; /* Largeur maximale */
-    width: 80%; /* Largeur relative */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Ombre */
-    margin: 80px auto 0 auto; /* Marge en haut, centré horizontalement */
-}
 
-/* Zone de saisie du formulaire */
-form {
-    display: flex; /* Flexbox */
-    flex-direction: column; /* Organisation verticale */
-}
 
-/* Labels */
-label {
-    margin-bottom: 8px; /* Espace en dessous */
-    font-weight: bold; /* Texte en gras */
-    color: #333; /* Couleur sombre */
-}
 
-/* Champs de texte, email, textarea */
-input[type="text"],
-input[type="email"],
-textarea {
-    padding: 12px; /* Padding intérieur */
-    margin-bottom: 20px; /* Marges verticales */
-    border: 1px solid #ccc; /* Bordure gris clair */
-    border-radius: 4px; /* Coins arrondis */
-    font-family: inherit; /* Hérite la police du parent */
-    font-size: 1em; /* Taille standard */
-    transition: border-color 0.3s ease; /* Transition pour focus */
-}
 
-/* Survol et focus */
-input[type="text"]:focus,
-input[type="email"]:focus,
-textarea:focus {
-    border-color: #F5F1E8; /* Bordure beige très clair au focus*/ 
-    outline: none; /* Supprime ligne de contour par défaut */
-    box-shadow: 0 0 8px rgba(229, 9, 20, 0.5); /* Effet de glow */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition douce */
-}
 
 /* Bouton */
 button {
@@ -418,28 +368,6 @@ button:hover:not(.scroll-btn):not(.lb-nav):not(#lb-close) {
     transform: scale(1.05); /* Effet de mise à l'échelle */
 }
 
-/* Message après soumission */
-.message {
-    margin-top: 15px; /* Marge en haut */
-    text-align: center; /* Centrage */
-    font-weight: bold; /* Gras */
-}
-
-/* Focus champs formulaire — contour Chocolat foncé */
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-    border-color: #4A3428; /* Chocolat foncé */
-    box-shadow: 0 0 0 3px rgba(74,52,40,0.2);
-    outline: none;
-}
-
-/* Suppression du contour rouge navigateur */
-.contact-form input:invalid,
-.contact-form textarea:invalid {
-    outline: none;
-    box-shadow: none;
-}
 
 /* Liens classiques */
 a {
@@ -545,15 +473,7 @@ a {
     max-width: 1200px;
 }
 
-/* Grille de livres */
-.livres {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-items: center;
-    margin: 0 30px;
-    max-width: calc(100% - 60px);
-}
+/* Grille de livres alignées */
 
 .social-btn.facebook {
   position: relative;
@@ -571,52 +491,9 @@ a {
   margin: 0;
 }
 
-.swiper {
-    width: 100%;
-    max-width: 900px;
-    margin: 40px auto;
-}
-
-.swiper-slide {
-    display: flex;
-    flex-direction: column;
-    align-items: center;   /* centre horizontalement */
-    justify-content: center;
-    text-align: center;    /* centre le texte */
-}
-
-.swiper-slide img {
-    width: 100%;
-    max-width: 600px;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;        /* centre l'image */
-}
-
-.texte-slide {
-    padding: 15px;
-    max-width: 600px;
-    margin: 0 auto;        /* centre le bloc texte */
-    text-align: center;    /* force le centrage */
-}
-
-.texte-slide h3 {
-    margin: 10px 0 5px;
-    font-size: 1.3em;
-}
-
-.texte-slide p {
-    font-size: 1em;
-    line-height: 1.4;
-}
-
-/* Flèches */
-.swiper-button-next,
-.swiper-button-prev {
-    color: rgba(142, 168, 137, 0.5); /* Vert Sauge Clair */
-}
-
-/* Carte informations studio style bloc-note  */
+/* ===========================
+   STYLES SWIPER
+   =========================== */
 .info-card {
   width: 90%;
   max-width: 800px;
@@ -784,194 +661,6 @@ a {
    tout conflit avec le reste du site.
    ============================================================ */
 
-/* ── Titre de la page ── */
-.pdq-intro {
-    padding: 1.5rem 1rem 0.5rem;
-    text-align: center;
-}
-
-.pdq-intro h1 {
-    font-size: clamp(1.6rem, 4vw, 2.8rem);
-    color: #4A3428;
-    text-shadow: none;
-    margin-bottom: 0.5rem;
-}
-
-.pdq-intro p {
-    font-size: 1rem;
-    color: #5A3E2B;
-    opacity: 0.85;
-    margin: 0 auto;
-    max-width: 600px;
-}
-
-/* ── Légende ── */
-.pdq-legende {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    padding: 0.8rem 1rem 0.4rem;
-}
-
-.pdq-legende-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    font-style: italic;
-    color: #5A3E2B;
-}
-
-.pdq-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 2px solid rgba(0,0,0,0.2);
-    flex-shrink: 0;
-}
-
-.pdq-dot--studio   { background: #E50914; }
-.pdq-dot--monument { background: #C9A84C; }
-
-/* ── Conteneur carte + liste ── */
-.pdq-wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
-    padding: 1rem 1.5rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* ── La carte ── */
-.pdq-map {
-    flex: 1;
-    min-height: 520px;
-    border-radius: 12px;
-    box-shadow: 0 6px 24px rgba(74,52,40,0.25);
-    border: 3px solid #4A3428;
-    overflow: hidden;
-}
-
-/* ── Placeholder (affiché avant la clé API) ── */
-.pdq-placeholder {
-    width: 100%;
-    height: 100%;
-    min-height: 520px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
-    background: #e8e0d5;
-    color: #5A3E2B;
-    text-align: center;
-    padding: 2rem;
-    box-sizing: border-box;
-}
-
-.pdq-placeholder svg {
-    opacity: 0.4;
-}
-
-.pdq-placeholder p {
-    font-size: 0.95rem;
-    max-width: 340px;
-    line-height: 1.6;
-    opacity: 0.8;
-    margin: 0;
-}
-
-.pdq-placeholder code {
-    background: #4A3428;
-    color: #F5F1E8;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-style: normal;
-    font-size: 0.85rem;
-}
-
-/* ── Liste latérale des POI ── */
-.pdq-liste {
-    width: 280px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    max-height: 580px;
-    overflow-y: auto;
-    padding-right: 4px;
-}
-
-.pdq-liste::-webkit-scrollbar        { width: 6px; }
-.pdq-liste::-webkit-scrollbar-track  { background: transparent; }
-.pdq-liste::-webkit-scrollbar-thumb  { background: #4A3428; border-radius: 3px; }
-
-/* ── Item de la liste ── */
-.pdq-item {
-    background: #FDFBF7;
-    border-radius: 8px;
-    padding: 0.65rem 0.9rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
-}
-
-.pdq-item:hover,
-.pdq-item--actif {
-    border-color: #4A3428;
-    background: #fff;
-    transform: translateX(3px);
-    box-shadow: 0 4px 12px rgba(74,52,40,0.2);
-}
-
-/* ── Item studio (spécial) ── */
-.pdq-item--studio {
-    background: #4A3428;
-    color: #F5F1E8;
-    border-color: #C9A84C;
-}
-
-.pdq-item--studio:hover,
-.pdq-item--studio.pdq-item--actif {
-    background: #3a2618;
-    color: #F5F1E8;
-    transform: translateX(3px);
-}
-
-/* ── Pastille numéro / étoile ── */
-.pdq-num {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: #C9A84C;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: bold;
-    font-style: normal;
-    flex-shrink: 0;
-}
-
-.pdq-item--studio .pdq-num {
-    background: #E50914;
-}
-
-/* ── Nom du POI ── */
-.pdq-nom {
-    font-size: 0.82rem;
-    line-height: 1.3;
-}
-
 /* ════════════════════════════════════════════════
    LIGHTBOX — à coller à la fin de styles.css
    ════════════════════════════════════════════════ */
@@ -1100,27 +789,6 @@ a {
         overflow-x: hidden;
     }
 
-    /* La section .recette devient une colonne verticale */
-    .recette {
-        flex-direction: column;
-        align-items: center;
-        padding: 0 20px;
-        box-sizing: border-box;
-    }
-
-    /* Les cartes des recettes s'adaptent en largeur */
-    .card {
-        max-width: 95%;
-        flex: 1 1 100%;
-        margin: 10px 0;
-    }
-
-    /* Alignement en colonne pour certains éléments */
-    .cartes-alignées {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 
     /* Titre dans intro réduit pour mobile */
     .intro h1 {
@@ -1318,31 +986,10 @@ a {
         justify-content: center;
     }
 
-    /* Recette en colonne mobile */
-    .recette-unique {
-        flex-direction: column;
-        align-items: center;
-        padding: 5px;
-    }
-
-    /* Carte recette mobile */
-    .recette-unique .recette-card {
-        width: 100%;
-        max-width: 600px;
-        margin: 10px auto;
-    }
 
     /* Bouton fermeture #closeCross en mobile */
     #closeCross {
         display: block;
-    }
-
-    /* Livres en colonne mobile */
-    .livres {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-        justify-items: center;
     }
 
     /* Grille livres mobile (alignée) */
@@ -1612,29 +1259,6 @@ a {
 
 /* Styles pour desktop et grands écrans (769px et plus) */
 @media (min-width: 769px) {
-    /* Menu en ligne pour grands écrans, dans un conteneur spécifique */
-    .netflix-menu .menu {
-        display: flex !important;
-        flex-direction: row;
-        align-items: center;
-        transition: all 0.3s ease;
-		justify-content: center;
-         width: 100%;
-    }
-	
-    /* Liens vers recettes en grands écrans */
-    .liens-recettes a {
-        font-size: 1.1em;
-        padding: 12px 16px;
-        transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    }
-
-    /* Effet de survol sur liens */
-    .liens-recettes a:hover {
-        background-color: rgba(229, 9, 20, 0.8);
-        border-radius: 4px;
-        transform: scale(1.05);
-    }
 
     /* Masque le bouton closeCross en desktop */
     #closeCross {
