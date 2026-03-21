@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Horizons Paris — Studio à louer dans le 9ème">
     <meta name="twitter:description" content="Studio élégant à louer à la semaine, au cœur du 9ème arrondissement de Paris.">
-    <meta name="twitter:image" content="https://horizons-paris.github.io/images/og-image.">
+    <meta name="twitter:image" content="https://horizons-paris.github.io/images/og-image.png">
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -34,6 +34,122 @@
     <!-- Feuille de styles -->
     <link rel="stylesheet" href="styles.css?v=131">
 
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+
+    <style>
+        /* ============================================================
+           MINI CARROUSEL PAR CARTE — styles spécifiques index.html
+           ============================================================ */
+
+        /* Chaque carte contient un swiper à la place de l'image fixe */
+        .card-swiper {
+            width: 100%;
+            max-width: 340px;
+            border: 4px solid silver;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            /* Hauteur fixe identique pour toutes les cartes */
+            height: 260px;
+        }
+
+        /* Les slides du mini swiper */
+        .card-swiper .swiper-slide {
+            padding: 0;
+            background: #e8e0d5;
+            border-radius: 0;
+            box-shadow: none;
+            height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Image réelle dans le mini swiper */
+        .card-swiper .swiper-slide img {
+            width: 100%;
+            height: 260px;
+            max-height: 260px;
+            object-fit: cover;
+            object-position: center;
+            margin: 0;
+            border-radius: 0;
+            cursor: zoom-in;
+        }
+
+        /* Placeholder quand la photo n'existe pas encore */
+        .card-swiper .slide-placeholder {
+            width: 100%;
+            height: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e8e0d5 0%, #d5c9bc 100%);
+            color: #8a6a55;
+            gap: 0.5rem;
+            font-family: 'Merriweather', Georgia, serif;
+            font-style: italic;
+            font-size: 0.82rem;
+            text-align: center;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        .card-swiper .slide-placeholder svg {
+            opacity: 0.35;
+            width: 48px;
+            height: 48px;
+        }
+
+        /* Flèches mini swiper — petites et discrètes */
+        .card-swiper .swiper-button-next,
+        .card-swiper .swiper-button-prev {
+            color: #fff !important;
+            background: rgba(74, 52, 40, 0.65);
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 50%;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .card-swiper .swiper-button-next::after,
+        .card-swiper .swiper-button-prev::after {
+            font-size: 11px !important;
+            font-weight: bold;
+        }
+
+        /* Points de pagination mini */
+        .card-swiper .swiper-pagination {
+            bottom: 6px;
+        }
+
+        .card-swiper .swiper-pagination-bullet {
+            background: #fff;
+            opacity: 0.6;
+            width: 7px;
+            height: 7px;
+        }
+
+        .card-swiper .swiper-pagination-bullet-active {
+            opacity: 1;
+            background: #C9A84C;
+        }
+
+        /* Responsive mobile — hauteur réduite */
+        @media (max-width: 768px) {
+            .card-swiper,
+            .card-swiper .swiper-slide,
+            .card-swiper .swiper-slide img,
+            .card-swiper .slide-placeholder {
+                height: 200px;
+                max-height: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -47,124 +163,292 @@
             </div>
 
             <!-- Menu déroulant -->
-           <nav>
-        <div class="menu-drawer" id="menuDrawer" aria-hidden="true">
-        <!-- Croix de fermeture -->
-        <div class="close-cross" id="closeCross" aria-label="Fermer le menu" role="button" tabindex="0">
-            <img src="images/croix.png" alt="Fermer" class="croix-image">
-        </div>
-        <!-- Menu principal -->
-        <ul class="menu">
-            <li><a href="index.html">Accueil</a></li>
-            <li>
-                  <a href="proximite.html">À proximité</a>
-                  <ul class="submenu">
-                         <li><a href="proximite.html?slide=0">Le moulin rouge</a></li>
-                         <li><a href="proximite.html?slide=1">Le palais Garnier</a></li>
-                         <li><a href="proximite.html?slide=2">Eglise de la Ste Trinité</a></li>
-                         <li><a href="proximite.html?slide=3">Musée du parfum Fragonard</a></li>
-                         <li><a href="proximite.html?slide=4">Galerie Lafayette</a></li>
-                         <li><a href="proximite.html?slide=5">La maison Bélanger</a></li>
-                         <li><a href="proximite.html?slide=6">L'hotel Drouot</a></li>
-                         <li><a href="proximite.html?slide=7">Le paradox museum Paris</a></li>
-                         <li><a href="proximite.html?slide=8">Passage couvert de Paris</a></li>
-                         <li><a href="proximite.html?slide=9">Place Edouard VII</a></li>
-                         <li><a href="proximite.html?slide=10">Grand rex</a></li>
-                         <li><a href="proximite.html?slide=11">Montmartre</a></li>
-                         <li><a href="proximite.html?slide=12">Musée Grévin</a></li>
+            <nav>
+                <div class="menu-drawer" id="menuDrawer" aria-hidden="true">
+                    <!-- Croix de fermeture -->
+                    <div class="close-cross" id="closeCross" aria-label="Fermer le menu" role="button" tabindex="0">
+                        <img src="images/croix.png" alt="Fermer" class="croix-image">
+                    </div>
+                    <!-- Menu principal -->
+                    <ul class="menu">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li>
+                              <a href="proximite.html">À proximité</a>
+                              <ul class="submenu">
+                                     <li><a href="proximite.html?slide=0">Le moulin rouge</a></li>
+                                     <li><a href="proximite.html?slide=1">Le palais Garnier</a></li>
+                                     <li><a href="proximite.html?slide=2">Eglise de la Ste Trinité</a></li>
+                                     <li><a href="proximite.html?slide=3">Musée du parfum Fragonard</a></li>
+                                     <li><a href="proximite.html?slide=4">Galerie Lafayette</a></li>
+                                     <li><a href="proximite.html?slide=5">La maison Bélanger</a></li>
+                                     <li><a href="proximite.html?slide=6">L'hotel Drouot</a></li>
+                                     <li><a href="proximite.html?slide=7">Le paradox museum Paris</a></li>
+                                     <li><a href="proximite.html?slide=8">Passage couvert de Paris</a></li>
+                                     <li><a href="proximite.html?slide=9">Place Edouard VII</a></li>
+                                     <li><a href="proximite.html?slide=10">Grand rex</a></li>
+                                     <li><a href="proximite.html?slide=11">Montmartre</a></li>
+                                     <li><a href="proximite.html?slide=12">Musée Grévin</a></li>
+                                </ul>
+                        </li>
+                        <li><a href="plan_du_quartier.html">Plan du quartier</a></li>
+                        <li><a href="tarifs.html">Tarifs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
-            </li>
-            <li><a href="plan_du_quartier.html">Plan du quartier</a></li>
-            <li><a href="tarifs.html">Tarifs</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
-        </nav>
+                </div>
+            </nav>
         </div>
     </header>
 
     <!-- Introduction -->
     <section class="intro">
-	    <img src="images/bandeau.webp" class="full-screen" alt="Vue de Paris, studio Horizons Paris">
+        <img src="images/bandeau.webp" class="full-screen" alt="Vue de Paris, studio Horizons Paris">
         <h1>Horizons Paris</h1>
-			 <p>Découvrez l’élégance de Paris, ses ruelles pleines de charme et son atmosphère unique.
-                Ce studio, au cœur de la ville, vous accueille pour un séjour confortable et raffiné, où chaque détail a été pensé avec soin.
-                Prestations soignées, finitions de qualité et ambiance chaleureuse en font un lieu idéal pour une location à la semaine. 
-				Une opportunité rare à découvrir sans tarder.</p>
+        <p>Découvrez l'élégance de Paris, ses ruelles pleines de charme et son atmosphère unique.
+           Ce studio, au cœur de la ville, vous accueille pour un séjour confortable et raffiné, où chaque détail a été pensé avec soin.
+           Prestations soignées, finitions de qualité et ambiance chaleureuse en font un lieu idéal pour une location à la semaine.
+           Une opportunité rare à découvrir sans tarder.</p>
     </section>
 
     <!-- Contenu principal -->
     <div class="content">
-        <!-- Section livres -->
+        <!-- Section cartes -->
         <section class="livres-alignees">
-            <!-- Livre 1 -->
+
+            <!-- ══════════════════════════════
+                 CARTE 1 — Le salon
+                 ══════════════════════════════ -->
             <div class="card" id="livre1">
-                <img src="images/salon.webp" alt="salon" class="image-argentee lb-trigger" data-src="images/salon.webp" data-caption="Le salon">
+                <div class="card-swiper swiper" id="swiper-salon">
+                    <div class="swiper-wrapper">
+
+                        <!-- Photo 1 : réelle -->
+                        <div class="swiper-slide">
+                            <img src="images/salon.webp"
+                                 alt="Le salon"
+                                 class="lb-trigger"
+                                 data-src="images/salon.webp"
+                                 data-caption="Le salon">
+                        </div>
+
+                        <!-- Photo 2 : placeholder -->
+                        <div class="swiper-slide">
+                            <div class="slide-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                Photo salon à venir
+                            </div>
+                        </div>
+
+                        <!-- Photo 3 : placeholder -->
+                        <div class="swiper-slide">
+                            <div class="slide-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                Photo salon à venir
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
                 <div class="description">
                     <h2>Le salon</h2>
                     <p>Le salon combine confort et style dans un espace optimisé.
-					   Lumineux et ouvert, il offre un cadre agréable pour se détendre ou recevoir.
-					   Les lignes modernes, les matériaux clairs et les touches décoratives subtiles créent une ambiance à la fois chic, cosy et contemporaine.</p>
+                       Lumineux et ouvert, il offre un cadre agréable pour se détendre ou recevoir.
+                       Les lignes modernes, les matériaux clairs et les touches décoratives subtiles créent une ambiance à la fois chic, cosy et contemporaine.</p>
                 </div>
             </div>
 
-            <!-- Livre 2 -->
+            <!-- ══════════════════════════════
+                 CARTE 2 — Le coin cuisine
+                 ══════════════════════════════ -->
             <div class="card" id="livre2">
-                <img src="images/coin_cuisine.webp" alt="Le coin cuisine" class="image-argentee lb-trigger" data-src="images/coin_cuisine.webp" data-caption="Le coin cuisine">
+                <div class="card-swiper swiper" id="swiper-cuisine">
+                    <div class="swiper-wrapper">
+
+                        <!-- Photo 1 : réelle -->
+                        <div class="swiper-slide">
+                            <img src="images/coin_cuisine.webp"
+                                 alt="Le coin cuisine"
+                                 class="lb-trigger"
+                                 data-src="images/coin_cuisine.webp"
+                                 data-caption="Le coin cuisine">
+                        </div>
+
+                        <!-- Photo 2 : placeholder -->
+                        <div class="swiper-slide">
+                            <div class="slide-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                Photo cuisine à venir
+                            </div>
+                        </div>
+
+                        <!-- Photo 3 : placeholder -->
+                        <div class="swiper-slide">
+                            <div class="slide-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                Photo cuisine à venir
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
                 <div class="description">
                     <h2>Le coin cuisine</h2>
-                    <p>Le coin cuisine a été pensé pour maximiser l’espace sans sacrifier le style.
-					   Les matériaux nobles, le plan de travail épuré et les rangements intégrés assurent praticité et esthétisme.
-					   Minimaliste et moderne, il se fond harmonieusement dans le studio tout en offrant un espace fonctionnel pour cuisiner et partager des repas.
-					   L’éclairage et les finitions élégantes ajoutent une touche chaleureuse, créant un lieu agréable au quotidien et résolument contemporain.</p>
+                    <p>Le coin cuisine a été pensé pour maximiser l'espace sans sacrifier le style.
+                       Les matériaux nobles, le plan de travail épuré et les rangements intégrés assurent praticité et esthétisme.
+                       Minimaliste et moderne, il se fond harmonieusement dans le studio tout en offrant un espace fonctionnel pour cuisiner et partager des repas.
+                       L'éclairage et les finitions élégantes ajoutent une touche chaleureuse, créant un lieu agréable au quotidien et résolument contemporain.</p>
                 </div>
             </div>
 
-            <!-- Livre 3 -->
+            <!-- ══════════════════════════════
+                 CARTE 3 — La salle de bain
+                 ══════════════════════════════ -->
             <div class="card" id="livre3">
-                <img src="images/sdb.webp" alt="Salle de bain" class="image-argentee lb-trigger" data-src="images/sdb.webp" data-caption="La salle de bain">
+                <div class="card-swiper swiper" id="swiper-sdb">
+                    <div class="swiper-wrapper">
+
+                        <!-- Photo 1 : réelle -->
+                        <div class="swiper-slide">
+                            <img src="images/sdb.webp"
+                                 alt="Salle de bain"
+                                 class="lb-trigger"
+                                 data-src="images/sdb.webp"
+                                 data-caption="La salle de bain">
+                        </div>
+
+                        <!-- Photo 2 : placeholder -->
+                        <div class="swiper-slide">
+                            <div class="slide-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                Photo salle de bain à venir
+                            </div>
+                        </div>
+
+                        <!-- Photo 3 : placeholder -->
+                        <div class="swiper-slide">
+                            <div class="slide-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                Photo salle de bain à venir
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
                 <div class="description">
                     <h2>La salle de bain</h2>
                     <p>Cette salle de bain allie élégance et fonctionnalité dans un espace optimisé.
-					   Les lignes épurées, les matériaux neutres et les finitions soignées créent une ambiance contemporaine et lumineuse.
-					   La vasque intégrée, le meuble flottant et les miroirs design apportent à la fois confort et style, tandis que l’éclairage doux sublime l’ensemble.
-					   Idéale pour profiter d’un moment de détente au quotidien, elle reflète l’esprit chic et moderne des studios parisiens.</p>
+                       Les lignes épurées, les matériaux neutres et les finitions soignées créent une ambiance contemporaine et lumineuse.
+                       La vasque intégrée, le meuble flottant et les miroirs design apportent à la fois confort et style, tandis que l'éclairage doux sublime l'ensemble.
+                       Idéale pour profiter d'un moment de détente au quotidien, elle reflète l'esprit chic et moderne des studios parisiens.</p>
                 </div>
             </div>
 
-            <!-- Livre 4 -->
+            <!-- ══════════════════════════════
+                 CARTE 4 — L'entrée
+                 ══════════════════════════════ -->
             <div class="card" id="livre4">
-                <img src="images/entree.webp" alt="L'entrée" class="image-argentee lb-trigger" data-src="images/entree.webp" data-caption="L'entrée">
+                <div class="card-swiper swiper" id="swiper-entree">
+                    <div class="swiper-wrapper">
+
+                        <!-- Photo 1 : réelle -->
+                        <div class="swiper-slide">
+                            <img src="images/entree.webp"
+                                 alt="L'entrée"
+                                 class="lb-trigger"
+                                 data-src="images/entree.webp"
+                                 data-caption="L'entrée">
+                        </div>
+
+                        <!-- Photo 2 : placeholder -->
+                        <div class="swiper-slide">
+                            <div class="slide-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                Photo entrée à venir
+                            </div>
+                        </div>
+
+                        <!-- Photo 3 : placeholder -->
+                        <div class="swiper-slide">
+                            <div class="slide-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                Photo entrée à venir
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
                 <div class="description">
                     <h2>L'entrée</h2>
-                    <p>L’entrée de l’immeuble allie élégance et modernité dès le premier pas.
-					   Bien entretenue et lumineuse, elle offre une atmosphère accueillante et soignée.
-					   Les matériaux de qualité, les finitions contemporaines et les touches discrètes de décoration reflètent le charme parisien tout en restant fonctionnels pour le quotidien des habitants.</p>
+                    <p>L'entrée de l'immeuble allie élégance et modernité dès le premier pas.
+                       Bien entretenue et lumineuse, elle offre une atmosphère accueillante et soignée.
+                       Les matériaux de qualité, les finitions contemporaines et les touches discrètes de décoration reflètent le charme parisien tout en restant fonctionnels pour le quotidien des habitants.</p>
                 </div>
             </div>
-        </section>
-		<!-- Carte: informations du studio -->
-<div class="info-card">
-  <h2>Informations pratiques</h2>
-  <p>Studio 21 m² cosy conçu pour accueillir trois personnes : un lit double et un lit d’appoint.</p>
-  <p><strong>Adresse :</strong> 9 rue Joubert, 3ème étage sans ascenseur, 9ème arrondissement</p>
-  <p><strong>Style :</strong> Haussmannien</p>
-  <p><strong>Transports :</strong></p>
-  <ul>
-    <li>Proche RER A (station Auber)</li>
-    <li>Métro Trinité</li>
-    <li>Gare Saint-Lazare</li>
-    <li>Bus ligne 3, 12, 13, 14</li>
-    <li>Station taxi proche de Trinité</li>
-  </ul>
-  <p><strong>Stationnement :</strong> possible à proximité</p>
-  <p><strong>Tarif :</strong> 600 &euro; la semaine &nbsp;&nbsp;<a href="contact.html" class="btn-reserver">Réserver</a></p>
 
-  <!-- Animaux non admis -->
-  <p class="no-pets">
-    <img src="images/animaux.webp" alt="Animaux non admis" >
-  </p>
-</div>
+        </section>
+
+        <!-- Carte : informations du studio -->
+        <div class="info-card">
+            <h2>Informations pratiques</h2>
+            <p>Studio 21 m² cosy conçu pour accueillir trois personnes : un lit double et un lit d'appoint.</p>
+            <p><strong>Adresse :</strong> 9 rue Joubert, 3ème étage sans ascenseur, 9ème arrondissement</p>
+            <p><strong>Style :</strong> Haussmannien</p>
+            <p><strong>Transports :</strong></p>
+            <ul>
+                <li>Proche RER A (station Auber)</li>
+                <li>Métro Trinité</li>
+                <li>Gare Saint-Lazare</li>
+                <li>Bus ligne 3, 12, 13, 14</li>
+                <li>Station taxi proche de Trinité</li>
+            </ul>
+            <p><strong>Stationnement :</strong> possible à proximité</p>
+            <p><strong>Tarif :</strong> à partir de 600 &euro; la semaine &nbsp;&nbsp;<a href="tarifs.html" class="btn-reserver">Voir les tarifs</a></p>
+
+            <!-- Animaux non admis -->
+            <p class="no-pets">
+                <img src="images/animaux.webp" alt="Animaux non admis">
+            </p>
+        </div>
+
         <!-- Boutons défilement -->
         <div id="scrollButtons">
             <button id="scrollTop" class="scroll-btn">
@@ -175,45 +459,44 @@
             </button>
         </div>
     </div>
-    <!-- Pied de page -->
-<footer id="footer">
-    <div class="social-buttons">
-        <!-- Bouton Facebook personnalisé avec ton SVG -->
-        <a class="social-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 48 48" aria-hidden="true">
-                <linearGradient id="grad" x1="6.228" x2="42.077" y1="4.896" y2="43.432" gradientUnits="userSpaceOnUse">
-                    <stop offset="0" stop-color="#0d61a9"></stop>
-                    <stop offset="1" stop-color="#16528c"></stop>
-                </linearGradient>
-                <path fill="url(#grad)" d="M42,40c0,1.105-0.895,2-2,2H8c-1.105,0-2-0.895-2-2V8c0-1.105,0.895-2,2-2h32	c1.105,0,2,0.895,2,2V40z"></path>
-                <path d="M25,38V27h-4v-6h4v-2.138c0-5.042,2.666-7.818,7.505-7.818c1.995,0,3.077,0.14,3.598,0.208	l0.858,0.111L37,12.224L37,17h-3.635C32.237,17,32,18.378,32,19.535V21h4.723l-0.928,6H32v11H25z" opacity=".05"></path>
-                <path d="M25.5,37.5v-11h-4v-5h4v-2.638c0-4.788,2.422-7.318,7.005-7.318c1.971,0,3.03,0.138,3.54,0.204	l0.436,0.057l0.02,0.442V16.5h-3.135c-1.623,0-1.865,1.901-1.865,3.035V21.5h4.64l-0.773,5H31.5v11H25.5z" opacity=".07"></path>
-                <path fill="#fff" d="M33.365,16H36v-3.754c-0.492-0.064-1.531-0.203-3.495-0.203c-4.101,0-6.505,2.08-6.505,6.819V22h-4v4	h4v11h5V26h3.938l0.618-4H31v-2.465C31,17.661,31.612,16,33.365,16z"></path>
-            </svg>
-        </a>
 
-        <!-- Bouton X-Twitter SVG personnalisé -->
-        <a class="social-btn x" href="https://twitter.com/intent/tweet?text=D%C3%A9couvrez%20Horizons%20Paris%2C%20un%20studio%20%C3%A9l%C3%A9gant%20%C3%A0%20louer%20dans%20le%209%C3%A8me%20arr.%20de%20Paris%20%F0%9F%97%BC%EF%B8%8F%20https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Twitter">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
-                <path d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717  l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339  l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z"/>
-            </svg>
-        </a>
-        <!-- Bouton W3C Validator -->
-        <a class="social-btn validation" href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Valider le site W3C">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
-                <rect width="64" height="64" fill="#ffffff" rx="8" ry="8" stroke="#000" stroke-width="2"/>
-                <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="#0066CC" dominant-baseline="middle" text-anchor="middle" font-weight="bold">
-                    W3C
-                </text>
-            </svg>
-        </a>
-    </div>
-    <p>
-        &copy; 2026 horizons-paris.github.io<br>
-        Tous droits réservés. Design et contenu créés par<br>
-        <i>Scriptoleon.</i>
-    </p>
-</footer>
+    <!-- Pied de page -->
+    <footer id="footer">
+        <div class="social-buttons">
+            <!-- Facebook -->
+            <a class="social-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 48 48" aria-hidden="true">
+                    <linearGradient id="grad" x1="6.228" x2="42.077" y1="4.896" y2="43.432" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#0d61a9"></stop>
+                        <stop offset="1" stop-color="#16528c"></stop>
+                    </linearGradient>
+                    <path fill="url(#grad)" d="M42,40c0,1.105-0.895,2-2,2H8c-1.105,0-2-0.895-2-2V8c0-1.105,0.895-2,2-2h32c1.105,0,2,0.895,2,2V40z"></path>
+                    <path d="M25,38V27h-4v-6h4v-2.138c0-5.042,2.666-7.818,7.505-7.818c1.995,0,3.077,0.14,3.598,0.208l0.858,0.111L37,12.224L37,17h-3.635C32.237,17,32,18.378,32,19.535V21h4.723l-0.928,6H32v11H25z" opacity=".05"></path>
+                    <path d="M25.5,37.5v-11h-4v-5h4v-2.638c0-4.788,2.422-7.318,7.005-7.318c1.971,0,3.03,0.138,3.54,0.204l0.436,0.057l0.02,0.442V16.5h-3.135c-1.623,0-1.865,1.901-1.865,3.035V21.5h4.64l-0.773,5H31.5v11H25.5z" opacity=".07"></path>
+                    <path fill="#fff" d="M33.365,16H36v-3.754c-0.492-0.064-1.531-0.203-3.495-0.203c-4.101,0-6.505,2.08-6.505,6.819V22h-4v4h4v11h5V26h3.938l0.618-4H31v-2.465C31,17.661,31.612,16,33.365,16z"></path>
+                </svg>
+            </a>
+            <!-- X-Twitter -->
+            <a class="social-btn x" href="https://twitter.com/intent/tweet?text=D%C3%A9couvrez%20Horizons%20Paris%2C%20un%20studio%20%C3%A9l%C3%A9gant%20%C3%A0%20louer%20dans%20le%209%C3%A8me%20arr.%20de%20Paris%20%F0%9F%97%BC%EF%B8%8F%20https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
+                    <path d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z"/>
+                </svg>
+            </a>
+            <!-- W3C -->
+            <a class="social-btn validation" href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Valider le site W3C">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+                    <rect width="64" height="64" fill="#ffffff" rx="8" ry="8" stroke="#000" stroke-width="2"/>
+                    <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="#0066CC" dominant-baseline="middle" text-anchor="middle" font-weight="bold">W3C</text>
+                </svg>
+            </a>
+        </div>
+        <p>
+            &copy; 2026 horizons-paris.github.io<br>
+            Tous droits réservés. Design et contenu créés par<br>
+            <i>Scriptoleon.</i>
+        </p>
+    </footer>
+
     <!-- Scripts défilement -->
     <script>
         document.getElementById('scrollTop').addEventListener('click', () => {
@@ -231,13 +514,11 @@
             const menuDrawer = document.getElementById('menuDrawer');
             const closeCross = document.getElementById('closeCross');
 
-            // Ouvre/ferme le menu
             burger.addEventListener('click', () => {
                 const isActive = menuDrawer.classList.toggle('active');
                 menuDrawer.setAttribute('aria-hidden', String(!isActive));
             });
 
-            // Ferme avec animation
             closeCross.addEventListener('click', () => {
                 closeCross.classList.add('rotating');
                 closeCross.addEventListener('animationend', () => {
@@ -247,7 +528,6 @@
                 }, { once: true });
             });
 
-            // Fermer en cliquant en dehors
             document.addEventListener('click', (e) => {
                 if (!menuDrawer.contains(e.target) && !burger.contains(e.target)) {
                     menuDrawer.classList.remove('active');
@@ -256,6 +536,35 @@
             });
         });
     </script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <!-- Initialisation des 4 mini swipers -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* Options communes à tous les mini swipers */
+            const opts = {
+                loop: false,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                spaceBetween: 0,
+            };
+
+            /* Initialisation individuelle pour éviter les conflits entre swipers */
+            new Swiper('#swiper-salon',   opts);
+            new Swiper('#swiper-cuisine', opts);
+            new Swiper('#swiper-sdb',     opts);
+            new Swiper('#swiper-entree',  opts);
+        });
+    </script>
+
     <!-- ══════════════════════════════════════════════
          LIGHTBOX
          ══════════════════════════════════════════════ -->
@@ -276,7 +585,6 @@
         const lbPrev    = document.getElementById('lb-prev');
         const lbNext    = document.getElementById('lb-next');
 
-        /* Collecte toutes les images déclencheurs dans l'ordre du DOM */
         let triggers = [];
         let current  = 0;
 
@@ -287,8 +595,8 @@
         function open(index) {
             current = index;
             const t = triggers[current];
-            lbImg.src         = t.dataset.src || t.src;
-            lbImg.alt         = t.alt || '';
+            lbImg.src             = t.dataset.src || t.src;
+            lbImg.alt             = t.alt || '';
             lbCaption.textContent = t.dataset.caption || '';
             lb.classList.add('lb-open');
             document.body.style.overflow = 'hidden';
@@ -304,7 +612,6 @@
         function prev() { open((current - 1 + triggers.length) % triggers.length); }
         function next() { open((current + 1) % triggers.length); }
 
-        /* Clic sur une photo */
         document.addEventListener('click', (e) => {
             const el = e.target.closest('.lb-trigger');
             if (!el) return;
@@ -312,34 +619,26 @@
             open(triggers.indexOf(el));
         });
 
-        /* Fermer */
         lbClose.addEventListener('click', close);
-        lb.addEventListener('click', (e) => {
-            if (e.target === lb) close();
-        });
-
-        /* Navigation */
+        lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
         lbPrev.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
         lbNext.addEventListener('click', (e) => { e.stopPropagation(); next(); });
 
-        /* Clavier */
         document.addEventListener('keydown', (e) => {
             if (!lb.classList.contains('lb-open')) return;
-            if (e.key === 'Escape')      close();
-            if (e.key === 'ArrowLeft')   prev();
-            if (e.key === 'ArrowRight')  next();
+            if (e.key === 'Escape')    close();
+            if (e.key === 'ArrowLeft') prev();
+            if (e.key === 'ArrowRight') next();
         });
 
-        /* Swipe tactile (mobile) */
         let touchStartX = 0;
         lb.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
-        lb.addEventListener('touchend',   (e) => {
+        lb.addEventListener('touchend', (e) => {
             const delta = e.changedTouches[0].clientX - touchStartX;
             if (Math.abs(delta) > 50) delta < 0 ? next() : prev();
         });
     })();
     </script>
-
 
     <!-- Script submenu tactile mobile -->
     <script>
@@ -351,9 +650,7 @@
                 if (!submenu || !link) return;
 
                 link.addEventListener("click", (e) => {
-                    // Desktop avec hover : comportement normal
                     if (window.matchMedia("(hover: hover)").matches) return;
-                    // Mobile : 1er tap ouvre, 2ème tap navigue
                     if (!li.classList.contains("submenu-open")) {
                         e.preventDefault();
                         document.querySelectorAll("ul.menu > li.submenu-open").forEach(el => {
