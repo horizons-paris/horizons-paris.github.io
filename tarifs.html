@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizons Paris | Tarifs — Location studio 9ème arrondissement</title>
+
+    <!-- Métadonnées -->
+    <meta name="description" content="Horizons Paris — Tarifs de location du studio dans le 9ème arrondissement de Paris. Location à la semaine, toutes saisons.">
+    <meta name="keywords" content="Horizons Paris, tarifs studio Paris, location studio Paris, 9ème arrondissement Paris, location semaine Paris">
+    <meta name="author" content="Horizons Paris">
+    <meta name="language" content="fr">
+    <meta name="theme-color" content="#4A3428">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Horizons Paris | Tarifs">
+    <meta property="og:description" content="Tarifs de location du studio Horizons Paris dans le 9ème arrondissement, à la semaine selon les saisons.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://horizons-paris.github.io/tarifs.html">
+    <meta property="og:image" content="https://horizons-paris.github.io/images/og-image.png">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Horizons Paris | Tarifs">
+    <meta name="twitter:description" content="Tarifs de location du studio Horizons Paris dans le 9ème arrondissement.">
+    <meta name="twitter:image" content="https://horizons-paris.github.io/images/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Feuille de styles principale -->
+    <link rel="stylesheet" href="styles.css?v=131">
+
+    <style>
+        /* ============================================================
+           STYLES SPÉCIFIQUES À LA PAGE TARIFS
+           ============================================================ */
+
+        /* Titre de la page tarifs — cohérent avec les autres pages */
+        .tarifs-intro {
+            text-align: center;
+            padding: 2rem 1rem 1rem;
+        }
+
+
+        .tarifs-intro p {
+            font-size: 1rem;
+            color: #5A3E2B;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.85;
+        }
+
+        /* Conteneur principal des tarifs */
+        .tarifs-wrapper {
+            max-width: 860px;
+            margin: 2rem auto 3rem;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+        }
+
+        /* Grille de 3 cartes tarifaires */
+        .tarifs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Carte tarifaire individuelle */
+        .tarif-card {
+            background: #FDFBF7;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(74, 52, 40, 0.15);
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            border-top: 4px solid #C9A84C; /* Barre dorée en haut */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .tarif-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 28px rgba(74, 52, 40, 0.25);
+        }
+
+        /* Icône saison */
+        .tarif-icone {
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        /* Nom de la saison */
+        .tarif-saison {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1rem;
+            font-weight: bold;
+            font-style: normal;
+            color: #4A3428;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Période (ex: janvier – mars) */
+        .tarif-periode {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 0.82rem;
+            font-style: italic;
+            color: #8a6a55;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Séparateur doré */
+        .tarif-separateur {
+            width: 40px;
+            height: 2px;
+            background: #C9A84C;
+            margin: 0 auto 1.2rem;
+            border: none;
+        }
+
+        /* Prix affiché en grand */
+        .tarif-prix {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 2.4rem;
+            font-weight: bold;
+            font-style: normal;
+            color: #E50914;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .tarif-unite {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #8a6a55;
+            margin-bottom: 0;
+        }
+
+        /* Bloc "Ce qui est inclus" */
+        .tarifs-inclus {
+            background: #FDFBF7;
+            border-radius: 10px;
+            border: 2px dotted #d3d3d3;
+            border-left: 6px solid #C9A84C;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            box-sizing: border-box;
+        }
+
+        .tarifs-inclus h2 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.2rem;
+            color: #4A3428;
+            text-align: left;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-style: normal;
+            letter-spacing: 1px;
+            text-shadow: none;
+        }
+
+        .tarifs-inclus ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 2rem;
+        }
+
+        .tarifs-inclus ul li {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 0.92rem;
+            font-style: italic;
+            color: #5A3E2B;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tarifs-inclus ul li::before {
+            content: '✓';
+            color: #C9A84C;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* Note tarifaire */
+        .tarifs-note {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 0.88rem;
+            font-style: italic;
+            color: #8a6a55;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Bloc CTA — bouton réserver */
+        .tarifs-cta {
+            text-align: center;
+            padding: 1.5rem;
+            background: #4A3428;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(74, 52, 40, 0.3);
+        }
+
+        .tarifs-cta p {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: #F5F1E8;
+            margin: 0 0 1rem;
+            opacity: 0.9;
+        }
+
+        /* Pictogramme animaux */
+        .no-pets-tarifs {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .no-pets-tarifs img {
+            width: 140px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           RESPONSIVE TARIFS
+           ============================================================ */
+
+        @media (max-width: 768px) {
+            .tarifs-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .tarifs-wrapper {
+                padding: 0 1rem;
+            }
+
+            .tarifs-inclus {
+                padding: 1.2rem 1rem;
+            }
+
+            .tarifs-inclus ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .tarif-prix {
+                font-size: 2rem;
+            }
+
+            .tarifs-intro h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .tarifs-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         EN-TÊTE FIXE
+         ============================================================ -->
+    <header>
+        <div class="bandeau">
+            <!-- Bouton burger -->
+            <div class="burger-menu" id="burger" aria-label="Menu" role="button" tabindex="0">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <!-- Menu déroulant -->
+            <nav>
+                <div class="menu-drawer" id="menuDrawer" aria-hidden="true">
+                    <!-- Croix de fermeture -->
+                    <div class="close-cross" id="closeCross" aria-label="Fermer le menu" role="button" tabindex="0">
+                        <img src="images/croix.png" alt="Fermer" class="croix-image">
+                    </div>
+                    <!-- Menu principal -->
+                    <ul class="menu">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li>
+                            <a href="proximite.html">À proximité</a>
+                            <ul class="submenu">
+                                <li><a href="proximite.html?slide=0">Le moulin rouge</a></li>
+                                <li><a href="proximite.html?slide=1">Le palais Garnier</a></li>
+                                <li><a href="proximite.html?slide=2">Eglise de la Ste Trinité</a></li>
+                                <li><a href="proximite.html?slide=3">Musée du parfum Fragonard</a></li>
+                                <li><a href="proximite.html?slide=4">Galerie Lafayette</a></li>
+                                <li><a href="proximite.html?slide=5">La maison Bélanger</a></li>
+                                <li><a href="proximite.html?slide=6">L'hotel Drouot</a></li>
+                                <li><a href="proximite.html?slide=7">Le paradox museum Paris</a></li>
+                                <li><a href="proximite.html?slide=8">Passage couvert de Paris</a></li>
+                                <li><a href="proximite.html?slide=9">Place Edouard VII</a></li>
+                                <li><a href="proximite.html?slide=10">Grand rex</a></li>
+                                <li><a href="proximite.html?slide=11">Montmartre</a></li>
+                                <li><a href="proximite.html?slide=12">Musée Grévin</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="plan_du_quartier.html">Plan du quartier</a></li>
+                        <li><a href="tarifs.html">Tarifs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         CONTENU PRINCIPAL
+         ============================================================ -->
+    <main class="content">
+
+        <!-- Introduction -->
+        <section class="intro tarifs-intro">
+            <h1>Tarifs</h1>
+            <p>Location à la semaine, au cœur du 9ème arrondissement de Paris.<br>
+               Des tarifs clairs, sans surprise, selon la saison.</p>
+        </section>
+
+        <!-- Grille et blocs tarifaires -->
+        <div class="tarifs-wrapper">
+
+            <!-- Cartes des 3 saisons -->
+            <div class="tarifs-grid">
+
+                <!-- Hors saison -->
+                <div class="tarif-card">
+                    <span class="tarif-icone">❄️</span>
+                    <div class="tarif-saison">Hors saison</div>
+                    <div class="tarif-periode">janvier – mars</div>
+                    <hr class="tarif-separateur">
+                    <div class="tarif-prix">600 €</div>
+                    <div class="tarif-unite">la semaine</div>
+                </div>
+
+                <!-- Saison intermédiaire -->
+                <div class="tarif-card">
+                    <span class="tarif-icone">🌸</span>
+                    <div class="tarif-saison">Saison intermédiaire</div>
+                    <div class="tarif-periode">avril – mai</div>
+                    <hr class="tarif-separateur">
+                    <div class="tarif-prix">700 €</div>
+                    <div class="tarif-unite">la semaine</div>
+                </div>
+
+                <!-- Haute saison -->
+                <div class="tarif-card">
+                    <span class="tarif-icone">☀️</span>
+                    <div class="tarif-saison">Haute saison</div>
+                    <div class="tarif-periode">été</div>
+                    <hr class="tarif-separateur">
+                    <div class="tarif-prix">800 €</div>
+                    <div class="tarif-unite">la semaine</div>
+                </div>
+
+            </div>
+            <!-- Fin grille -->
+
+            <!-- Ce qui est inclus -->
+            <div class="tarifs-inclus">
+                <h2>Inclus dans le tarif</h2>
+                <ul>
+                    <li>Wi-Fi haut débit</li>
+                    <li>Linge de maison</li>
+                    <li>Charges comprises</li>
+                </ul>
+            </div>
+
+            <!-- Note tarifaire -->
+            <p class="tarifs-note">
+                Les tarifs sont susceptibles d'évoluer.<br>
+                N'hésitez pas à nous contacter pour toute demande spécifique ou séjour longue durée.
+            </p>
+
+            <!-- CTA Réserver -->
+            <div class="tarifs-cta">
+                <p>Une question ? Envie de réserver votre semaine à Paris ?</p>
+                <a href="contact.html" class="btn-reserver">Nous contacter</a>
+            </div>
+
+            <!-- Animaux non admis -->
+            <div class="no-pets-tarifs">
+                <img src="images/animaux.webp" alt="Animaux non admis">
+            </div>
+
+        </div>
+        <!-- Fin tarifs-wrapper -->
+
+        <!-- Boutons défilement -->
+        <div id="scrollButtons">
+            <button id="scrollTop" class="scroll-btn">
+                <img src="images/haut.png" alt="Haut">
+            </button>
+            <button id="scrollBottom" class="scroll-btn">
+                <img src="images/bas.png" alt="Bas">
+            </button>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+         PIED DE PAGE
+         ============================================================ -->
+    <footer id="footer">
+        <div class="social-buttons">
+            <!-- Facebook -->
+            <a class="social-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 48 48" aria-hidden="true">
+                    <linearGradient id="grad" x1="6.228" x2="42.077" y1="4.896" y2="43.432" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#0d61a9"></stop>
+                        <stop offset="1" stop-color="#16528c"></stop>
+                    </linearGradient>
+                    <path fill="url(#grad)" d="M42,40c0,1.105-0.895,2-2,2H8c-1.105,0-2-0.895-2-2V8c0-1.105,0.895-2,2-2h32c1.105,0,2,0.895,2,2V40z"></path>
+                    <path d="M25,38V27h-4v-6h4v-2.138c0-5.042,2.666-7.818,7.505-7.818c1.995,0,3.077,0.14,3.598,0.208l0.858,0.111L37,12.224L37,17h-3.635C32.237,17,32,18.378,32,19.535V21h4.723l-0.928,6H32v11H25z" opacity=".05"></path>
+                    <path d="M25.5,37.5v-11h-4v-5h4v-2.638c0-4.788,2.422-7.318,7.005-7.318c1.971,0,3.03,0.138,3.54,0.204l0.436,0.057l0.02,0.442V16.5h-3.135c-1.623,0-1.865,1.901-1.865,3.035V21.5h4.64l-0.773,5H31.5v11H25.5z" opacity=".07"></path>
+                    <path fill="#fff" d="M33.365,16H36v-3.754c-0.492-0.064-1.531-0.203-3.495-0.203c-4.101,0-6.505,2.08-6.505,6.819V22h-4v4h4v11h5V26h3.938l0.618-4H31v-2.465C31,17.661,31.612,16,33.365,16z"></path>
+                </svg>
+            </a>
+            <!-- X-Twitter -->
+            <a class="social-btn x" href="https://twitter.com/intent/tweet?text=D%C3%A9couvrez%20Horizons%20Paris%2C%20un%20studio%20%C3%A9l%C3%A9gant%20%C3%A0%20louer%20dans%20le%209%C3%A8me%20arr.%20de%20Paris%20%F0%9F%97%BC%EF%B8%8F%20https%3A%2F%2Fhorizons-paris.github.io%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
+                    <path d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z"/>
+                </svg>
+            </a>
+            <!-- W3C -->
+            <a class="social-btn validation" href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fhorizons-paris.github.io%2Ftarifs.html" target="_blank" rel="noopener noreferrer" aria-label="Valider le site W3C">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+                    <rect width="64" height="64" fill="#ffffff" rx="8" ry="8" stroke="#000" stroke-width="2"/>
+                    <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="#0066CC" dominant-baseline="middle" text-anchor="middle" font-weight="bold">W3C</text>
+                </svg>
+            </a>
+        </div>
+        <p>
+            &copy; 2026 horizons-paris.github.io<br>
+            Tous droits réservés. Design et contenu créés par<br>
+            <i>Scriptoleon.</i>
+        </p>
+    </footer>
+
+    <!-- ============================================================
+         SCRIPTS
+         ============================================================ -->
+
+    <!-- Défilement haut/bas -->
+    <script>
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        });
+        document.getElementById('scrollBottom').addEventListener('click', () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'auto' });
+        });
+    </script>
+
+    <!-- Menu burger -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger      = document.getElementById('burger');
+            const menuDrawer  = document.getElementById('menuDrawer');
+            const closeCross  = document.getElementById('closeCross');
+
+            burger.addEventListener('click', () => {
+                const isActive = menuDrawer.classList.toggle('active');
+                menuDrawer.setAttribute('aria-hidden', String(!isActive));
+            });
+
+            closeCross.addEventListener('click', () => {
+                closeCross.classList.add('rotating');
+                closeCross.addEventListener('animationend', () => {
+                    closeCross.classList.remove('rotating');
+                    menuDrawer.classList.remove('active');
+                    menuDrawer.setAttribute('aria-hidden', 'true');
+                }, { once: true });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!menuDrawer.contains(e.target) && !burger.contains(e.target)) {
+                    menuDrawer.classList.remove('active');
+                    menuDrawer.setAttribute('aria-hidden', 'true');
+                }
+            });
+        });
+    </script>
+
+    <!-- Sous-menu tactile mobile -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const items = document.querySelectorAll("ul.menu > li");
+            items.forEach(li => {
+                const submenu = li.querySelector("ul.submenu");
+                const link    = li.querySelector(":scope > a");
+                if (!submenu || !link) return;
+
+                link.addEventListener("click", (e) => {
+                    if (window.matchMedia("(hover: hover)").matches) return;
+                    if (!li.classList.contains("submenu-open")) {
+                        e.preventDefault();
+                        document.querySelectorAll("ul.menu > li.submenu-open").forEach(el => {
+                            if (el !== li) el.classList.remove("submenu-open");
+                        });
+                        li.classList.add("submenu-open");
+                    }
+                });
+
+                document.addEventListener("click", (e) => {
+                    if (!li.contains(e.target)) {
+                        li.classList.remove("submenu-open");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

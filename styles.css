@@ -454,8 +454,10 @@ footer {
     border: 4px solid silver;
     width: 100%;
     max-width: 340px;
-    height: auto;
-    cursor: zoom-in; /* Indique que l'image est cliquable pour la lightbox */
+    height: 340px;        /* Remplace height: auto */
+    object-fit: cover;    /* Ajout pour ne pas déformer */
+    object-position: center;
+    cursor: zoom-in;
 }
 
 /* Grille de cartes sur 2 colonnes */
