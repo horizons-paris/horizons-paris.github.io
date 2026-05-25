@@ -533,10 +533,6 @@
         let triggers = [];
         let current  = 0;
 
-        function buildList() {
-            triggers = Array.from(document.querySelectorAll('.lb-trigger'));
-        }
-
         function open(index) {
             current = index;
             const t = triggers[current];
@@ -560,7 +556,10 @@
         document.addEventListener('click', (e) => {
             const el = e.target.closest('.lb-trigger');
             if (!el) return;
-            buildList();
+            const card = el.closest('.card');
+            triggers = card
+                ? Array.from(card.querySelectorAll('.lb-trigger'))
+                : Array.from(document.querySelectorAll('.lb-trigger'));
             open(triggers.indexOf(el));
         });
 
